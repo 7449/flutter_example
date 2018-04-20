@@ -39,10 +39,13 @@ class SplashState extends State<SplashScreen> with TickerProviderStateMixin {
     }
   }
 
-
   Widget build(BuildContext context) {
     return new FadeTransition(
-        opacity: animation, child: new Image.asset(SplashImage));
+        opacity: animation,
+        child: new Image.asset(
+          SplashImage,
+          fit: BoxFit.cover,
+        ));
   }
 
   dispose() {
