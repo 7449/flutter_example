@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zhihu_zhuan_lan/HomeScreen.dart';
+import 'package:zhihu_zhuan_lan/home_screen.dart';
 
 // 入口，这里使用MaterialApp作为顶级入口,启动项目的启动页
 // 当然,这有个缺点就是`ios`和`android`想要相同的效果就要一起替换

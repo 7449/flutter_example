@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:zhihu_zhuan_lan/HomeScreen.dart';
+import 'package:zhihu_zhuan_lan/home_screen.dart';
 import 'package:zhihu_zhuan_lan/values.dart';
 
 //废弃
