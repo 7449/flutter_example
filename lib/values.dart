@@ -113,6 +113,41 @@ const internetTabsSuffix = [
   'riobard',
 ];
 
+getTabLength(index) {
+  switch (index) {
+    case 0:
+      return zhihuTabs.length;
+    case 1:
+      return movieTabs.length;
+    case 2:
+      return musicTabs.length;
+    case 3:
+      return developTabs.length;
+    case 4:
+      return bookTabs.length;
+    case 5:
+      return internetTabs.length;
+  }
+}
+
+// ignore: missing_return
+List getTabTitle(index) {
+  switch (index) {
+    case 0:
+      return zhihuTabs;
+    case 1:
+      return movieTabs;
+    case 2:
+      return musicTabs;
+    case 3:
+      return developTabs;
+    case 4:
+      return bookTabs;
+    case 5:
+      return internetTabs;
+  }
+}
+
 String getListUrl(suffix) {
   return 'https://zhuanlan.zhihu.com/api/columns/$suffix/posts';
 }
