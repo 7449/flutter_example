@@ -131,6 +131,24 @@ getTabLength(index) {
 }
 
 // ignore: missing_return
+String getTabSuffix(drawerIndex, tabIndex) {
+  switch (drawerIndex) {
+    case 0:
+      return zhihuTabsSuffix[tabIndex];
+    case 1:
+      return movieTabsSuffix[tabIndex];
+    case 2:
+      return musicTabsSuffix[tabIndex];
+    case 3:
+      return developTabsSuffix[tabIndex];
+    case 4:
+      return bookTabsSuffix[tabIndex];
+    case 5:
+      return internetTabsSuffix[tabIndex];
+  }
+}
+
+// ignore: missing_return
 List getTabTitle(index) {
   switch (index) {
     case 0:
