@@ -17,6 +17,24 @@ class ListEntity {
   }
 }
 
+class DetailEntity {
+  final String titleImage;
+  final String title;
+  final String content;
+  AuthorEntity author;
+
+  DetailEntity({this.title, this.titleImage, this.content, this.author});
+
+  static DetailEntity fromJson(Map<String, dynamic> json) {
+    return new DetailEntity(
+      title: json['title'],
+      titleImage: json['titleImage'],
+      content: json['content'],
+      author: new AuthorEntity.fromJson(json['author']),
+    );
+  }
+}
+
 class AuthorEntity {
   final String profileUrl;
   final String bio;

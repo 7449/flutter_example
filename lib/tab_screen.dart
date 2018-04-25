@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
+import 'package:zhihu_zhuan_lan/detail_screen.dart';
 import 'package:zhihu_zhuan_lan/entity/entity.dart';
 import 'package:zhihu_zhuan_lan/values.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -20,13 +21,23 @@ class TabScreen extends StatelessWidget {
 
   TabScreen({@required this.suffix});
 
+  ///使用 InkWell 点击有视觉反馈
   Widget listItem(context, index, ListEntity info) {
+    String imageUrl = info.titleImage;
     return new Card(
+        child: new InkWell(
+      onTap: () {
+        Navigator.push(
+            context,
+            new MaterialPageRoute(
+                builder: (context) => new DetailScreen(
+                    slug: info.slug.toString(), title: info.title)));
+      },
       child: new Column(
         children: <Widget>[
           new FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
-              image: info.titleImage,
+              image: imageUrl.isEmpty ? defaultImageUrl : imageUrl,
               height: 180.0,
               width: 1000.0,
               fit: BoxFit.cover),
@@ -36,7 +47,7 @@ class TabScreen extends StatelessWidget {
           )
         ],
       ),
-    );
+    ));
   }
 
   /// 这里使用`FutureBuilder`
@@ -55,7 +66,7 @@ class TabScreen extends StatelessWidget {
                 itemBuilder: (context, index) =>
                     listItem(context, index, snapshot.data[index]));
           } else if (snapshot.hasError) {
-            return new Text('${snapshot.error}');
+            return new Center(child: new Text('${snapshot.error}'));
           }
           return CircularProgressIndicator();
         },

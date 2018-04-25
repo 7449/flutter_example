@@ -1,5 +1,6 @@
 const SplashImage = 'lib/image/icon_splash.jpg';
-
+const defaultImageUrl =
+    'https://pic4.zhimg.com/88e8a28edd4f97e8bb57077a1a91ac03_r.jpg';
 const HomeTitle = '知乎专栏Flutter版';
 
 const drawerTabs = [
