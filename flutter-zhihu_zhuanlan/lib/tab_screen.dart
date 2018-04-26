@@ -31,7 +31,10 @@ class TabScreen extends StatelessWidget {
             context,
             new MaterialPageRoute(
                 builder: (context) => new DetailScreen(
-                    slug: info.slug.toString(), title: info.title)));
+                    slug: info.slug.toString(),
+                    title: info.title,
+                    titleImage:
+                        imageUrl.isEmpty ? defaultImageUrl : imageUrl)));
       },
       child: new Column(
         children: <Widget>[

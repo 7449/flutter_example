@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:zhihu_zhuan_lan/entity/entity.dart';
 import 'package:zhihu_zhuan_lan/values.dart';
 
@@ -16,62 +17,56 @@ Future<DetailEntity> fetchDetail(slug) async {
 class DetailScreen extends StatelessWidget {
   final String slug;
   final String title;
+  final String titleImage;
 
-  DetailScreen({@required this.slug, @required this.title});
+  DetailScreen(
+      {@required this.slug, @required this.title, @required this.titleImage});
 
-  Widget detail(DetailEntity data) {
-    String imageUrl = data.titleImage;
-
-    return new Scaffold(
-      body: new Center(
-        child: new Text(data.title),
-      ),
-    );
-
-//    return new WebviewScaffold();
-
-//    return new CustomScrollView(
-//      slivers: <Widget>[
-//        new SliverAppBar(
-//          pinned: true,
-//          expandedHeight: 180.0,
-//          flexibleSpace: new FlexibleSpaceBar(
-//            title: new Text(title),
-//            background: new FadeInImage.memoryNetwork(
-//                placeholder: kTransparentImage,
-//                image: imageUrl.isEmpty ? defaultImageUrl : imageUrl,
-//                height: 180.0,
-//                width: 1000.0,
-//                fit: BoxFit.cover),
-//          ),
-//        ),
-//        new SliverSafeArea(sliver: new Text('detail'))
-//      ],
-//    );
-  }
-
-  @override
-  Widget build(BuildContext context) {
+  Widget boxAdapterWidget(context) {
     return new FutureBuilder<DetailEntity>(
       future: fetchDetail(slug),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return detail(snapshot.data);
+          return new Center(
+              child: new Padding(
+                  padding: new EdgeInsets.all(10.0),
+                  child: new RichText(
+                    text: new TextSpan(
+                        text: snapshot.data.content,
+                        style: DefaultTextStyle.of(context).style),
+                  )));
         } else if (snapshot.hasError) {
-          return new Scaffold(
-            appBar: new AppBar(
-              title: new Text(title),
-            ),
-            body: new Center(child: new Text('${snapshot.error}')),
-          );
+          return new Center(child: new Text('${snapshot.error}'));
         }
-        return new Scaffold(
-          appBar: new AppBar(
-            title: new Text(title),
-          ),
-          body: new Center(child: new CircularProgressIndicator()),
-        );
+        return new Center(child: new CircularProgressIndicator());
       },
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new CustomScrollView(
+        slivers: <Widget>[
+          new SliverAppBar(
+            pinned: true,
+            expandedHeight: 180.0,
+            flexibleSpace: new FlexibleSpaceBar(
+              title: new Text(
+                title,
+                maxLines: 1,
+              ),
+              background: new FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: titleImage,
+                  height: 180.0,
+                  width: 1000.0,
+                  fit: BoxFit.cover),
+            ),
+          ),
+          new SliverToBoxAdapter(child: boxAdapterWidget(context))
+        ],
+      ),
     );
   }
 }
