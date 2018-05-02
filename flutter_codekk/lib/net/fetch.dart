@@ -7,7 +7,8 @@ import 'package:http/http.dart' as http;
 
 const opType = ['array', 'map', 'mix'];
 
+///http://api.codekk.com/op/page/1?type=array
 Future<OpEntity> fetchOp(int page, String type) async {
   final response = await http.get(baseUrl + opListUrl + page.toString());
-  return OpEntity.fromJson(json.decode(response.body));
+  return new OpEntity.fromJson(json.decode(response.body));
 }
