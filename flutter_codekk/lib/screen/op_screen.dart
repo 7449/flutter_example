@@ -1,13 +1,33 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
 import 'package:flutter_codekk/net/fetch.dart';
 import 'package:meta/meta.dart';
 
 ///  开源项目
-class OpScreen extends StatelessWidget {
+class OpScreen extends StatefulWidget {
   final String title;
 
   OpScreen({@required this.title});
+
+  @override
+  State<StatefulWidget> createState() => new OpState(title: title);
+}
+
+class OpState extends State<OpScreen> {
+  final String title;
+  List<ProjectArrayEntity> list = [];
+  final GlobalKey<RefreshIndicatorState> globalKey =
+      new GlobalKey<RefreshIndicatorState>();
+
+  OpState({@required this.title});
+
+  @override
+  void initState() {
+    super.initState();
+    refresh(); // currentState null at this time, so the app crashes.
+  }
 
   Widget listItem(context, index, ProjectArrayEntity info) {
     return new Card(
@@ -35,22 +55,27 @@ class OpScreen extends StatelessWidget {
     ));
   }
 
+  Future refresh() async {
+    globalKey.currentState?.show();
+    List<ProjectArrayEntity> items;
+    await fetchOp(1, '').then((opEntity) {
+      items = opEntity.data.projectArray;
+    });
+    setState(() => list = items);
+  }
+
   @override
   Widget build(BuildContext context) {
     return new Center(
-      child: new FutureBuilder<OpEntity>(
-        future: fetchOp(1, ''),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return new ListView.builder(
-                itemCount: snapshot.data.data.projectArray.length,
-                itemBuilder: (context, index) => listItem(
-                    context, index, snapshot.data.data.projectArray[index]));
-          } else if (snapshot.hasError) {
-            return new Center(child: new Text('${snapshot.error}'));
-          }
-          return CircularProgressIndicator();
-        },
+      child: new RefreshIndicator(
+        key: globalKey,
+        onRefresh: refresh,
+        child: new ListView.builder(
+          padding: kMaterialListPadding,
+          itemCount: list.length,
+          itemBuilder: (BuildContext context, int index) =>
+              listItem(context, index, list[index]),
+        ),
       ),
     );
   }
