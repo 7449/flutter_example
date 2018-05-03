@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
 import 'package:flutter_codekk/net/fetch.dart';
+import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:meta/meta.dart';
 
 ///  开源项目
@@ -15,25 +16,19 @@ class OpScreen extends StatefulWidget {
   State<StatefulWidget> createState() => new OpState(title: title);
 }
 
-class OpState extends State<OpScreen> {
-  final GlobalKey<RefreshIndicatorState> globalKey =
-      new GlobalKey<RefreshIndicatorState>();
-  final ScrollController scrollController = new ScrollController();
-  List<ProjectArrayEntity> list = [];
+class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   final String title;
-  bool isLoadMore = false;
-  int page = 1;
 
   OpState({@required this.title});
 
   @override
   void initState() {
     super.initState();
-    refresh(); // currentState null at this time, so the app crashes.
+    onRefresh(); // currentState null at this time, so the app crashes.
   }
 
-  Widget listItem(ProjectArrayEntity info) {
-    /// 这里如果想更好的体验可以判断下字段内容是否为空来显示`widget`
+  @override
+  Widget itemWidget(ProjectArrayEntity entity) {
     return new Card(
         child: new InkWell(
       onTap: () {},
@@ -41,17 +36,17 @@ class OpState extends State<OpScreen> {
         children: <Widget>[
           new Padding(
             padding: new EdgeInsets.all(8.0),
-            child: new Text(info.projectName,
+            child: new Text(entity.projectName,
                 style: new TextStyle(color: Colors.green)),
           ),
           new Padding(
             padding: new EdgeInsets.all(8.0),
             child:
-                new Text(info.desc, style: new TextStyle(color: Colors.blue)),
+                new Text(entity.desc, style: new TextStyle(color: Colors.blue)),
           ),
           new Padding(
             padding: new EdgeInsets.all(8.0),
-            child: new Text(info.projectUrl,
+            child: new Text(entity.projectUrl,
                 style: new TextStyle(color: Colors.pinkAccent)),
           ),
         ],
@@ -59,19 +54,17 @@ class OpState extends State<OpScreen> {
     ));
   }
 
-  Future<Null> refresh() async {
+  @override
+  Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    List<ProjectArrayEntity> items;
     await fetchOp(1, '').then((opEntity) {
-      items = opEntity.data.projectArray;
+      list = opEntity.data.projectArray;
     });
-    setState(() {
-      list = items;
-      page = 2;
-    });
+    setState(() => page = 2);
   }
 
-  void loadMore() async {
+  @override
+  void onLoadMore() async {
     Scaffold
         .of(context)
         .showSnackBar(new SnackBar(content: new Text('LoadMore')));
@@ -84,11 +77,10 @@ class OpState extends State<OpScreen> {
           .of(context)
           .showSnackBar(new SnackBar(content: new Text('没有更多数据')));
     } else {
-      setState(() {
-        list.addAll(items);
-        page++;
-        isLoadMore = false;
-      });
+      list.addAll(items);
+      page++;
+      isLoadMore = false;
+      setState(() {});
     }
   }
 
@@ -98,24 +90,14 @@ class OpState extends State<OpScreen> {
       onNotification: onNotification,
       child: new RefreshIndicator(
         key: globalKey,
-        onRefresh: refresh,
+        onRefresh: onRefresh,
         child: new ListView.builder(
           controller: scrollController,
           padding: kMaterialListPadding,
           itemCount: list.length,
-          itemBuilder: (context, index) => listItem(list[index]),
+          itemBuilder: (context, index) => itemWidget(list[index]),
         ),
       ),
     );
-  }
-
-  bool onNotification(ScrollNotification notification) {
-    if (scrollController.position.maxScrollExtent == scrollController.offset &&
-        page != 1 &&
-        !isLoadMore) {
-      setState(() => isLoadMore = true);
-      loadMore();
-    }
-    return true;
   }
 }
