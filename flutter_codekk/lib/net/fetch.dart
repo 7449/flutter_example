@@ -9,6 +9,7 @@ const opType = ['array', 'map', 'mix'];
 
 ///http://api.codekk.com/op/page/1?type=array
 Future<OpEntity> fetchOp(int page, String type) async {
+  print('fetchOp:${baseUrl + opListUrl + page.toString()}');
   final response = await http.get(baseUrl + opListUrl + page.toString());
   return new OpEntity.fromJson(json.decode(response.body));
 }
