@@ -1,17 +1,17 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'op_entity.g.dart';
+part 'op_search_entity.g.dart';
 
 @JsonSerializable()
-class OpEntity extends Object with _$OpEntitySerializerMixin {
+class OpSearchEntity extends Object with _$OpSearchEntitySerializerMixin {
   final DataEntity data;
   final int code;
   final String message;
 
-  factory OpEntity.fromJson(Map<String, dynamic> json) =>
-      _$OpEntityFromJson(json);
+  factory OpSearchEntity.fromJson(Map<String, dynamic> json) =>
+      _$OpSearchEntityFromJson(json);
 
-  OpEntity(this.data, this.code, this.message);
+  OpSearchEntity(this.data, this.code, this.message);
 }
 
 @JsonSerializable()
@@ -27,63 +27,63 @@ class DataEntity extends Object with _$DataEntitySerializerMixin {
 @JsonSerializable()
 class ProjectArrayEntity extends Object
     with _$ProjectArrayEntitySerializerMixin {
-  final String projectName;
-  final String createTime;
-  final String updateTime;
-  final int expiredTimes;
-  final int usedTimes;
-  final int voteUp;
-  final bool recommend;
-  final bool hide;
-  final String projectUrl;
-  final String demoUrl;
-  final String committer;
-  final String source;
   final String lang;
-  final String authorName;
+  final String committer;
+  final String updateTime;
+  final bool hide;
   final String authorUrl;
+  final String projectName;
+  final int expiredTimes;
+  final String authorName;
+  final int usedTimes;
+  final String source;
+  final String projectUrl;
+  final Object officialUrl;
+  final bool recommend;
+  final String desc;
+  final String createTime;
+  final int voteUp;
   final String codeKKUrl;
   @JsonKey(name: '_id')
   final String id;
-  final String desc;
-  final Object officialUrl;
   final List<TagsEntity> tags;
 
   factory ProjectArrayEntity.fromJson(Map<String, dynamic> json) =>
       _$ProjectArrayEntityFromJson(json);
 
   ProjectArrayEntity(
-      this.projectName,
-      this.createTime,
-      this.updateTime,
-      this.expiredTimes,
-      this.usedTimes,
-      this.voteUp,
-      this.recommend,
-      this.hide,
-      this.projectUrl,
-      this.demoUrl,
+      {this.lang,
       this.committer,
-      this.source,
-      this.lang,
-      this.authorName,
+      this.updateTime,
+      this.hide,
       this.authorUrl,
+      this.projectName,
+      this.expiredTimes,
+      this.authorName,
+      this.usedTimes,
+      this.source,
+      this.projectUrl,
+      this.officialUrl,
+      this.recommend,
+      this.desc,
+      this.createTime,
+      this.voteUp,
       this.codeKKUrl,
       this.id,
-      this.desc,
-      this.officialUrl,
-      this.tags);
+      this.tags});
 }
 
 @JsonSerializable()
 class TagsEntity extends Object with _$TagsEntitySerializerMixin {
+  final String userName;
+  final String contentId;
+  final String type;
   final String createTime;
   final String name;
-  final String userName;
-  final String type;
 
   factory TagsEntity.fromJson(Map<String, dynamic> json) =>
       _$TagsEntityFromJson(json);
 
-  TagsEntity(this.createTime, this.name, this.userName, this.type);
+  TagsEntity(
+      this.userName, this.contentId, this.type, this.createTime, this.name);
 }
