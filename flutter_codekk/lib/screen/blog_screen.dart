@@ -34,7 +34,8 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
   Widget itemWidget(SummaryArrayEntity entity) {
     return new Card(
         child: new InkWell(
-      onTap: () => startDetailScreen(context, entity.title, ApiType.BLOG),
+      onTap: () =>
+          startDetailScreen(context, entity.title, ApiType.BLOG, entity.id),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

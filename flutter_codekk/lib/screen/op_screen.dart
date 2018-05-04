@@ -34,7 +34,8 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   Widget itemWidget(ProjectArrayEntity entity) {
     return new Card(
         child: new InkWell(
-      onTap: () => startDetailScreen(context, entity.projectName, ApiType.OP),
+      onTap: () =>
+          startDetailScreen(context, entity.projectName, ApiType.OP, entity.id),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -34,7 +34,8 @@ class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
   Widget itemWidget(RecommendArrayEntity entity) {
     return new Card(
         child: new InkWell(
-      onTap: () => startDetailScreen(context, entity.title, ApiType.RECOMMEND),
+      onTap: () => startDetailScreen(
+          context, entity.title, ApiType.RECOMMEND, entity.url),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

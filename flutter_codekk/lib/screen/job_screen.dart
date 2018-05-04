@@ -34,7 +34,8 @@ class JobState extends ListState<JobScreen, SummaryArrayEntity> {
   Widget itemWidget(SummaryArrayEntity entity) {
     return new Card(
         child: new InkWell(
-          onTap: () => startDetailScreen(context, entity.authorName, ApiType.JOB),
+      onTap: () =>
+          startDetailScreen(context, entity.authorName, ApiType.JOB, entity.id),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[

@@ -5,6 +5,7 @@ import 'package:flutter_codekk/entity/blog_entity.dart';
 import 'package:flutter_codekk/entity/job_entity.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
 import 'package:flutter_codekk/entity/opa_entity.dart';
+import 'package:flutter_codekk/entity/readme_entity.dart';
 import 'package:flutter_codekk/entity/recommend_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:http/http.dart' as http;
@@ -51,10 +52,20 @@ Future<JobEntity> fetchJob(int page) async {
   return new JobEntity.fromJson(json.decode(response.body));
 }
 
-Future<OpEntity> fetchReadme() async {
-  print('fetchReadme:${baseUrl}');
-  final response = await http.get(baseUrl);
-  return new OpEntity.fromJson(json.decode(response.body));
+///详情网络请求
+Future<ReadmeEntity> fetchReadme(ApiType apiType, String id) async {
+  String url = '';
+  switch (apiType) {
+    case ApiType.RECOMMEND:
+      url = id;
+      break;
+    default:
+      url = baseUrl + readmeUrl(apiType, id);
+      break;
+  }
+  print('fetchReadme:$url');
+  final response = await http.get(url);
+  return new ReadmeEntity.fromJson(json.decode(response.body));
 }
 
 ///http://api.codekk.com/recommend/page/1

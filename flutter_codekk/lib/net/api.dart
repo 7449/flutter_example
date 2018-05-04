@@ -1,6 +1,6 @@
 const String baseUrl = "http://api.codekk.com/";
 const String opListUrl = "op/page/"; //获取开源项目
-const String opDetailUrl = "op/detail/"; //获取单个开源项目 ReadMe *
+const String opDetailUrl = "op/detail/"; //获取单个开源项目
 const String opSearchUrl = "op/search"; //搜索开源项目
 const String opaListUrl = "opa/page/"; //获取源码解析文章列表
 const String opaDetailUrl = "opa/detail/"; //获取单个源码解析文章详情 *
@@ -18,4 +18,20 @@ enum ApiType {
   BLOG,
   JOB,
   RECOMMEND,
+}
+
+String readmeUrl(ApiType apiType, String id) {
+  switch (apiType) {
+    case ApiType.OP:
+      return '${opDetailUrl + id.toString()}/readme';
+    case ApiType.OPA:
+      return opaDetailUrl + id.toString();
+    case ApiType.BLOG:
+      return blogDetailUrl + id.toString();
+    case ApiType.JOB:
+      return jobDetailUrl + id.toString();
+    case ApiType.RECOMMEND:
+      return id.toString();
+  }
+  return 'null';
 }

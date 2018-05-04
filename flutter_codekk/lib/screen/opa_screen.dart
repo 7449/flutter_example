@@ -34,7 +34,8 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
   Widget itemWidget(SummaryArrayEntity entity) {
     return new Card(
         child: new InkWell(
-      onTap: () => startDetailScreen(context, entity.title, ApiType.OPA),
+      onTap: () =>
+          startDetailScreen(context, entity.title, ApiType.OPA, entity.id),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
