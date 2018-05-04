@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:flutter_codekk/entity/blog_entity.dart';
 import 'package:flutter_codekk/entity/job_entity.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
+import 'package:flutter_codekk/entity/op_search_entity.dart';
 import 'package:flutter_codekk/entity/opa_entity.dart';
 import 'package:flutter_codekk/entity/readme_entity.dart';
 import 'package:flutter_codekk/entity/recommend_entity.dart';
@@ -19,10 +20,13 @@ Future<OpEntity> fetchOp(int page, String type) async {
   return new OpEntity.fromJson(json.decode(response.body));
 }
 
-Future<OpEntity> fetchOpSearch() async {
-  print('fetchOpSearch:${baseUrl + opSearchUrl}');
-  final response = await http.get(baseUrl + opSearchUrl);
-  return new OpEntity.fromJson(json.decode(response.body));
+///http://api.codekk.com/op/search?text=rxjava&page=1
+Future<OpSearchEntity> fetchOpSearch(String search, int page) async {
+  print('fetchOpSearch:${baseUrl + opSearchUrl + search + '&page=' +
+      page.toString()}');
+  final response = await http
+      .get(baseUrl + opSearchUrl + search + '&page=' + page.toString());
+  return new OpSearchEntity.fromJson(json.decode(response.body));
 }
 
 ///http://api.codekk.com/opa/page/1

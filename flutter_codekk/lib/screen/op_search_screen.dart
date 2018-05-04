@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_codekk/entity/op_entity.dart';
+import 'package:flutter_codekk/entity/op_search_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/net/fetch.dart';
 import 'package:flutter_codekk/tool/tool.dart';
@@ -10,20 +10,20 @@ import 'package:flutter_codekk/widget/item_widget_fix.dart';
 import 'package:flutter_codekk/widget/status_widget.dart';
 import 'package:meta/meta.dart';
 
-///  开源项目
-class OpScreen extends StatefulWidget {
-  final String title;
+///  搜索开源项目
+class OpSearchScreen extends StatefulWidget {
+  final String search;
 
-  OpScreen({@required this.title});
+  OpSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() => new OpState(title: title);
+  State<StatefulWidget> createState() => new OpSearchState(search: search);
 }
 
-class OpState extends ListState<OpScreen, ProjectArrayEntity> {
-  final String title;
+class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
+  final String search;
 
-  OpState({@required this.title});
+  OpSearchState({@required this.search});
 
   @override
   void initState() {
@@ -51,7 +51,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   @override
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    await fetchOp(1, '').then((opEntity) {
+    await fetchOpSearch(search, 1).then((opEntity) {
       list = opEntity.data.projectArray;
       setState(() {
         if (list.isEmpty) {
@@ -70,7 +70,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   void onLoadMore() async {
     loadMoreTips();
     List<ProjectArrayEntity> items;
-    await fetchOp(page, '')
+    await fetchOpSearch(search, page)
         .then((opEntity) => items = opEntity.data.projectArray)
         .catchError((error) => loadMoreErrorTips());
     if (items.isEmpty) {
@@ -85,33 +85,36 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
 
   @override
   Widget build(BuildContext context) {
-    return new StatusWidget(
-      child: new NotificationListener(
-        onNotification: onNotification,
-        child: new RefreshIndicator(
-          key: globalKey,
-          onRefresh: onRefresh,
-          child: new ListView.builder(
-            controller: scrollController,
-            padding: kMaterialListPadding,
-            itemCount: list.length,
-            itemBuilder: (context, index) => itemWidget(list[index]),
+    return new Scaffold(
+      appBar: new AppBar(title: new Text(search)),
+      body: new StatusWidget(
+        child: new NotificationListener(
+          onNotification: onNotification,
+          child: new RefreshIndicator(
+            key: globalKey,
+            onRefresh: onRefresh,
+            child: new ListView.builder(
+              controller: scrollController,
+              padding: kMaterialListPadding,
+              itemCount: list.length,
+              itemBuilder: (context, index) => itemWidget(list[index]),
+            ),
           ),
         ),
+        status: status,
+        onErrorPressed: () {
+          setState(() {
+            status = Status.SUCCESS;
+            onRefresh();
+          });
+        },
+        onEmptyPressed: () {
+          setState(() {
+            status = Status.SUCCESS;
+            onRefresh();
+          });
+        },
       ),
-      status: status,
-      onErrorPressed: () {
-        setState(() {
-          status = Status.SUCCESS;
-          onRefresh();
-        });
-      },
-      onEmptyPressed: () {
-        setState(() {
-          status = Status.SUCCESS;
-          onRefresh();
-        });
-      },
     );
   }
 }

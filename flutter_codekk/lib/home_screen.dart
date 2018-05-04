@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/screen/blog_screen.dart';
 import 'package:flutter_codekk/screen/job_screen.dart';
 import 'package:flutter_codekk/screen/op_screen.dart';
 import 'package:flutter_codekk/screen/opa_screen.dart';
 import 'package:flutter_codekk/screen/recommend_screen.dart';
 import 'package:flutter_codekk/screen/unknown_screen.dart';
+import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/values.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -14,6 +16,7 @@ class HomeScreen extends StatefulWidget {
 
 class DrawerState extends State<HomeScreen> {
   int selectIndex = 0;
+  String searchValue = '';
 
   Widget drawer() {
     return new Column(children: <Widget>[
@@ -62,12 +65,46 @@ class DrawerState extends State<HomeScreen> {
     return new UnKnowScreen(title: title);
   }
 
+  showDialogs() {
+    showDialog(
+        context: context,
+        builder: (context) => new AlertDialog(
+                content: new TextField(
+                    decoration: const InputDecoration(labelText: '请输入关键词'),
+                    onChanged: (value) => setState(() => searchValue = value)),
+                actions: <Widget>[
+                  new FlatButton(
+                      child: const Text('取消'),
+                      onPressed: () => Navigator.pop(context)),
+                  new FlatButton(
+                      child: const Text('搜索'),
+                      onPressed: () {
+//                        if (searchValue.isEmpty) {
+//                        }
+                        Navigator.pop(context);
+                        startSearchScreen(context, searchValue,
+                            selectIndex == 0 ? ApiType.OP : ApiType.OPA);
+                      })
+                ]));
+  }
+
   @override
   Widget build(BuildContext context) {
     String title = getDrawerTitle()[selectIndex];
     return new Scaffold(
         drawer: new Drawer(child: drawer()),
-        appBar: new AppBar(title: new Text(title)),
+        appBar: new AppBar(title: new Text(title), actions: <Widget>[
+          new IconButton(
+            icon: const Icon(Icons.search),
+            tooltip: 'search',
+            onPressed: () => showDialogs(),
+          ),
+          new IconButton(
+            icon: const Icon(Icons.more_vert),
+            tooltip: 'show menu',
+            onPressed: () {},
+          ),
+        ]),
         body: bodyWidget(title));
   }
 }
