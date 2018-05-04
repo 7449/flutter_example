@@ -2,8 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
+import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/net/fetch.dart';
+import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
+import 'package:flutter_codekk/widget/item_widget_fix.dart';
 import 'package:meta/meta.dart';
 
 ///  开源项目
@@ -31,24 +34,13 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   Widget itemWidget(ProjectArrayEntity entity) {
     return new Card(
         child: new InkWell(
-      onTap: () {},
+      onTap: () => startDetailScreen(context, entity.projectName, ApiType.OP),
       child: new Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Padding(
-            padding: new EdgeInsets.all(8.0),
-            child: new Text(entity.projectName,
-                style: new TextStyle(color: Colors.green)),
-          ),
-          new Padding(
-            padding: new EdgeInsets.all(8.0),
-            child:
-                new Text(entity.desc, style: new TextStyle(color: Colors.blue)),
-          ),
-          new Padding(
-            padding: new EdgeInsets.all(8.0),
-            child: new Text(entity.projectUrl,
-                style: new TextStyle(color: Colors.pinkAccent)),
-          ),
+          text(entity.projectName, Colors.green),
+          text(entity.desc, Colors.blue),
+          text(entity.projectUrl, Colors.pinkAccent),
         ],
       ),
     ));
