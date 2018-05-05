@@ -7,6 +7,7 @@ import 'package:flutter_codekk/net/fetch.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
+import 'package:flutter_codekk/widget/status_widget.dart';
 import 'package:meta/meta.dart';
 
 ///  搜索开源项目
@@ -55,5 +56,30 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
     fetchOpSearch(search, page)
         .then((opEntity) => loadMoreSuccess(opEntity.data.projectArray))
         .catchError((error) => loadMoreError());
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(title: new Text(search)),
+      body: new StatusWidget(
+        child: new NotificationListener(
+          onNotification: onNotification,
+          child: new RefreshIndicator(
+            key: globalKey,
+            onRefresh: onRefresh,
+            child: new ListView.builder(
+              controller: scrollController,
+              padding: kMaterialListPadding,
+              itemCount: list.length,
+              itemBuilder: (context, index) => itemWidget(list[index]),
+            ),
+          ),
+        ),
+        status: status,
+        onErrorPressed: () => retry(),
+        onEmptyPressed: () => retry(),
+      ),
+    );
   }
 }

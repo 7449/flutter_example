@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:zhihu_zhuan_lan/tab_screen.dart';
 import 'package:zhihu_zhuan_lan/values.dart';
 
-//已知问题:切换抽屉item，虽然`tab`显示的是第一个,页面却一直显示上一次点击的`tab`页数
+///已知问题:切换抽屉item，虽然`tab`显示的是第一个,页面却一直显示上一次点击的`tab`页数
 class HomeScreen extends StatefulWidget {
   //初始化 State
   @override
@@ -38,7 +38,7 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
         new Container(
           color: Colors.grey,
           height: 160.0,
-          child: new Center(child: new Text(HomeTitle)),
+          child: const Center(child: const Text(HomeTitle)),
         ),
         new Expanded(
             child: new ListView.builder(
@@ -57,7 +57,7 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget drawerListItem(context, index) {
     var text = drawerTabs[index];
     return new ListTile(
-        leading: new Icon(Icons.android),
+        leading: const Icon(Icons.android),
         title: new Text(text,
             style: new TextStyle(
                 color: selectIndex == index ? Colors.blue : Colors.black)),

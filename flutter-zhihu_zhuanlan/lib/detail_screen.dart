@@ -29,7 +29,7 @@ class DetailScreen extends StatelessWidget {
         if (snapshot.hasData) {
           return new Center(
               child: new Padding(
-                  padding: new EdgeInsets.all(10.0),
+                  padding: const EdgeInsets.all(10.0),
                   child: new RichText(
                     text: new TextSpan(
                         text: snapshot.data.content,
@@ -38,7 +38,7 @@ class DetailScreen extends StatelessWidget {
         } else if (snapshot.hasError) {
           return new Center(child: new Text('${snapshot.error}'));
         }
-        return new Center(child: new CircularProgressIndicator());
+        return const Center(child: const CircularProgressIndicator());
       },
     );
   }
@@ -52,10 +52,8 @@ class DetailScreen extends StatelessWidget {
             pinned: true,
             expandedHeight: 180.0,
             flexibleSpace: new FlexibleSpaceBar(
-              title: new Text(
-                title,
-                maxLines: 1,
-              ),
+              title: new Text(title, maxLines: 1),
+              centerTitle: false,
               background: new FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,
                   image: titleImage,

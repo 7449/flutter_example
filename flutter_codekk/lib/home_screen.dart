@@ -10,13 +10,21 @@ import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/values.dart';
 
 class HomeScreen extends StatefulWidget {
+  final VoidCallback voidCallback;
+
   @override
-  State<StatefulWidget> createState() => new DrawerState();
+  State<StatefulWidget> createState() =>
+      new DrawerState(voidCallback: voidCallback);
+
+  HomeScreen({this.voidCallback});
 }
 
 class DrawerState extends State<HomeScreen> {
   int selectIndex = 0;
   String searchValue = '';
+  final VoidCallback voidCallback;
+
+  DrawerState({this.voidCallback});
 
   Widget drawer() {
     return new Column(children: <Widget>[
@@ -24,7 +32,9 @@ class DrawerState extends State<HomeScreen> {
       new Container(
         color: Colors.grey,
         height: 160.0,
-        child: const Center(child: const Text('codeKK')),
+        child: new Center(
+            child: new RaisedButton(
+                onPressed: voidCallback, child: const Text('修改主题'))),
       ),
       new Expanded(
           child: new ListView.builder(

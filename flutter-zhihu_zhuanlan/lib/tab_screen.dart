@@ -4,13 +4,14 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:meta/meta.dart';
+import 'package:transparent_image/transparent_image.dart';
 import 'package:zhihu_zhuan_lan/detail_screen.dart';
 import 'package:zhihu_zhuan_lan/entity/entity.dart';
 import 'package:zhihu_zhuan_lan/values.dart';
-import 'package:transparent_image/transparent_image.dart';
 
 ///请求网络获取数据并使用Json转换
 Future<List<ListEntity>> fetchList(suffix) async {
+  print(getListUrl(suffix));
   final response = await http.get(getListUrl(suffix));
   return ListEntity.fromJson(json.decode(response.body));
 }
@@ -45,7 +46,7 @@ class TabScreen extends StatelessWidget {
               width: 1000.0,
               fit: BoxFit.cover),
           new Padding(
-            padding: new EdgeInsets.all(8.0),
+            padding: const EdgeInsets.all(8.0),
             child: new Text(info.title),
           )
         ],
@@ -71,7 +72,7 @@ class TabScreen extends StatelessWidget {
           } else if (snapshot.hasError) {
             return new Center(child: new Text('${snapshot.error}'));
           }
-          return CircularProgressIndicator();
+          return const CircularProgressIndicator();
         },
       ),
     );
