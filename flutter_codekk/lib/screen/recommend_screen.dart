@@ -25,12 +25,6 @@ class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
   RecommendState({@required this.title});
 
   @override
-  void initState() {
-    super.initState();
-    onRefresh(); // currentState null at this time, so the app crashes.
-  }
-
-  @override
   Widget itemWidget(RecommendArrayEntity entity) {
     return new Card(
         child: new InkWell(
@@ -49,47 +43,18 @@ class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
   @override
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    await fetchRecommend(1).then((recommendEntity) {
-      list = recommendEntity.data.recommendArray;
-    });
-    setState(() => page = 2);
+    fetchRecommend(1)
+        .then((recommendEntity) =>
+            refreshSuccess(recommendEntity.data.recommendArray))
+        .catchError((error) => refreshError());
   }
 
   @override
   void onLoadMore() async {
-    Scaffold
-        .of(context)
-        .showSnackBar(new SnackBar(content: new Text('LoadMore')));
-    List<RecommendArrayEntity> items;
-    await fetchRecommend(page).then((recommendEntity) {
-      items = recommendEntity.data.recommendArray;
-    });
-    if (items.isEmpty) {
-      Scaffold
-          .of(context)
-          .showSnackBar(new SnackBar(content: new Text('没有更多数据')));
-    } else {
-      list.addAll(items);
-      page++;
-      isLoadMore = false;
-      setState(() {});
-    }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return new NotificationListener(
-      onNotification: onNotification,
-      child: new RefreshIndicator(
-        key: globalKey,
-        onRefresh: onRefresh,
-        child: new ListView.builder(
-          controller: scrollController,
-          padding: kMaterialListPadding,
-          itemCount: list.length,
-          itemBuilder: (context, index) => itemWidget(list[index]),
-        ),
-      ),
-    );
+    loadMoreTips();
+    fetchRecommend(page)
+        .then((recommendEntity) =>
+            loadMoreSuccess(recommendEntity.data.recommendArray))
+        .catchError((error) => loadMoreError());
   }
 }

@@ -24,7 +24,7 @@ class DrawerState extends State<HomeScreen> {
       new Container(
         color: Colors.grey,
         height: 160.0,
-        child: new Center(child: new Text('codeKK')),
+        child: const Center(child: const Text('codeKK')),
       ),
       new Expanded(
           child: new ListView.builder(
@@ -79,8 +79,6 @@ class DrawerState extends State<HomeScreen> {
                   new FlatButton(
                       child: const Text('搜索'),
                       onPressed: () {
-//                        if (searchValue.isEmpty) {
-//                        }
                         Navigator.pop(context);
                         startSearchScreen(context, searchValue,
                             selectIndex == 0 ? ApiType.OP : ApiType.OPA);
@@ -94,11 +92,20 @@ class DrawerState extends State<HomeScreen> {
     return new Scaffold(
         drawer: new Drawer(child: drawer()),
         appBar: new AppBar(title: new Text(title), actions: <Widget>[
-          new IconButton(
-            icon: const Icon(Icons.search),
-            tooltip: 'search',
-            onPressed: () => showDialogs(),
-          ),
+          new Builder(builder: (context) {
+            return new IconButton(
+              icon: const Icon(Icons.search),
+              tooltip: 'search',
+              onPressed: () {
+                if (selectIndex == 4 || selectIndex == 6) {
+                  Scaffold.of(context).showSnackBar(
+                      const SnackBar(content: const Text('暂不支持搜索')));
+                  return;
+                }
+                showDialogs();
+              },
+            );
+          }),
           new IconButton(
             icon: const Icon(Icons.more_vert),
             tooltip: 'show menu',

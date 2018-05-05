@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_codekk/entity/readme_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/net/fetch.dart';
-import 'package:meta/meta.dart';
 import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:meta/meta.dart';
 
 /// 内容详情
 class ReadmeScreen extends StatefulWidget {
@@ -56,7 +56,7 @@ class ReadmeState extends State<ReadmeScreen> {
         }
         return new Scaffold(
           appBar: new AppBar(title: new Text(title)),
-          body: new Center(child: CircularProgressIndicator()),
+          body: const Center(child: CircularProgressIndicator()),
         );
       },
     );

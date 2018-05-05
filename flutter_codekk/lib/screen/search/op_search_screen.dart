@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_codekk/entity/op_entity.dart';
+import 'package:flutter_codekk/entity/op_search_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/net/fetch.dart';
 import 'package:flutter_codekk/tool/tool.dart';
@@ -9,20 +9,20 @@ import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
 import 'package:meta/meta.dart';
 
-///  开源项目
-class OpScreen extends StatefulWidget {
-  final String title;
+///  搜索开源项目
+class OpSearchScreen extends StatefulWidget {
+  final String search;
 
-  OpScreen({@required this.title});
+  OpSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() => new OpState(title: title);
+  State<StatefulWidget> createState() => new OpSearchState(search: search);
 }
 
-class OpState extends ListState<OpScreen, ProjectArrayEntity> {
-  final String title;
+class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
+  final String search;
 
-  OpState({@required this.title});
+  OpSearchState({@required this.search});
 
   @override
   Widget itemWidget(ProjectArrayEntity entity) {
@@ -44,7 +44,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   @override
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    fetchOp(1, '')
+    fetchOpSearch(search, 1)
         .then((opEntity) => refreshSuccess(opEntity.data.projectArray))
         .catchError((error) => refreshError());
   }
@@ -52,7 +52,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   @override
   void onLoadMore() async {
     loadMoreTips();
-    fetchOp(page, '')
+    fetchOpSearch(search, page)
         .then((opEntity) => loadMoreSuccess(opEntity.data.projectArray))
         .catchError((error) => loadMoreError());
   }
