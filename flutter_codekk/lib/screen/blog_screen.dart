@@ -35,6 +35,15 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
         children: <Widget>[
           text(entity.title, Colors.blue),
           text(entity.summary, Colors.green),
+          new Wrap(
+            children: entity.tags == null
+                ? [new Container()]
+                : entity.tagList.map<Widget>((entity) {
+                    return new Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: new Chip(label: new Text(entity)));
+                  }).toList(),
+          )
         ],
       ),
     ));

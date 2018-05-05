@@ -38,6 +38,8 @@ flutter code
 
 ## flutter_zhihu_zhuanlan 
 
+> 目前没有比较好的办法加载一段`html`代码,只能以`text`的形式直接显示
+
 ![](https://github.com/7449/flutter_example/blob/master/flutter_zhihu_zhuanlan.gif)
 
 ## flutter_codekk
@@ -45,5 +47,8 @@ flutter code
 > 项目因为使用了`json_serializable`,但是没有提交自动生成的文件,需要在运行之前执行`flutter packages pub run build_runner build`
 否则`entity`目录会报错
 
+布局的几种模式可以查看[StatusWidget](https://github.com/7449/flutter_example/blob/master/flutter_codekk/lib/widget/status_widget.dart),截图只展示`ERROR`
+
 ![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_screen.gif)
 ![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_theme_screen.gif)
+![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_status_screen.gif)

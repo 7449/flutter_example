@@ -36,6 +36,15 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
           text(entity.projectName, Colors.green),
           text(entity.desc, Colors.blue),
           text(entity.projectUrl, Colors.pinkAccent),
+          new Wrap(
+            children: entity.tags == null
+                ? [new Container()]
+                : entity.tags.map<Widget>((entity) {
+                    return new Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: new Chip(label: new Text(entity.name)));
+                  }).toList(),
+          )
         ],
       ),
     ));
