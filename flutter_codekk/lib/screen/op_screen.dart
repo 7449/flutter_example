@@ -29,7 +29,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    showOpTag = prefs.getBool(opTag);
+    showOpTag = prefs.getBool(opTag) ?? true;
     setState(() {});
   }
 
@@ -68,11 +68,11 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
     ));
   }
 
-//  @override
-//  Widget build(BuildContext context) {
-////    getTag();
-//    return super.build(context);
-//  }
+  @override
+  Widget build(BuildContext context) {
+    getTag();
+    return super.build(context);
+  }
 
   @override
   Future<Null> onRefresh() async {

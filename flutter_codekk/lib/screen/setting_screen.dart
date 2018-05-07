@@ -36,16 +36,16 @@ class SettingState extends State<SettingScreen> {
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    showOpTag = prefs.getBool(opTag);
-    showOpaTag = prefs.getBool(opaTag);
-    showBlogTag = prefs.getBool(blogTag);
+    showOpTag = prefs.getBool(opTag) ?? true;
+    showOpaTag = prefs.getBool(opaTag) ?? true;
+    showBlogTag = prefs.getBool(blogTag) ?? true;
     setState(() {});
   }
 
   setTag(String tag) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     bool showTag = prefs.getBool(tag);
-    await prefs.setBool(tag, showTag == null ? true : !showTag);
+    await prefs.setBool(tag, showTag == null ? false : !showTag);
     getTag();
   }
 
@@ -63,6 +63,9 @@ class SettingState extends State<SettingScreen> {
   }
 
   Widget itemWidget(MultiMenu entity) {
+    bool value = entity.itemType == opTag
+        ? showOpTag
+        : entity.itemType == opaTag ? showOpaTag : showBlogTag;
     return new InkWell(
         onTap: () {
           setTag(entity.itemType);
@@ -76,10 +79,7 @@ class SettingState extends State<SettingScreen> {
               children: <Widget>[
                 new Expanded(child: new Text(entity.message)),
                 new Checkbox(
-                    value: entity.itemType == opTag
-                        ? showOpTag
-                        : entity.itemType == opaTag ? showOpaTag : showBlogTag,
-                    onChanged: (bool) {}),
+                    value: value == null ? true : value, onChanged: (bool) {}),
               ],
             )));
   }

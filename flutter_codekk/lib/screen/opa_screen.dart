@@ -29,7 +29,7 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    showOpaTag = prefs.getBool(opaTag);
+    showOpaTag = prefs.getBool(opaTag) ?? true;
     setState(() {});
   }
 
@@ -68,11 +68,11 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
     ));
   }
 
-//  @override
-//  Widget build(BuildContext context) {
-//    getTag();
-//    return super.build(context);
-//  }
+  @override
+  Widget build(BuildContext context) {
+    getTag();
+    return super.build(context);
+  }
 
   @override
   Future<Null> onRefresh() async {

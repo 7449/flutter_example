@@ -54,3 +54,4 @@ flutter code
 ![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_screen.gif)
 ![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_theme_screen.gif)
 ![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_status_screen.gif)
+![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_chip_screen.gif)

@@ -29,7 +29,7 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    showBlogTag = prefs.getBool(blogTag);
+    showBlogTag = prefs.getBool(blogTag) ?? true;
     setState(() {});
   }
 
@@ -65,11 +65,11 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
     ));
   }
 
-//  @override
-//  Widget build(BuildContext context) {
-//    getTag();
-//    return super.build(context);
-//  }
+  @override
+  Widget build(BuildContext context) {
+    getTag();
+    return super.build(context);
+  }
 
   @override
   Future<Null> onRefresh() async {
