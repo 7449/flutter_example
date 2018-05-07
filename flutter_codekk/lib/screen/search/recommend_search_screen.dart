@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_codekk/entity/op_search_entity.dart';
+import 'package:flutter_codekk/entity/recommend_search_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/net/fetch.dart';
 import 'package:flutter_codekk/tool/tool.dart';
@@ -10,47 +10,34 @@ import 'package:flutter_codekk/widget/item_widget_fix.dart';
 import 'package:flutter_codekk/widget/status_widget.dart';
 import 'package:meta/meta.dart';
 
-///  搜索开源项目
-class OpSearchScreen extends StatefulWidget {
+///  搜索今日推荐
+class RecommendSearchScreen extends StatefulWidget {
   final String search;
 
-  OpSearchScreen({@required this.search});
+  RecommendSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() => new OpSearchState(search: search);
+  State<StatefulWidget> createState() =>
+      new RecommendSearchState(search: search);
 }
 
-class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
+class RecommendSearchState
+    extends ListState<RecommendSearchScreen, RecommendArrayEntity> {
   final String search;
 
-  OpSearchState({@required this.search});
+  RecommendSearchState({@required this.search});
 
   @override
-  Widget itemWidget(ProjectArrayEntity entity) {
+  Widget itemWidget(RecommendArrayEntity entity) {
     return new Card(
         child: new InkWell(
-      onTap: () =>
-          startDetailScreen(context, entity.projectName, ApiType.OP, entity.id),
+      onTap: () => startDetailScreen(
+          context, entity.title, ApiType.RECOMMEND, entity.url),
       child: new Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          text(entity.projectName, Colors.green),
-          text(entity.desc, Colors.blue),
-          text(entity.projectUrl, Colors.pinkAccent),
-          new Wrap(
-            children: entity.tags == null
-                ? [new Container()]
-                : entity.tags.map<Widget>((entity) {
-                    return new Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: new GestureDetector(
-                            onTap: () => startSearchScreen(
-                                context, entity.name, ApiType.OP),
-                            child: new Chip(
-                                label: new Text(entity.name),
-                                padding: const EdgeInsets.all(2.0))));
-                  }).toList(),
-          )
+          text(entity.title, Colors.blue),
+          text(entity.desc, Colors.black87),
         ],
       ),
     ));
@@ -59,16 +46,18 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
   @override
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    fetchOpSearch(search, 1)
-        .then((opEntity) => refreshSuccess(opEntity.data.projectArray))
+    fetchRecommendSearch(search, 1)
+        .then((recommendEntity) =>
+            refreshSuccess(recommendEntity.data.recommendArray))
         .catchError((error) => refreshError());
   }
 
   @override
   void onLoadMore() async {
     loadMoreTips();
-    fetchOpSearch(search, page)
-        .then((opEntity) => loadMoreSuccess(opEntity.data.projectArray))
+    fetchRecommendSearch(search, page)
+        .then((recommendEntity) =>
+            loadMoreSuccess(recommendEntity.data.recommendArray))
         .catchError((error) => loadMoreError());
   }
 

@@ -90,8 +90,14 @@ class DrawerState extends State<HomeScreen> {
                       child: const Text('搜索'),
                       onPressed: () {
                         Navigator.pop(context);
-                        startSearchScreen(context, searchValue,
-                            selectIndex == 0 ? ApiType.OP : ApiType.OPA);
+                        startSearchScreen(
+                            context,
+                            searchValue,
+                            selectIndex == 0
+                                ? ApiType.OP
+                                : selectIndex == 1
+                                    ? ApiType.OPA
+                                    : ApiType.RECOMMEND);
                       })
                 ]));
   }
@@ -107,7 +113,10 @@ class DrawerState extends State<HomeScreen> {
               icon: const Icon(Icons.search),
               tooltip: 'search',
               onPressed: () {
-                if (selectIndex == 4 || selectIndex == 6) {
+                if (selectIndex == 2 ||
+                    selectIndex == 3 ||
+                    selectIndex == 4 ||
+                    selectIndex == 6) {
                   Scaffold.of(context).showSnackBar(
                       const SnackBar(content: const Text('暂不支持搜索')));
                   return;
@@ -116,12 +125,30 @@ class DrawerState extends State<HomeScreen> {
               },
             );
           }),
-          new IconButton(
-            icon: const Icon(Icons.more_vert),
-            tooltip: 'show menu',
-            onPressed: () {},
-          ),
+          new PopupMenuButton<MenuAction>(
+              itemBuilder: (context) => <PopupMenuItem<MenuAction>>[
+                    const PopupMenuItem<MenuAction>(
+                        value: MenuAction.setting, child: const Text('设置')),
+                    const PopupMenuItem<MenuAction>(
+                        value: MenuAction.about, child: const Text('关于')),
+                  ],
+              onSelected: (MenuAction action) {
+                switch (action) {
+                  case MenuAction.setting:
+                    startSettingScreen(context, () {
+                      setState(() {});
+                    });
+                    break;
+                  case MenuAction.about:
+                    break;
+                }
+              })
         ]),
         body: bodyWidget(title));
   }
+}
+
+enum MenuAction {
+  setting,
+  about,
 }

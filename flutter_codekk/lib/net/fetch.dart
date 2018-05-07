@@ -6,8 +6,10 @@ import 'package:flutter_codekk/entity/job_entity.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
 import 'package:flutter_codekk/entity/op_search_entity.dart';
 import 'package:flutter_codekk/entity/opa_entity.dart';
+import 'package:flutter_codekk/entity/opa_search_entity.dart';
 import 'package:flutter_codekk/entity/readme_entity.dart';
 import 'package:flutter_codekk/entity/recommend_entity.dart';
+import 'package:flutter_codekk/entity/recommend_search_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:http/http.dart' as http;
 
@@ -34,12 +36,6 @@ Future<OpaEntity> fetchOpa(int page) async {
   print('fetchOpa:${baseUrl + opaListUrl + page.toString()}');
   final response = await http.get(baseUrl + opaListUrl + page.toString());
   return new OpaEntity.fromJson(json.decode(response.body));
-}
-
-Future<OpEntity> fetchOpaSearch() async {
-  print('fetchOpaSearch:${baseUrl + opaSearchUrl}');
-  final response = await http.get(baseUrl + opaSearchUrl);
-  return new OpEntity.fromJson(json.decode(response.body));
 }
 
 ///http://api.codekk.com/blog/page/1
@@ -79,8 +75,13 @@ Future<RecommendEntity> fetchRecommend(int page) async {
   return new RecommendEntity.fromJson(json.decode(response.body));
 }
 
-Future<OpEntity> fetchRecommendSearch() async {
-  print('fetchRecommendSearch:${baseUrl + recommendSearchUrl}');
-  final response = await http.get(baseUrl + recommendSearchUrl);
-  return new OpEntity.fromJson(json.decode(response.body));
+///http://api.codekk.com/recommend/user/yy/page/1
+Future<RecommendSearchEntity> fetchRecommendSearch(
+    String search, int page) async {
+  print(
+      'fetchRecommendSearch:${baseUrl + recommendSearchUrl + search + '/page/' +
+          page.toString()}');
+  final response = await http
+      .get(baseUrl + recommendSearchUrl + search + '/page/' + page.toString());
+  return new RecommendSearchEntity.fromJson(json.decode(response.body));
 }

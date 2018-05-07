@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_codekk/entity/op_entity.dart';
 import 'package:flutter_codekk/net/api.dart';
 import 'package:flutter_codekk/net/fetch.dart';
+import 'package:flutter_codekk/screen/setting_screen.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
 import 'package:meta/meta.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 ///  开源项目
 class OpScreen extends StatefulWidget {
@@ -21,8 +23,15 @@ class OpScreen extends StatefulWidget {
 
 class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   final String title;
+  bool showOpTag;
 
   OpState({@required this.title});
+
+  getTag() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    showOpTag = prefs.getBool(opTag);
+    setState(() {});
+  }
 
   @override
   Widget itemWidget(ProjectArrayEntity entity) {
@@ -35,19 +44,34 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
         children: <Widget>[
           text(entity.projectName, Colors.green),
           text(entity.desc, Colors.blue),
-          text(entity.projectUrl, Colors.pinkAccent),
-          new Wrap(
-            children: entity.tags == null
-                ? [new Container()]
-                : entity.tags.map<Widget>((entity) {
-                    return new Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: new Chip(label: new Text(entity.name)));
-                  }).toList(),
-          )
+          new GestureDetector(
+              onTap: () => launcherUrl(entity.projectUrl),
+              child: text(entity.projectUrl, Colors.pinkAccent)),
+          showOpTag
+              ? new Wrap(
+                  children: entity.tags == null
+                      ? [new Container()]
+                      : entity.tags.map<Widget>((entity) {
+                          return new Padding(
+                              padding: const EdgeInsets.all(4.0),
+                              child: new GestureDetector(
+                                  onTap: () => startSearchScreen(
+                                      context, entity.name, ApiType.OP),
+                                  child: new Chip(
+                                      label: new Text(entity.name),
+                                      padding: const EdgeInsets.all(2.0))));
+                        }).toList(),
+                )
+              : new Container()
         ],
       ),
     ));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    getTag();
+    return super.build(context);
   }
 
   @override

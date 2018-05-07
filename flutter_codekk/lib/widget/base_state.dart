@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_codekk/widget/status_widget.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
   final GlobalKey<RefreshIndicatorState> globalKey =
@@ -97,6 +98,14 @@ abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
     status = Status.SUCCESS;
     onRefresh();
     updateState();
+  }
+
+  launcherUrl(String url) async {
+    if (await canLaunch(url)) {
+      await launch(url);
+    } else {
+      print('Could not launch $url');
+    }
   }
 
   void loadMoreTips() => Scaffold
