@@ -23,7 +23,7 @@ class OpScreen extends StatefulWidget {
 
 class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   final String title;
-  bool showOpTag;
+  bool showOpTag = true;
 
   OpState({@required this.title});
 
@@ -68,11 +68,11 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
     ));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    getTag();
-    return super.build(context);
-  }
+//  @override
+//  Widget build(BuildContext context) {
+////    getTag();
+//    return super.build(context);
+//  }
 
   @override
   Future<Null> onRefresh() async {

@@ -23,7 +23,7 @@ class OpaScreen extends StatefulWidget {
 
 class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
   final String title;
-  bool showOpaTag;
+  bool showOpaTag = true;
 
   OpaState({@required this.title});
 
@@ -68,11 +68,11 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
     ));
   }
 
-  @override
-  Widget build(BuildContext context) {
-    getTag();
-    return super.build(context);
-  }
+//  @override
+//  Widget build(BuildContext context) {
+//    getTag();
+//    return super.build(context);
+//  }
 
   @override
   Future<Null> onRefresh() async {

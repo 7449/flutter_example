@@ -30,9 +30,9 @@ class SettingState extends State<SettingScreen> {
     new MultiMenu(SettingItem.item, '显示TAG', blogTag),
   ];
 
-  bool showOpTag = false;
-  bool showOpaTag = false;
-  bool showBlogTag = false;
+  bool showOpTag = true;
+  bool showOpaTag = true;
+  bool showBlogTag = true;
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
