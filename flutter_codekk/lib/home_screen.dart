@@ -140,6 +140,7 @@ class DrawerState extends State<HomeScreen> {
                     });
                     break;
                   case MenuAction.about:
+                    startAboutScreen(context);
                     break;
                 }
               })

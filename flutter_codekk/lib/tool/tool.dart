@@ -1,16 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_codekk/net/api.dart';
+import 'package:flutter_codekk/screen/about_screen.dart';
 import 'package:flutter_codekk/screen/detail/detail_screen.dart';
 import 'package:flutter_codekk/screen/search/op_search_screen.dart';
 import 'package:flutter_codekk/screen/search/recommend_search_screen.dart';
 import 'package:flutter_codekk/screen/setting_screen.dart';
 import 'package:flutter_codekk/screen/unknown_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 void startSettingScreen(BuildContext context, VoidCallback voidCallback) {
   Navigator.push(
       context,
       new MaterialPageRoute(
           builder: (context) => new SettingScreen(voidCallback: voidCallback)));
+}
+
+void startAboutScreen(BuildContext context) {
+  Navigator.push(
+      context, new MaterialPageRoute(builder: (context) => new AboutScreen()));
 }
 
 void startDetailScreen(
@@ -37,4 +44,12 @@ void startSearchScreen(BuildContext context, String search, ApiType type) {
       break;
   }
   Navigator.push(context, new MaterialPageRoute(builder: (context) => widget));
+}
+
+launcherUrl(String url) async {
+  if (await canLaunch(url)) {
+    await launch(url);
+  } else {
+    print('Could not launch $url');
+  }
 }

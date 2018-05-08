@@ -100,14 +100,6 @@ abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
     updateState();
   }
 
-  launcherUrl(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      print('Could not launch $url');
-    }
-  }
-
   void loadMoreTips() => Scaffold
       .of(context)
       .showSnackBar(const SnackBar(content: const Text('LoadMore')));
