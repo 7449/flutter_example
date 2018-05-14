@@ -5,8 +5,7 @@ class AboutScreen extends StatelessWidget {
   List<Widget> list() {
     List<Widget> list = <Widget>[];
     list.add(aboutItem('项目地址', 'https://github.com/7449/flutter_example'));
-    list.add(new Padding(
-        padding: const EdgeInsets.all(6.0), child: const Text('pubspec')));
+    list.add(Padding(padding: EdgeInsets.all(6.0), child: Text('pubspec')));
     list.add(aboutItem('cupertino_icons',
         'https://pub.dartlang.org/packages/cupertino_icons'));
     list.add(aboutItem('http', 'https://pub.dartlang.org/packages/http'));
@@ -20,8 +19,7 @@ class AboutScreen extends StatelessWidget {
         'https://pub.dartlang.org/packages/shared_preferences'));
     list.add(aboutItem(
         'url_launcher', 'https://pub.dartlang.org/packages/url_launcher'));
-    list.add(new Padding(
-        padding: const EdgeInsets.all(6.0), child: const Text('blog')));
+    list.add(Padding(padding: EdgeInsets.all(6.0), child: Text('blog')));
     list.add(aboutItem('Flutter番外篇:Dart',
         'https://7449.github.io/2018/03/18/Android_Flutter_dart/'));
     list.add(aboutItem(
@@ -53,22 +51,22 @@ class AboutScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new CustomScrollView(
+    return Scaffold(
+      body: CustomScrollView(
         slivers: <Widget>[
-          new SliverAppBar(
+          SliverAppBar(
             pinned: true,
             expandedHeight: 180.0,
-            flexibleSpace: new FlexibleSpaceBar(
-              title: const Text('关于'),
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text('关于'),
               centerTitle: false,
-              background: new Image.asset(
+              background: Image.asset(
                 'lib/image/icon_example.jpg',
                 fit: BoxFit.cover,
               ),
             ),
           ),
-          new SliverList(delegate: new SliverChildListDelegate(list())),
+          SliverList(delegate: SliverChildListDelegate(list())),
         ],
       ),
     );

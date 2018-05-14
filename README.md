@@ -1,6 +1,16 @@
 # flutter_example
 flutter code
 
+## update log
+
+#### 运行项目
+
+请使用最新版本的`flutter`运行`demo`
+
+####    18.5.14
+
+去掉`new`以及`const`关键字
+
 ## 项目地址
 
 [Flutter示例集合](https://github.com/7449/flutter_example)

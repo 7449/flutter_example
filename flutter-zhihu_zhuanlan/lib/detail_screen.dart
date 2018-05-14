@@ -23,38 +23,38 @@ class DetailScreen extends StatelessWidget {
       {@required this.slug, @required this.title, @required this.titleImage});
 
   Widget boxAdapterWidget(context) {
-    return new FutureBuilder<DetailEntity>(
+    return FutureBuilder<DetailEntity>(
       future: fetchDetail(slug),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return new Center(
-              child: new Padding(
-                  padding: const EdgeInsets.all(10.0),
-                  child: new RichText(
-                    text: new TextSpan(
+          return Center(
+              child: Padding(
+                  padding: EdgeInsets.all(10.0),
+                  child: RichText(
+                    text: TextSpan(
                         text: snapshot.data.content,
                         style: DefaultTextStyle.of(context).style),
                   )));
         } else if (snapshot.hasError) {
-          return new Center(child: new Text('${snapshot.error}'));
+          return Center(child: Text('${snapshot.error}'));
         }
-        return const Center(child: const CircularProgressIndicator());
+        return Center(child: CircularProgressIndicator());
       },
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new CustomScrollView(
+    return Scaffold(
+      body: CustomScrollView(
         slivers: <Widget>[
-          new SliverAppBar(
+          SliverAppBar(
             pinned: true,
             expandedHeight: 180.0,
-            flexibleSpace: new FlexibleSpaceBar(
-              title: new Text(title, maxLines: 1),
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text(title, maxLines: 1),
               centerTitle: false,
-              background: new FadeInImage.memoryNetwork(
+              background: FadeInImage.memoryNetwork(
                   placeholder: kTransparentImage,
                   image: titleImage,
                   height: 180.0,
@@ -62,7 +62,7 @@ class DetailScreen extends StatelessWidget {
                   fit: BoxFit.cover),
             ),
           ),
-          new SliverToBoxAdapter(child: boxAdapterWidget(context))
+          SliverToBoxAdapter(child: boxAdapterWidget(context))
         ],
       ),
     );

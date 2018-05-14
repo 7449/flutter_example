@@ -16,7 +16,7 @@ class RecommendScreen extends StatefulWidget {
   RecommendScreen({@required this.title});
 
   @override
-  State<StatefulWidget> createState() => new RecommendState(title: title);
+  State<StatefulWidget> createState() => RecommendState(title: title);
 }
 
 class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
@@ -26,11 +26,11 @@ class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
 
   @override
   Widget itemWidget(RecommendArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () => startDetailScreen(
           context, entity.title, ApiType.RECOMMEND, entity.url),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           text(entity.title, Colors.blue),

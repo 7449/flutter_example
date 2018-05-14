@@ -16,7 +16,7 @@ class JobScreen extends StatefulWidget {
   JobScreen({@required this.title});
 
   @override
-  State<StatefulWidget> createState() => new JobState(title: title);
+  State<StatefulWidget> createState() => JobState(title: title);
 }
 
 class JobState extends ListState<JobScreen, SummaryArrayEntity> {
@@ -26,14 +26,14 @@ class JobState extends ListState<JobScreen, SummaryArrayEntity> {
 
   @override
   Widget itemWidget(SummaryArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () =>
           startDetailScreen(context, entity.authorName, ApiType.JOB, entity.id),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
-          new Row(children: <Widget>[
+          Row(children: <Widget>[
             text(entity.authorName, Colors.blue),
             text('地点:${entity.authorCity}', Colors.green),
           ]),

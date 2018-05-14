@@ -11,22 +11,22 @@ import 'package:url_launcher/url_launcher.dart';
 void startSettingScreen(BuildContext context, VoidCallback voidCallback) {
   Navigator.push(
       context,
-      new MaterialPageRoute(
-          builder: (context) => new SettingScreen(voidCallback: voidCallback)));
+      MaterialPageRoute(
+          builder: (context) => SettingScreen(voidCallback: voidCallback)));
 }
 
 void startAboutScreen(BuildContext context) {
   Navigator.push(
-      context, new MaterialPageRoute(builder: (context) => new AboutScreen()));
+      context, MaterialPageRoute(builder: (context) => AboutScreen()));
 }
 
 void startDetailScreen(
     BuildContext context, String title, ApiType apiType, String id) {
   Navigator.push(
       context,
-      new MaterialPageRoute(
+      MaterialPageRoute(
           builder: (context) =>
-              new ReadmeScreen(title: title, apiType: apiType, id: id)));
+              ReadmeScreen(title: title, apiType: apiType, id: id)));
 }
 
 void startSearchScreen(BuildContext context, String search, ApiType type) {
@@ -34,16 +34,16 @@ void startSearchScreen(BuildContext context, String search, ApiType type) {
   switch (type) {
     case ApiType.OP:
     case ApiType.OPA:
-      widget = new OpSearchScreen(search: search);
+      widget = OpSearchScreen(search: search);
       break;
     case ApiType.RECOMMEND:
-      widget = new RecommendSearchScreen(search: search);
+      widget = RecommendSearchScreen(search: search);
       break;
     default:
-      widget = new UnKnowScreen(title: 'unknow');
+      widget = UnKnowScreen(title: 'unknow');
       break;
   }
-  Navigator.push(context, new MaterialPageRoute(builder: (context) => widget));
+  Navigator.push(context, MaterialPageRoute(builder: (context) => widget));
 }
 
 launcherUrl(String url) async {

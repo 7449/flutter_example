@@ -18,7 +18,7 @@ class BlogScreen extends StatefulWidget {
   BlogScreen({@required this.title});
 
   @override
-  State<StatefulWidget> createState() => new BlogState(title: title);
+  State<StatefulWidget> createState() => BlogState(title: title);
 }
 
 class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
@@ -35,31 +35,31 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
 
   @override
   Widget itemWidget(SummaryArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () =>
           startDetailScreen(context, entity.title, ApiType.BLOG, entity.id),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           text(entity.title, Colors.blue),
           text(entity.summary, Colors.green),
           showBlogTag
-              ? new Wrap(
+              ? Wrap(
                   children: entity.tags == null
-                      ? [new Container()]
+                      ? [Container()]
                       : entity.tagList.map<Widget>((entity) {
-                          return new Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: new GestureDetector(
+                          return Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: GestureDetector(
                                   onTap: () => startSearchScreen(
                                       context, entity, ApiType.OP),
-                                  child: new Chip(
-                                      label: new Text(entity),
-                                      padding: const EdgeInsets.all(2.0))));
+                                  child: Chip(
+                                      label: Text(entity),
+                                      padding: EdgeInsets.all(2.0))));
                         }).toList(),
                 )
-              : new Container()
+              : Container()
         ],
       ),
     ));

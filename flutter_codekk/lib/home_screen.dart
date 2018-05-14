@@ -14,7 +14,7 @@ class HomeScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() =>
-      new DrawerState(voidCallback: voidCallback);
+      DrawerState(voidCallback: voidCallback);
 
   HomeScreen({this.voidCallback});
 }
@@ -27,17 +27,16 @@ class DrawerState extends State<HomeScreen> {
   DrawerState({this.voidCallback});
 
   Widget drawer() {
-    return new Column(children: <Widget>[
-//      new DrawerHeader(child: new Text('codekk')),
-      new Container(
+    return Column(children: <Widget>[
+//       DrawerHeader(child:  Text('codekk')),
+      Container(
         color: Colors.grey,
         height: 160.0,
-        child: new Center(
-            child: new RaisedButton(
-                onPressed: voidCallback, child: const Text('修改主题'))),
+        child: Center(
+            child: RaisedButton(onPressed: voidCallback, child: Text('修改主题'))),
       ),
-      new Expanded(
-          child: new ListView.builder(
+      Expanded(
+          child: ListView.builder(
               itemCount: getDrawerTitle().length,
               itemBuilder: (context, index) => drawerListItem(context, index)))
     ]);
@@ -45,16 +44,16 @@ class DrawerState extends State<HomeScreen> {
 
   Widget drawerListItem(context, index) {
     String text = getDrawerTitle()[index];
-    return new ListTile(
-        leading: new Icon(Icons.android),
-        title: new Text(text,
-            style: new TextStyle(
+    return ListTile(
+        leading: Icon(Icons.android),
+        title: Text(text,
+            style: TextStyle(
                 color: selectIndex == index ? Colors.blue : Colors.black)),
         onTap: () {
           Navigator.pop(context);
-          Scaffold.of(context).showSnackBar(new SnackBar(
-              content: new Text(
-                  '${index == 4 || index == 6 ? '暂未开放' : '开始加载$text'}')));
+          Scaffold.of(context).showSnackBar(SnackBar(
+              content:
+                  Text('${index == 4 || index == 6 ? '暂未开放' : '开始加载$text'}')));
           setState(() => selectIndex = index);
         });
   }
@@ -62,32 +61,32 @@ class DrawerState extends State<HomeScreen> {
   Widget bodyWidget(title) {
     switch (selectIndex) {
       case 0:
-        return new OpScreen(title: title);
+        return OpScreen(title: title);
       case 1:
-        return new OpaScreen(title: title);
+        return OpaScreen(title: title);
       case 2:
-        return new JobScreen(title: title);
+        return JobScreen(title: title);
       case 3:
-        return new BlogScreen(title: title);
+        return BlogScreen(title: title);
       case 5:
-        return new RecommendScreen(title: title);
+        return RecommendScreen(title: title);
     }
-    return new UnKnowScreen(title: title);
+    return UnKnowScreen(title: title);
   }
 
   showDialogs() {
     showDialog(
         context: context,
-        builder: (context) => new AlertDialog(
-                content: new TextField(
-                    decoration: const InputDecoration(labelText: '请输入关键词'),
+        builder: (context) => AlertDialog(
+                content: TextField(
+                    decoration: InputDecoration(labelText: '请输入关键词'),
                     onChanged: (value) => setState(() => searchValue = value)),
                 actions: <Widget>[
-                  new FlatButton(
-                      child: const Text('取消'),
+                  FlatButton(
+                      child: Text('取消'),
                       onPressed: () => Navigator.pop(context)),
-                  new FlatButton(
-                      child: const Text('搜索'),
+                  FlatButton(
+                      child: Text('搜索'),
                       onPressed: () {
                         Navigator.pop(context);
                         startSearchScreen(
@@ -105,32 +104,33 @@ class DrawerState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     String title = getDrawerTitle()[selectIndex];
-    return new Scaffold(
-        drawer: new Drawer(child: drawer()),
-        appBar: new AppBar(title: new Text(title), actions: <Widget>[
-          new Builder(builder: (context) {
-            return new IconButton(
-              icon: const Icon(Icons.search),
+    return Scaffold(
+        drawer: Drawer(child: drawer()),
+        appBar: AppBar(title: Text(title), actions: <Widget>[
+          Builder(builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.search),
               tooltip: 'search',
               onPressed: () {
                 if (selectIndex == 2 ||
                     selectIndex == 3 ||
                     selectIndex == 4 ||
                     selectIndex == 6) {
-                  Scaffold.of(context).showSnackBar(
-                      const SnackBar(content: const Text('暂不支持搜索')));
+                  Scaffold
+                      .of(context)
+                      .showSnackBar(SnackBar(content: Text('暂不支持搜索')));
                   return;
                 }
                 showDialogs();
               },
             );
           }),
-          new PopupMenuButton<MenuAction>(
+          PopupMenuButton<MenuAction>(
               itemBuilder: (context) => <PopupMenuItem<MenuAction>>[
-                    const PopupMenuItem<MenuAction>(
-                        value: MenuAction.setting, child: const Text('设置')),
-                    const PopupMenuItem<MenuAction>(
-                        value: MenuAction.about, child: const Text('关于')),
+                    PopupMenuItem<MenuAction>(
+                        value: MenuAction.setting, child: Text('设置')),
+                    PopupMenuItem<MenuAction>(
+                        value: MenuAction.about, child: Text('关于')),
                   ],
               onSelected: (MenuAction action) {
                 switch (action) {

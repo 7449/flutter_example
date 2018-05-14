@@ -38,15 +38,13 @@ class StatusWidget extends StatelessWidget {
     return normal();
   }
 
-  Widget normal() => new Container();
+  Widget normal() => Container();
 
-  Widget loading() => new Center(child: CircularProgressIndicator());
+  Widget loading() => Center(child: CircularProgressIndicator());
 
-  Widget empty() => new Center(
-      child: new RaisedButton(
-          onPressed: onEmptyPressed, child: const Text('EMPTY')));
+  Widget empty() => Center(
+      child: RaisedButton(onPressed: onEmptyPressed, child: Text('EMPTY')));
 
-  Widget error() => new Center(
-      child: new RaisedButton(
-          onPressed: onErrorPressed, child: const Text('ERROR')));
+  Widget error() => Center(
+      child: RaisedButton(onPressed: onErrorPressed, child: Text('ERROR')));
 }

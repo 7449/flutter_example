@@ -17,7 +17,7 @@ class OpSearchScreen extends StatefulWidget {
   OpSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() => new OpSearchState(search: search);
+  State<StatefulWidget> createState() => OpSearchState(search: search);
 }
 
 class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
@@ -27,28 +27,28 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
 
   @override
   Widget itemWidget(ProjectArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () =>
           startDetailScreen(context, entity.projectName, ApiType.OP, entity.id),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           text(entity.projectName, Colors.green),
           text(entity.desc, Colors.blue),
           text(entity.projectUrl, Colors.pinkAccent),
-          new Wrap(
+          Wrap(
             children: entity.tags == null
-                ? [new Container()]
+                ? [Container()]
                 : entity.tags.map<Widget>((entity) {
-                    return new Padding(
-                        padding: const EdgeInsets.all(4.0),
-                        child: new GestureDetector(
+                    return Padding(
+                        padding: EdgeInsets.all(4.0),
+                        child: GestureDetector(
                             onTap: () => startSearchScreen(
                                 context, entity.name, ApiType.OP),
-                            child: new Chip(
-                                label: new Text(entity.name),
-                                padding: const EdgeInsets.all(2.0))));
+                            child: Chip(
+                                label: Text(entity.name),
+                                padding: EdgeInsets.all(2.0))));
                   }).toList(),
           )
         ],
@@ -74,15 +74,15 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text(search)),
-      body: new StatusWidget(
-        child: new NotificationListener(
+    return Scaffold(
+      appBar: AppBar(title: Text(search)),
+      body: StatusWidget(
+        child: NotificationListener(
           onNotification: onNotification,
-          child: new RefreshIndicator(
+          child: RefreshIndicator(
             key: globalKey,
             onRefresh: onRefresh,
-            child: new ListView.builder(
+            child: ListView.builder(
               controller: scrollController,
               padding: kMaterialListPadding,
               itemCount: list.length,

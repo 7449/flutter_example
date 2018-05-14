@@ -18,7 +18,7 @@ class OpScreen extends StatefulWidget {
   OpScreen({@required this.title});
 
   @override
-  State<StatefulWidget> createState() => new OpState(title: title);
+  State<StatefulWidget> createState() => OpState(title: title);
 }
 
 class OpState extends ListState<OpScreen, ProjectArrayEntity> {
@@ -35,34 +35,34 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
 
   @override
   Widget itemWidget(ProjectArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () =>
           startDetailScreen(context, entity.projectName, ApiType.OP, entity.id),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           text(entity.projectName, Colors.green),
           text(entity.desc, Colors.blue),
-          new GestureDetector(
+          GestureDetector(
               onTap: () => launcherUrl(entity.projectUrl),
               child: text(entity.projectUrl, Colors.pinkAccent)),
           showOpTag
-              ? new Wrap(
+              ? Wrap(
                   children: entity.tags == null
-                      ? [new Container()]
+                      ? [Container()]
                       : entity.tags.map<Widget>((entity) {
-                          return new Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: new GestureDetector(
+                          return Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: GestureDetector(
                                   onTap: () => startSearchScreen(
                                       context, entity.name, ApiType.OP),
-                                  child: new Chip(
-                                      label: new Text(entity.name),
-                                      padding: const EdgeInsets.all(2.0))));
+                                  child: Chip(
+                                      label: Text(entity.name),
+                                      padding: EdgeInsets.all(2.0))));
                         }).toList(),
                 )
-              : new Container()
+              : Container()
         ],
       ),
     ));

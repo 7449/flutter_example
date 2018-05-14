@@ -2,12 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_codekk/widget/status_widget.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
   final GlobalKey<RefreshIndicatorState> globalKey =
-      new GlobalKey<RefreshIndicatorState>();
-  final ScrollController scrollController = new ScrollController();
+      GlobalKey<RefreshIndicatorState>();
+  final ScrollController scrollController = ScrollController();
   List<ENTITY> list = [];
   bool isLoadMore = false;
   int page = 1;
@@ -21,13 +20,13 @@ abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
 
   @override
   Widget build(BuildContext context) {
-    return new StatusWidget(
-      child: new NotificationListener(
+    return StatusWidget(
+      child: NotificationListener(
         onNotification: onNotification,
-        child: new RefreshIndicator(
+        child: RefreshIndicator(
           key: globalKey,
           onRefresh: onRefresh,
-          child: new ListView.builder(
+          child: ListView.builder(
             controller: scrollController,
             padding: kMaterialListPadding,
             itemCount: list.length,
@@ -100,15 +99,12 @@ abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
     updateState();
   }
 
-  void loadMoreTips() => Scaffold
-      .of(context)
-      .showSnackBar(const SnackBar(content: const Text('LoadMore')));
+  void loadMoreTips() =>
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('LoadMore')));
 
-  void noMoreTips() => Scaffold
-      .of(context)
-      .showSnackBar(const SnackBar(content: const Text('没有更多数据')));
+  void noMoreTips() =>
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('没有更多数据')));
 
-  void loadMoreErrorTips() => Scaffold
-      .of(context)
-      .showSnackBar(const SnackBar(content: const Text('网络错误')));
+  void loadMoreErrorTips() =>
+      Scaffold.of(context).showSnackBar(SnackBar(content: Text('网络错误')));
 }

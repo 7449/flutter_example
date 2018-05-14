@@ -17,8 +17,7 @@ class RecommendSearchScreen extends StatefulWidget {
   RecommendSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() =>
-      new RecommendSearchState(search: search);
+  State<StatefulWidget> createState() => RecommendSearchState(search: search);
 }
 
 class RecommendSearchState
@@ -29,11 +28,11 @@ class RecommendSearchState
 
   @override
   Widget itemWidget(RecommendArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () => startDetailScreen(
           context, entity.title, ApiType.RECOMMEND, entity.url),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           text(entity.title, Colors.blue),
@@ -63,15 +62,15 @@ class RecommendSearchState
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      appBar: new AppBar(title: new Text(search)),
-      body: new StatusWidget(
-        child: new NotificationListener(
+    return Scaffold(
+      appBar: AppBar(title: Text(search)),
+      body: StatusWidget(
+        child: NotificationListener(
           onNotification: onNotification,
-          child: new RefreshIndicator(
+          child: RefreshIndicator(
             key: globalKey,
             onRefresh: onRefresh,
-            child: new ListView.builder(
+            child: ListView.builder(
               controller: scrollController,
               padding: kMaterialListPadding,
               itemCount: list.length,

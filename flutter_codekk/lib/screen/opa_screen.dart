@@ -18,7 +18,7 @@ class OpaScreen extends StatefulWidget {
   OpaScreen({@required this.title});
 
   @override
-  State<StatefulWidget> createState() => new OpaState(title: title);
+  State<StatefulWidget> createState() => OpaState(title: title);
 }
 
 class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
@@ -35,34 +35,34 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
 
   @override
   Widget itemWidget(SummaryArrayEntity entity) {
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () =>
           startDetailScreen(context, entity.title, ApiType.OPA, entity.id),
-      child: new Column(
+      child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: <Widget>[
           text(entity.title, Colors.blue),
           text(entity.summary, Colors.green),
-          new GestureDetector(
+          GestureDetector(
               onTap: () => launcherUrl(entity.projectUrl),
               child: text(entity.projectUrl, Colors.pinkAccent)),
           showOpaTag
-              ? new Wrap(
+              ? Wrap(
                   children: entity.tags == null
-                      ? [new Container()]
+                      ? [Container()]
                       : entity.tagList.map<Widget>((entity) {
-                          return new Padding(
-                              padding: const EdgeInsets.all(4.0),
-                              child: new GestureDetector(
+                          return Padding(
+                              padding: EdgeInsets.all(4.0),
+                              child: GestureDetector(
                                   onTap: () => startSearchScreen(
                                       context, entity, ApiType.OP),
-                                  child: new Chip(
-                                      label: new Text(entity),
-                                      padding: const EdgeInsets.all(2.0))));
+                                  child: Chip(
+                                      label: Text(entity),
+                                      padding: EdgeInsets.all(2.0))));
                         }).toList(),
                 )
-              : new Container()
+              : Container()
         ],
       ),
     ));

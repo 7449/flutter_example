@@ -25,29 +25,29 @@ class TabScreen extends StatelessWidget {
   ///使用 InkWell 点击有视觉反馈
   Widget listItem(context, index, ListEntity info) {
     String imageUrl = info.titleImage;
-    return new Card(
-        child: new InkWell(
+    return Card(
+        child: InkWell(
       onTap: () {
         Navigator.push(
             context,
-            new MaterialPageRoute(
-                builder: (context) => new DetailScreen(
+            MaterialPageRoute(
+                builder: (context) => DetailScreen(
                     slug: info.slug.toString(),
                     title: info.title,
                     titleImage:
                         imageUrl.isEmpty ? defaultImageUrl : imageUrl)));
       },
-      child: new Column(
+      child: Column(
         children: <Widget>[
-          new FadeInImage.memoryNetwork(
+          FadeInImage.memoryNetwork(
               placeholder: kTransparentImage,
               image: imageUrl.isEmpty ? defaultImageUrl : imageUrl,
               height: 180.0,
               width: 1000.0,
               fit: BoxFit.cover),
-          new Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Text(info.title),
+          Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Text(info.title),
           )
         ],
       ),
@@ -60,19 +60,19 @@ class TabScreen extends StatelessWidget {
   /// 数据之后使用`ListView.Builder`构建出样式
   @override
   Widget build(BuildContext context) {
-    return new Center(
-      child: new FutureBuilder<List<ListEntity>>(
+    return Center(
+      child: FutureBuilder<List<ListEntity>>(
         future: fetchList(suffix),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            return new ListView.builder(
+            return ListView.builder(
                 itemCount: snapshot.data.length,
                 itemBuilder: (context, index) =>
                     listItem(context, index, snapshot.data[index]));
           } else if (snapshot.hasError) {
-            return new Center(child: new Text('${snapshot.error}'));
+            return Center(child: Text('${snapshot.error}'));
           }
-          return const CircularProgressIndicator();
+          return CircularProgressIndicator();
         },
       ),
     );

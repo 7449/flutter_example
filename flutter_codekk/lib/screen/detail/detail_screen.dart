@@ -18,7 +18,7 @@ class ReadmeScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() =>
-      new ReadmeState(title: title, apiType: apiType, id: id);
+      ReadmeState(title: title, apiType: apiType, id: id);
 }
 
 class ReadmeState extends State<ReadmeScreen> {
@@ -37,26 +37,26 @@ class ReadmeState extends State<ReadmeScreen> {
   @override
   Widget build(BuildContext context) {
     if (apiType == ApiType.RECOMMEND) {
-      return new WebviewScaffold(
-          appBar: new AppBar(title: new Text(title)), url: id);
+      return WebviewScaffold(appBar: AppBar(title: Text(title)), url: id);
     }
-    return new FutureBuilder<ReadmeEntity>(
+    return FutureBuilder<ReadmeEntity>(
       future: fetchReadme(apiType, id),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          return new WebviewScaffold(
-              appBar: new AppBar(title: new Text(title)),
-              url: new Uri.dataFromString(snapshot.data.data.content,
+          return WebviewScaffold(
+              appBar: AppBar(title: Text(title)),
+              url: Uri
+                  .dataFromString(snapshot.data.data.content,
                       mimeType: 'text/html', encoding: utf8)
                   .toString());
         } else if (snapshot.hasError) {
-          return new Scaffold(
-              appBar: new AppBar(title: new Text(title)),
-              body: new Center(child: new Text(snapshot.error)));
+          return Scaffold(
+              appBar: AppBar(title: Text(title)),
+              body: Center(child: Text(snapshot.error)));
         }
-        return new Scaffold(
-          appBar: new AppBar(title: new Text(title)),
-          body: const Center(child: CircularProgressIndicator()),
+        return Scaffold(
+          appBar: AppBar(title: Text(title)),
+          body: Center(child: CircularProgressIndicator()),
         );
       },
     );

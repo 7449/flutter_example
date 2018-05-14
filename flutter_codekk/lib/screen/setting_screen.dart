@@ -13,7 +13,7 @@ class SettingScreen extends StatefulWidget {
 
   @override
   State<StatefulWidget> createState() =>
-      new SettingState(voidCallback: voidCallback);
+      SettingState(voidCallback: voidCallback);
 }
 
 class SettingState extends State<SettingScreen> {
@@ -22,12 +22,12 @@ class SettingState extends State<SettingScreen> {
   SettingState({this.voidCallback});
 
   final List<MultiMenu> item = <MultiMenu>[
-    new MultiMenu(SettingItem.title, '开源项目', opTag),
-    new MultiMenu(SettingItem.item, '显示TAG', opTag),
-    new MultiMenu(SettingItem.title, '源码解析', opaTag),
-    new MultiMenu(SettingItem.item, '显示TAG', opaTag),
-    new MultiMenu(SettingItem.title, '博客文章', blogTag),
-    new MultiMenu(SettingItem.item, '显示TAG', blogTag),
+    MultiMenu(SettingItem.title, '开源项目', opTag),
+    MultiMenu(SettingItem.item, '显示TAG', opTag),
+    MultiMenu(SettingItem.title, '源码解析', opaTag),
+    MultiMenu(SettingItem.item, '显示TAG', opaTag),
+    MultiMenu(SettingItem.title, '博客文章', blogTag),
+    MultiMenu(SettingItem.item, '显示TAG', blogTag),
   ];
 
   bool showOpTag = true;
@@ -56,29 +56,29 @@ class SettingState extends State<SettingScreen> {
   }
 
   Widget titleWidget(MultiMenu entity) {
-    return new Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: new Text(entity.message,
-            style: new TextStyle(color: Colors.pinkAccent)));
+    return Padding(
+        padding: EdgeInsets.all(8.0),
+        child:
+            Text(entity.message, style: TextStyle(color: Colors.pinkAccent)));
   }
 
   Widget itemWidget(MultiMenu entity) {
     bool value = entity.itemType == opTag
         ? showOpTag
         : entity.itemType == opaTag ? showOpaTag : showBlogTag;
-    return new InkWell(
+    return InkWell(
         onTap: () {
           setTag(entity.itemType);
           setState(() {});
           voidCallback();
         },
-        child: new Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: new Row(
+        child: Padding(
+            padding: EdgeInsets.all(8.0),
+            child: Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
-                new Expanded(child: new Text(entity.message)),
-                new Checkbox(
+                Expanded(child: Text(entity.message)),
+                Checkbox(
                     value: value == null ? true : value, onChanged: (bool) {}),
               ],
             )));
@@ -86,9 +86,9 @@ class SettingState extends State<SettingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(title: const Text('设置')),
-        body: new ListView.builder(
+    return Scaffold(
+        appBar: AppBar(title: Text('设置')),
+        body: ListView.builder(
           padding: kMaterialListPadding,
           itemCount: item.length,
           itemBuilder: (context, index) {

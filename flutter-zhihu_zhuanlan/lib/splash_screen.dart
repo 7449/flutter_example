@@ -6,7 +6,7 @@ import 'package:zhihu_zhuan_lan/values.dart';
 // 初始化一个闪屏页
 class SplashScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => new SplashState();
+  State<StatefulWidget> createState() => SplashState();
 }
 
 class SplashState extends State<SplashScreen> with TickerProviderStateMixin {
@@ -21,14 +21,14 @@ class SplashState extends State<SplashScreen> with TickerProviderStateMixin {
   initState() {
     super.initState();
     //初始化动画管理器
-    controller = new AnimationController(
-        duration: const Duration(milliseconds: 1500), vsync: this);
+    controller = AnimationController(
+        duration: Duration(milliseconds: 1500), vsync: this);
     //初始化动画
-    animation = new Tween(begin: 0.0, end: 1.0).animate(controller);
+    animation = Tween(begin: 0.0, end: 1.0).animate(controller);
     animationStateListener = (status) {
       if (status == AnimationStatus.completed) {
         Navigator.of(context).pushAndRemoveUntil(
-            new MaterialPageRoute(builder: (context) => new HomeScreen()),
+            MaterialPageRoute(builder: (context) => HomeScreen()),
             (route) => route == null);
       }
     };
@@ -43,9 +43,9 @@ class SplashState extends State<SplashScreen> with TickerProviderStateMixin {
   /// 因为闪屏页跳转之后需要销毁,而`pushAndRemoveUntil`会删除之前的所有页面,只留下跳转的那个
 
   Widget build(BuildContext context) {
-    return new FadeTransition(
+    return FadeTransition(
         opacity: animation,
-        child: new Image.asset(
+        child: Image.asset(
           SplashImage,
           fit: BoxFit.cover,
         ));

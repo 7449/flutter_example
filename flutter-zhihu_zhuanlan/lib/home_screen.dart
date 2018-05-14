@@ -6,7 +6,7 @@ import 'package:zhihu_zhuan_lan/values.dart';
 class HomeScreen extends StatefulWidget {
   //初始化 State
   @override
-  State<StatefulWidget> createState() => new DrawerState();
+  State<StatefulWidget> createState() => DrawerState();
 }
 
 class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
@@ -21,7 +21,7 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
     super.initState();
     //初始化Tab管理器
     tabController =
-        new TabController(vsync: this, length: getTabLength(selectIndex));
+        TabController(vsync: this, length: getTabLength(selectIndex));
   }
 
   @override
@@ -33,15 +33,15 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
   /// 初始化Drawer，这里使用两个Widget组合,一个Header，一个ListView
   /// ListView的好处是如果抽屉内容过多的话,可以自己处理滑动
   Widget drawer() {
-    return new Column(
+    return Column(
       children: <Widget>[
-        new Container(
+        Container(
           color: Colors.grey,
           height: 160.0,
-          child: const Center(child: const Text(HomeTitle)),
+          child: Center(child: Text(HomeTitle)),
         ),
-        new Expanded(
-            child: new ListView.builder(
+        Expanded(
+            child: ListView.builder(
                 itemCount: drawerTabs.length,
                 itemBuilder: (context, index) =>
                     drawerListItem(context, index)))
@@ -56,33 +56,33 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
   /// 关闭抽屉 Navigator.pop(context);
   Widget drawerListItem(context, index) {
     var text = drawerTabs[index];
-    return new ListTile(
-        leading: const Icon(Icons.android),
-        title: new Text(text,
-            style: new TextStyle(
+    return ListTile(
+        leading: Icon(Icons.android),
+        title: Text(text,
+            style: TextStyle(
                 color: selectIndex == index ? Colors.blue : Colors.black)),
         onTap: () {
           Navigator.pop(context);
           Scaffold
               .of(context)
-              .showSnackBar(new SnackBar(content: new Text('开始加载$text')));
+              .showSnackBar(SnackBar(content: Text('开始加载$text')));
           setState(() {
             selectIndex = index;
             tabController =
-                new TabController(vsync: this, length: getTabLength(index));
+                TabController(vsync: this, length: getTabLength(index));
           });
         });
   }
 
   List getTabView(index) {
-    return getTabTitle(index).map((text) => new Tab(text: text)).toList();
+    return getTabTitle(index).map((text) => Tab(text: text)).toList();
   }
 
   List<Widget> getBodyView(index) {
     List<String> tabList = getTabTitle(index);
     List<Widget> tabViews = [];
     for (int i = 0; i < tabList.length; i++) {
-      tabViews.add(new TabScreen(suffix: getTabSuffix(index, i)));
+      tabViews.add(TabScreen(suffix: getTabSuffix(index, i)));
     }
     return tabViews;
   }
@@ -91,16 +91,16 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
   /// 使用起来非常方便
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      drawer: new Drawer(child: drawer()),
-      appBar: new AppBar(
-          title: new Text(drawerTabs[selectIndex]),
-          bottom: new TabBar(
+    return Scaffold(
+      drawer: Drawer(child: drawer()),
+      appBar: AppBar(
+          title: Text(drawerTabs[selectIndex]),
+          bottom: TabBar(
             controller: tabController,
             tabs: getTabView(selectIndex),
             isScrollable: true,
           )),
-      body: new TabBarView(
+      body: TabBarView(
           controller: tabController, children: getBodyView(selectIndex)),
     );
   }
