@@ -1,0 +1,12 @@
+name: flutter_banner_widget
+description: banner widget
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^0.1.0
+  transparent_image: ^0.1.0
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+flutter:
+  uses-material-design: true
