@@ -40,7 +40,7 @@ void startSearchScreen(BuildContext context, String search, ApiType type) {
       widget = RecommendSearchScreen(search: search);
       break;
     default:
-      widget = UnKnowScreen(title: 'unknow');
+      widget = UnKnowScreen();
       break;
   }
   Navigator.push(context, MaterialPageRoute(builder: (context) => widget));

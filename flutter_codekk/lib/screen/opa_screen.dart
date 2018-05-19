@@ -8,24 +8,16 @@ import 'package:flutter_codekk/screen/setting_screen.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// 源码解析
 class OpaScreen extends StatefulWidget {
-  final String title;
-
-  OpaScreen({@required this.title});
-
   @override
-  State<StatefulWidget> createState() => OpaState(title: title);
+  State<StatefulWidget> createState() => OpaState();
 }
 
 class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
-  final String title;
   bool showOpaTag = true;
-
-  OpaState({@required this.title});
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

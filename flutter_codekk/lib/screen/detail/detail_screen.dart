@@ -17,45 +17,33 @@ class ReadmeScreen extends StatefulWidget {
       {@required this.title, @required this.apiType, @required this.id});
 
   @override
-  State<StatefulWidget> createState() =>
-      ReadmeState(title: title, apiType: apiType, id: id);
+  State<StatefulWidget> createState() => ReadmeState();
 }
 
 class ReadmeState extends State<ReadmeScreen> {
-  final String title;
-  final String id;
-  final ApiType apiType;
-
-  ReadmeState(
-      {@required this.title, @required this.apiType, @required this.id});
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
-    if (apiType == ApiType.RECOMMEND) {
-      return WebviewScaffold(appBar: AppBar(title: Text(title)), url: id);
+    if (widget.apiType == ApiType.RECOMMEND) {
+      return WebviewScaffold(
+          appBar: AppBar(title: Text(widget.title)), url: widget.id);
     }
     return FutureBuilder<ReadmeEntity>(
-      future: fetchReadme(apiType, id),
+      future: fetchReadme(widget.apiType, widget.id),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return WebviewScaffold(
-              appBar: AppBar(title: Text(title)),
+              appBar: AppBar(title: Text(widget.title)),
               url: Uri
                   .dataFromString(snapshot.data.data.content,
                       mimeType: 'text/html', encoding: utf8)
                   .toString());
         } else if (snapshot.hasError) {
           return Scaffold(
-              appBar: AppBar(title: Text(title)),
+              appBar: AppBar(title: Text(widget.title)),
               body: Center(child: Text(snapshot.error)));
         }
         return Scaffold(
-          appBar: AppBar(title: Text(title)),
+          appBar: AppBar(title: Text(widget.title)),
           body: Center(child: CircularProgressIndicator()),
         );
       },

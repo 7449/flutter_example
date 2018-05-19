@@ -7,23 +7,14 @@ import 'package:flutter_codekk/net/fetch.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
-import 'package:meta/meta.dart';
 
 /// 今日推荐
 class RecommendScreen extends StatefulWidget {
-  final String title;
-
-  RecommendScreen({@required this.title});
-
   @override
-  State<StatefulWidget> createState() => RecommendState(title: title);
+  State<StatefulWidget> createState() => RecommendState();
 }
 
 class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
-  final String title;
-
-  RecommendState({@required this.title});
-
   @override
   Widget itemWidget(RecommendArrayEntity entity) {
     return Card(

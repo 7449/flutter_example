@@ -1,7 +1,5 @@
-class BannerEntity {
-  final String url;
-  final String title;
-  final Object obj;
+abstract class BannerEntity {
+  get bannerUrl;
 
-  BannerEntity({this.url, this.title, this.obj});
+  get bannerTitle;
 }

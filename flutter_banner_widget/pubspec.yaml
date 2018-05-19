@@ -10,3 +10,8 @@ dev_dependencies:
     sdk: flutter
 flutter:
   uses-material-design: true
+  assets:
+    - lib/image/banner1.jpg
+    - lib/image/banner2.jpg
+    - lib/image/banner3.png
+    - lib/image/banner4.jpg

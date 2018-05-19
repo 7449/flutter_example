@@ -8,24 +8,16 @@ import 'package:flutter_codekk/screen/setting_screen.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 ///  开源项目
 class OpScreen extends StatefulWidget {
-  final String title;
-
-  OpScreen({@required this.title});
-
   @override
-  State<StatefulWidget> createState() => OpState(title: title);
+  State<StatefulWidget> createState() => OpState();
 }
 
 class OpState extends ListState<OpScreen, ProjectArrayEntity> {
-  final String title;
   bool showOpTag = true;
-
-  OpState({@required this.title});
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

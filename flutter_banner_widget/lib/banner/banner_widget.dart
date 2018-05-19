@@ -7,28 +7,41 @@ import 'package:transparent_image/transparent_image.dart';
 
 const CountMax = 0x7fffffff;
 
-class BannerWidget extends StatefulWidget {
-  final List<BannerEntity> entity;
+typedef void OnBannerPress(int position, BannerEntity entity);
+typedef Widget Build(int position, BannerEntity entity);
 
-  BannerWidget({@required this.entity});
+class BannerWidget extends StatefulWidget {
+  final OnBannerPress bannerPress;
+  final Build build;
+  final List<BannerEntity> entity; //数据
+  final int height; // 高度
+  final int delayTime; // 时间 (毫秒)
+  final int duration; // pageView切换速度 (毫秒)
+
+  BannerWidget(
+      {Key key,
+      @required this.entity,
+      this.height = 180,
+      this.delayTime = 1500,
+      this.duration = 1500,
+      this.bannerPress,
+      this.build})
+      : super(key: key);
 
   @override
-  State<StatefulWidget> createState() => BannerState(entity: entity);
+  State<StatefulWidget> createState() => BannerState();
 }
 
 class BannerState extends State<BannerWidget> {
   Timer timer;
 
-  final List<BannerEntity> entity;
   int selectIndex = 0;
 
   PageController controller;
 
-  BannerState({@required this.entity});
-
   @override
   void initState() {
-    double current = (CountMax / 2) - ((CountMax / 2) % entity.length);
+    double current = (CountMax / 2) - ((CountMax / 2) % widget.entity.length);
     controller = PageController(initialPage: current.toInt());
     start();
     super.initState();
@@ -36,9 +49,10 @@ class BannerState extends State<BannerWidget> {
 
   start() {
     stop();
-    timer = Timer.periodic(Duration(milliseconds: 1500), (timer) {
+    timer = Timer.periodic(Duration(milliseconds: widget.delayTime), (timer) {
       controller.animateToPage(controller.page.toInt() + 1,
-          duration: Duration(milliseconds: 1500), curve: Curves.linear);
+          duration: Duration(milliseconds: widget.duration),
+          curve: Curves.linear);
     });
   }
 
@@ -50,7 +64,7 @@ class BannerState extends State<BannerWidget> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        height: 260.0,
+        height: widget.height.toDouble(),
         color: Colors.black12,
         child: Stack(
           children: <Widget>[
@@ -66,10 +80,19 @@ class BannerState extends State<BannerWidget> {
       controller: controller,
       onPageChanged: onPageChanged,
       itemBuilder: (context, index) {
-        return FadeInImage.memoryNetwork(
-            placeholder: kTransparentImage,
-            image: entity[index % entity.length].url,
-            fit: BoxFit.cover);
+        return InkWell(
+            onTap: () {
+              if (widget.bannerPress != null)
+                widget.bannerPress(selectIndex, widget.entity[selectIndex]);
+            },
+            child: widget.build == null
+                ? FadeInImage.memoryNetwork(
+                    placeholder: kTransparentImage,
+                    image:
+                        widget.entity[index % widget.entity.length].bannerUrl,
+                    fit: BoxFit.cover)
+                : widget.build(
+                    index, widget.entity[index % widget.entity.length]));
       },
     );
   }
@@ -78,13 +101,13 @@ class BannerState extends State<BannerWidget> {
     return Align(
         alignment: Alignment.bottomCenter,
         child: Container(
-          height: 36.0,
-          padding: EdgeInsets.all(8.0),
+          height: 32.0,
+          padding: EdgeInsets.all(6.0),
           color: Colors.black45,
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
-              Text(entity[selectIndex].title,
+              Text(widget.entity[selectIndex].bannerTitle,
                   style: new TextStyle(color: Colors.white)),
               Row(children: circle())
             ],
@@ -94,11 +117,11 @@ class BannerState extends State<BannerWidget> {
 
   List<Widget> circle() {
     List<Widget> circle = [];
-    for (var i = 0; i < entity.length; i++) {
+    for (var i = 0; i < widget.entity.length; i++) {
       circle.add(Container(
         margin: EdgeInsets.all(2.0),
-        width: 10.0,
-        height: 10.0,
+        width: 8.0,
+        height: 8.0,
         decoration: new BoxDecoration(
           shape: BoxShape.circle,
           color: selectIndex == i ? Colors.blue : Colors.white,
@@ -109,7 +132,7 @@ class BannerState extends State<BannerWidget> {
   }
 
   onPageChanged(index) {
-    selectIndex = index % entity.length;
+    selectIndex = index % widget.entity.length;
     setState(() {});
   }
 

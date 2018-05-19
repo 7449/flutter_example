@@ -17,15 +17,11 @@ class RecommendSearchScreen extends StatefulWidget {
   RecommendSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() => RecommendSearchState(search: search);
+  State<StatefulWidget> createState() => RecommendSearchState();
 }
 
 class RecommendSearchState
     extends ListState<RecommendSearchScreen, RecommendArrayEntity> {
-  final String search;
-
-  RecommendSearchState({@required this.search});
-
   @override
   Widget itemWidget(RecommendArrayEntity entity) {
     return Card(
@@ -45,7 +41,7 @@ class RecommendSearchState
   @override
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    fetchRecommendSearch(search, 1)
+    fetchRecommendSearch(widget.search, 1)
         .then((recommendEntity) =>
             refreshSuccess(recommendEntity.data.recommendArray))
         .catchError((error) => refreshError());
@@ -54,7 +50,7 @@ class RecommendSearchState
   @override
   void onLoadMore() async {
     loadMoreTips();
-    fetchRecommendSearch(search, page)
+    fetchRecommendSearch(widget.search, page)
         .then((recommendEntity) =>
             loadMoreSuccess(recommendEntity.data.recommendArray))
         .catchError((error) => loadMoreError());
@@ -63,7 +59,7 @@ class RecommendSearchState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(search)),
+      appBar: AppBar(title: Text(widget.search)),
       body: StatusWidget(
         child: NotificationListener(
           onNotification: onNotification,

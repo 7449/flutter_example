@@ -7,6 +7,10 @@ flutter code
 
 请使用最新版本的`flutter`运行`demo`
 
+####    18.5.19
+
+新增[BannerWidget轮播图](https://github.com/7449/flutter_example/blob/master/flutter_banner_widget/lib)
+
 ####    18.5.14
 
 去掉`new`以及`const`关键字
@@ -45,6 +49,55 @@ flutter code
 [第十章：布局约束](https://7449.github.io/2018/04/21/Android_Flutter_10/)<br>
 [第十一章：处理 assets 和 图像](https://7449.github.io/2018/04/22/Android_Flutter_11/)<br>
 [json序列化](https://7449.github.io/2018/05/02/Android_Flutter_json_serializable/)
+
+## flutter_banner_widget
+
+![](https://github.com/7449/flutter_example/blob/master/flutter_banner_widget.gif)
+
+#### 使用方法
+
+继承[BannerEntity](https://github.com/7449/flutter_example/blob/master/flutter_banner_widget/lib/banner/banner_entity.dart),实现两个方法
+
+示例：
+
+    class SimpleEntity extends BannerEntity {
+      final String obj;
+      final String url;
+      final String title;
+    
+      SimpleEntity({this.obj, this.url, this.title});
+    
+      @override
+      get bannerUrl => url;
+    
+      @override
+      get bannerTitle => title;
+    }
+    
+widget:
+
+     BannerWidget(entity: entity)
+     
+##### 加载本地图片
+
+实现`build`方法，返回对应的`widget`
+
+      BannerWidget(
+                  build: (position, entity) {
+                    return Image.asset(entity.bannerUrl, fit: BoxFit.cover);
+                  },
+                  entity: localEntity,
+                )
+                
+##### 点击事件
+
+    BannerWidget(
+                entity: entity,
+                bannerPress: (position, entity) {
+                  SimpleEntity bannerEntity = entity;
+                  print('position:${position},entity:${bannerEntity.obj}');
+                },
+              )
 
 ## flutter_zhihu_zhuanlan 
 

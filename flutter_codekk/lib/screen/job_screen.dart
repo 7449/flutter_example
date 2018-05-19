@@ -7,23 +7,14 @@ import 'package:flutter_codekk/net/fetch.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
-import 'package:meta/meta.dart';
 
 /// 内推
 class JobScreen extends StatefulWidget {
-  final String title;
-
-  JobScreen({@required this.title});
-
   @override
-  State<StatefulWidget> createState() => JobState(title: title);
+  State<StatefulWidget> createState() => JobState();
 }
 
 class JobState extends ListState<JobScreen, SummaryArrayEntity> {
-  final String title;
-
-  JobState({@required this.title});
-
   @override
   Widget itemWidget(SummaryArrayEntity entity) {
     return Card(

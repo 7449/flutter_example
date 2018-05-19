@@ -8,24 +8,16 @@ import 'package:flutter_codekk/screen/setting_screen.dart';
 import 'package:flutter_codekk/tool/tool.dart';
 import 'package:flutter_codekk/widget/base_state.dart';
 import 'package:flutter_codekk/widget/item_widget_fix.dart';
-import 'package:meta/meta.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 /// 博客
 class BlogScreen extends StatefulWidget {
-  final String title;
-
-  BlogScreen({@required this.title});
-
   @override
-  State<StatefulWidget> createState() => BlogState(title: title);
+  State<StatefulWidget> createState() => BlogState();
 }
 
 class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
-  final String title;
   bool showBlogTag = true;
-
-  BlogState({@required this.title});
 
   getTag() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();

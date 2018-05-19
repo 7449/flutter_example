@@ -17,14 +17,10 @@ class OpSearchScreen extends StatefulWidget {
   OpSearchScreen({@required this.search});
 
   @override
-  State<StatefulWidget> createState() => OpSearchState(search: search);
+  State<StatefulWidget> createState() => OpSearchState();
 }
 
 class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
-  final String search;
-
-  OpSearchState({@required this.search});
-
   @override
   Widget itemWidget(ProjectArrayEntity entity) {
     return Card(
@@ -59,7 +55,7 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
   @override
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
-    fetchOpSearch(search, 1)
+    fetchOpSearch(widget.search, 1)
         .then((opEntity) => refreshSuccess(opEntity.data.projectArray))
         .catchError((error) => refreshError());
   }
@@ -67,7 +63,7 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
   @override
   void onLoadMore() async {
     loadMoreTips();
-    fetchOpSearch(search, page)
+    fetchOpSearch(widget.search, page)
         .then((opEntity) => loadMoreSuccess(opEntity.data.projectArray))
         .catchError((error) => loadMoreError());
   }
@@ -75,7 +71,7 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(search)),
+      appBar: AppBar(title: Text(widget.search)),
       body: StatusWidget(
         child: NotificationListener(
           onNotification: onNotification,

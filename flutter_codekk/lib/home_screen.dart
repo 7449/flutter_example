@@ -61,17 +61,17 @@ class DrawerState extends State<HomeScreen> {
   Widget bodyWidget(title) {
     switch (selectIndex) {
       case 0:
-        return OpScreen(title: title);
+        return OpScreen();
       case 1:
-        return OpaScreen(title: title);
+        return OpaScreen();
       case 2:
-        return JobScreen(title: title);
+        return JobScreen();
       case 3:
-        return BlogScreen(title: title);
+        return BlogScreen();
       case 5:
-        return RecommendScreen(title: title);
+        return RecommendScreen();
     }
-    return UnKnowScreen(title: title);
+    return UnKnowScreen();
   }
 
   showDialogs() {
