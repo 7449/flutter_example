@@ -25,17 +25,17 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget body() {
     switch (selectBottomIndex) {
       case 0:
-        return PandaHomeScreen(url: tabUrl[selectBottomIndex]);
+        return PandaHomeScreen();
       case 1:
-        return PandaLiveScreen(url: tabUrl[selectBottomIndex]);
+        return PandaLiveScreen(url: tabUrlAction[selectBottomIndex]);
       case 2:
-        return PandaVideoScreen(url: tabUrl[selectBottomIndex]);
+        return PandaVideoScreen(url: tabUrlAction[selectBottomIndex]);
       case 3:
-        return PandaBroadcastScreen(url: tabUrl[selectBottomIndex]);
+        return PandaBroadcastScreen(url: tabUrlAction[selectBottomIndex]);
       case 4:
-        return PandaLiveChinaScreen(url: tabUrl[selectBottomIndex]);
+        return PandaLiveChinaScreen(url: tabUrlAction[selectBottomIndex]);
     }
-    return PandaHomeScreen(url: tabUrl[selectBottomIndex]);
+    return PandaHomeScreen();
   }
 
   Widget bottomNavigation() {

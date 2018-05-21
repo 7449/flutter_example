@@ -74,6 +74,22 @@ flutter code
       get bannerTitle => title;
     }
     
+或者：
+    
+    class SimpleEntity extends Object with BannerEntity {
+      final String obj;
+      final String url;
+      final String title;
+    
+      SimpleEntity({this.obj, this.url, this.title});
+    
+      @override
+      get bannerUrl => url;
+    
+      @override
+      get bannerTitle => title;
+    }
+    
 widget:
 
      BannerWidget(entity: entity)
@@ -109,8 +125,10 @@ widget:
 
 > 目前[codeKK-Android](https://github.com/7449/codeKK-Android)的功能已经使用`flutter`全部实现
 
-> 项目因为使用了`json_serializable`,但是没有提交自动生成的文件,需要在运行之前执行`flutter packages pub run build_runner build`
-否则`entity`目录会报错
+ ~~项目因为使用了`json_serializable`,但是没有提交自动生成的文件,需要在运行之前执行`flutter packages pub run build_runner build`
+否则`entity`目录会报错~~
+
+因为`flutter`处于急速更迭中,有时候会和插件有冲突,为了防止这种事情发生,提交`.g`文件
 
 布局的几种模式可以查看[StatusWidget](https://github.com/7449/flutter_example/blob/master/flutter_codekk/lib/widget/status_widget.dart),截图只展示`ERROR`
 

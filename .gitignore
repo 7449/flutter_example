@@ -11,4 +11,3 @@
 *.flutter-plugins
 *.iml
 *pubspec.lock
-*.g.dart

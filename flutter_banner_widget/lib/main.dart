@@ -4,7 +4,7 @@ import 'package:flutter_banner_widget/banner/banner_widget.dart';
 
 void main() => runApp(MaterialApp(home: HomePage()));
 
-class SimpleEntity extends BannerEntity {
+class SimpleEntity extends Object with BannerEntity {
   final String obj;
   final String url;
   final String title;

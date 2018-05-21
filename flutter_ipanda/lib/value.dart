@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 const title = "iPanda";
 const tabs = ["首页", "熊猫直播", "滚滚视频", "熊猫播报", "直播中国"];
-const tabUrl = [
+const tabUrlAction = [
   "http://www.ipanda.com/kehuduan/shouye/index.json",
   "http://www.ipanda.com/kehuduan/PAGE14501772263221982/index.json",
   "http://www.ipanda.com/kehuduan/video/index.json",
