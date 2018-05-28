@@ -18,3 +18,15 @@ Future<TabHomeEntity> fetchHome() async {
   final response = await http.get(tabUrlAction[0]);
   return TabHomeEntity.fromJson(json.decode(response.body));
 }
+
+Future<WonderfulEntity> fetchWonderful(String url) async {
+  print('fetchWonderful:$url');
+  final response = await http.get(url);
+  return WonderfulEntity.fromJson(json.decode(response.body));
+}
+
+Future<PandaVideoEntity> fetchPandaVideo(String url) async {
+  print('fetchWonderful:$url');
+  final response = await http.get(url);
+  return PandaVideoEntity.fromJson(json.decode(response.body));
+}

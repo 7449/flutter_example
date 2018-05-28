@@ -416,3 +416,104 @@ abstract class _$ListEntitySerializerMixin {
         'order': order
       };
 }
+
+WonderfulEntity _$WonderfulEntityFromJson(Map<String, dynamic> json) =>
+    new WonderfulEntity((json['list'] as List)
+        ?.map((e) => e == null
+            ? null
+            : new CctvListEntity.fromJson(e as Map<String, dynamic>))
+        ?.toList());
+
+abstract class _$WonderfulEntitySerializerMixin {
+  List<CctvListEntity> get list;
+  Map<String, dynamic> toJson() => <String, dynamic>{'list': list};
+}
+
+CctvListEntity _$CctvListEntityFromJson(Map<String, dynamic> json) =>
+    new CctvListEntity(
+        json['url'] as String,
+        json['image'] as String,
+        json['title'] as String,
+        json['videoLength'] as String,
+        json['id'] as String,
+        json['daytime'] as String,
+        json['type'] as String,
+        json['pid'] as String,
+        json['vid'] as String,
+        json['order'] as String);
+
+abstract class _$CctvListEntitySerializerMixin {
+  String get url;
+  String get image;
+  String get title;
+  String get videoLength;
+  String get id;
+  String get daytime;
+  String get type;
+  String get pid;
+  String get vid;
+  String get order;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'url': url,
+        'image': image,
+        'title': title,
+        'videoLength': videoLength,
+        'id': id,
+        'daytime': daytime,
+        'type': type,
+        'pid': pid,
+        'vid': vid,
+        'order': order
+      };
+}
+
+PandaVideoEntity _$PandaVideoEntityFromJson(Map<String, dynamic> json) =>
+    new PandaVideoEntity((json['list'] as List)
+        ?.map((e) => e == null
+            ? null
+            : new PandaVideoListEntity.fromJson(e as Map<String, dynamic>))
+        ?.toList());
+
+abstract class _$PandaVideoEntitySerializerMixin {
+  List<PandaVideoListEntity> get list;
+  Map<String, dynamic> toJson() => <String, dynamic>{'list': list};
+}
+
+PandaVideoListEntity _$PandaVideoListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaVideoListEntity(
+        json['url'] as String,
+        json['image'] as String,
+        json['title'] as String,
+        json['videoLength'] as String,
+        json['id'] as String,
+        json['daytime'] as String,
+        json['type'] as String,
+        json['pid'] as String,
+        json['vid'] as String,
+        json['order'] as String);
+
+abstract class _$PandaVideoListEntitySerializerMixin {
+  String get url;
+  String get image;
+  String get title;
+  String get videoLength;
+  String get id;
+  String get daytime;
+  String get type;
+  String get pid;
+  String get vid;
+  String get order;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'url': url,
+        'image': image,
+        'title': title,
+        'videoLength': videoLength,
+        'id': id,
+        'daytime': daytime,
+        'type': type,
+        'pid': pid,
+        'vid': vid,
+        'order': order
+      };
+}

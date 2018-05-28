@@ -287,3 +287,64 @@ class ListEntity extends Object with _$ListEntitySerializerMixin {
 
   ListEntity(this.listUrl, this.title, this.type, this.order);
 }
+
+@JsonSerializable()
+class WonderfulEntity extends Object with _$WonderfulEntitySerializerMixin {
+  final List<CctvListEntity> list;
+
+  factory WonderfulEntity.fromJson(Map<String, dynamic> json) =>
+      _$WonderfulEntityFromJson(json);
+
+  WonderfulEntity(this.list);
+}
+
+@JsonSerializable()
+class CctvListEntity extends Object with _$CctvListEntitySerializerMixin {
+  final String url;
+  final String image;
+  final String title;
+  final String videoLength;
+  final String id;
+  final String daytime;
+  final String type;
+  final String pid;
+  final String vid;
+  final String order;
+
+  factory CctvListEntity.fromJson(Map<String, dynamic> json) =>
+      _$CctvListEntityFromJson(json);
+
+  CctvListEntity(this.url, this.image, this.title, this.videoLength, this.id,
+      this.daytime, this.type, this.pid, this.vid, this.order);
+}
+
+@JsonSerializable()
+class PandaVideoEntity extends Object with _$PandaVideoEntitySerializerMixin {
+  final List<PandaVideoListEntity> list;
+
+  factory PandaVideoEntity.fromJson(Map<String, dynamic> json) =>
+      _$PandaVideoEntityFromJson(json);
+
+  PandaVideoEntity(this.list);
+}
+
+@JsonSerializable()
+class PandaVideoListEntity extends Object
+    with _$PandaVideoListEntitySerializerMixin {
+  final String url;
+  final String image;
+  final String title;
+  final String videoLength;
+  final String id;
+  final String daytime;
+  final String type;
+  final String pid;
+  final String vid;
+  final String order;
+
+  factory PandaVideoListEntity.fromJson(Map<String, dynamic> json) =>
+      _$PandaVideoListEntityFromJson(json);
+
+  PandaVideoListEntity(this.url, this.image, this.title, this.videoLength,
+      this.id, this.daytime, this.type, this.pid, this.vid, this.order);
+}
