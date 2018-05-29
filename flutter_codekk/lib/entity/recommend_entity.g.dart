@@ -7,29 +7,13 @@ part of 'recommend_entity.dart';
 // **************************************************************************
 
 RecommendEntity _$RecommendEntityFromJson(Map<String, dynamic> json) =>
-    new RecommendEntity(
-        json['data'] == null
-            ? null
-            : new DataEntity.fromJson(json['data'] as Map<String, dynamic>),
-        json['code'] as int,
-        json['message'] as String);
-
-abstract class _$RecommendEntitySerializerMixin {
-  DataEntity get data;
-  int get code;
-  String get message;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'data': data, 'code': code, 'message': message};
-}
-
-DataEntity _$DataEntityFromJson(Map<String, dynamic> json) =>
-    new DataEntity((json['recommendArray'] as List)
+    new RecommendEntity((json['recommendArray'] as List)
         ?.map((e) => e == null
             ? null
             : new RecommendArrayEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$DataEntitySerializerMixin {
+abstract class _$RecommendEntitySerializerMixin {
   List<RecommendArrayEntity> get recommendArray;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'recommendArray': recommendArray};

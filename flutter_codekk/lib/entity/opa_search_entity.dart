@@ -4,24 +4,12 @@ part 'opa_search_entity.g.dart';
 
 @JsonSerializable()
 class OpaSearchEntity extends Object with _$OpaSearchEntitySerializerMixin {
-  final DataEntity data;
-  final int code;
-  final String message;
+  final List<SummaryArrayEntity> summaryArray;
 
   factory OpaSearchEntity.fromJson(Map<String, dynamic> json) =>
       _$OpaSearchEntityFromJson(json);
 
-  OpaSearchEntity(this.data, this.code, this.message);
-}
-
-@JsonSerializable()
-class DataEntity extends Object with _$DataEntitySerializerMixin {
-  final List<SummaryArrayEntity> summaryArray;
-
-  factory DataEntity.fromJson(Map<String, dynamic> json) =>
-      _$DataEntityFromJson(json);
-
-  DataEntity(this.summaryArray);
+  OpaSearchEntity(this.summaryArray);
 }
 
 @JsonSerializable()

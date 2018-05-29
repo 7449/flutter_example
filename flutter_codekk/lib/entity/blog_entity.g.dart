@@ -6,29 +6,14 @@ part of 'blog_entity.dart';
 // Generator: JsonSerializableGenerator
 // **************************************************************************
 
-BlogEntity _$BlogEntityFromJson(Map<String, dynamic> json) => new BlogEntity(
-    json['data'] == null
-        ? null
-        : new DataEntity.fromJson(json['data'] as Map<String, dynamic>),
-    json['code'] as int,
-    json['message'] as String);
-
-abstract class _$BlogEntitySerializerMixin {
-  DataEntity get data;
-  int get code;
-  String get message;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'data': data, 'code': code, 'message': message};
-}
-
-DataEntity _$DataEntityFromJson(Map<String, dynamic> json) =>
-    new DataEntity((json['summaryArray'] as List)
+BlogEntity _$BlogEntityFromJson(Map<String, dynamic> json) =>
+    new BlogEntity((json['summaryArray'] as List)
         ?.map((e) => e == null
             ? null
             : new SummaryArrayEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$DataEntitySerializerMixin {
+abstract class _$BlogEntitySerializerMixin {
   List<SummaryArrayEntity> get summaryArray;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'summaryArray': summaryArray};

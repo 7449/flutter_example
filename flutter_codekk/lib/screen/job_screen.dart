@@ -39,7 +39,7 @@ class JobState extends ListState<JobScreen, SummaryArrayEntity> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchJob(1)
-        .then((jobEntity) => refreshSuccess(jobEntity.data.summaryArray))
+        .then((jobEntity) => refreshSuccess(jobEntity.summaryArray))
         .catchError((error) => refreshError());
   }
 
@@ -47,7 +47,7 @@ class JobState extends ListState<JobScreen, SummaryArrayEntity> {
   void onLoadMore() async {
     loadMoreTips();
     fetchJob(page)
-        .then((jobEntity) => loadMoreSuccess(jobEntity.data.summaryArray))
+        .then((jobEntity) => loadMoreSuccess(jobEntity.summaryArray))
         .catchError((error) => loadMoreError());
   }
 }

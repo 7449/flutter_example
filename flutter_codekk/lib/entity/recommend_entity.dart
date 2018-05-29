@@ -4,24 +4,12 @@ part 'recommend_entity.g.dart';
 
 @JsonSerializable()
 class RecommendEntity extends Object with _$RecommendEntitySerializerMixin {
-  final DataEntity data;
-  final int code;
-  final String message;
+  final List<RecommendArrayEntity> recommendArray;
 
   factory RecommendEntity.fromJson(Map<String, dynamic> json) =>
       _$RecommendEntityFromJson(json);
 
-  RecommendEntity(this.data, this.code, this.message);
-}
-
-@JsonSerializable()
-class DataEntity extends Object with _$DataEntitySerializerMixin {
-  final List<RecommendArrayEntity> recommendArray;
-
-  factory DataEntity.fromJson(Map<String, dynamic> json) =>
-      _$DataEntityFromJson(json);
-
-  DataEntity(this.recommendArray);
+  RecommendEntity(this.recommendArray);
 }
 
 @JsonSerializable()

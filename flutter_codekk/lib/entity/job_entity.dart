@@ -4,24 +4,12 @@ part 'job_entity.g.dart';
 
 @JsonSerializable()
 class JobEntity extends Object with _$JobEntitySerializerMixin {
-  final DataEntity data;
-  final int code;
-  final String message;
+  final List<SummaryArrayEntity> summaryArray;
 
   factory JobEntity.fromJson(Map<String, dynamic> json) =>
       _$JobEntityFromJson(json);
 
-  JobEntity(this.data, this.code, this.message);
-}
-
-@JsonSerializable()
-class DataEntity extends Object with _$DataEntitySerializerMixin {
-  final List<SummaryArrayEntity> summaryArray;
-
-  factory DataEntity.fromJson(Map<String, dynamic> json) =>
-      _$DataEntityFromJson(json);
-
-  DataEntity(this.summaryArray);
+  JobEntity(this.summaryArray);
 }
 
 @JsonSerializable()

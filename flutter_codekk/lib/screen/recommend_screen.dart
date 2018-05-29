@@ -35,8 +35,8 @@ class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchRecommend(1)
-        .then((recommendEntity) =>
-            refreshSuccess(recommendEntity.data.recommendArray))
+        .then(
+            (recommendEntity) => refreshSuccess(recommendEntity.recommendArray))
         .catchError((error) => refreshError());
   }
 
@@ -45,7 +45,7 @@ class RecommendState extends ListState<RecommendScreen, RecommendArrayEntity> {
     loadMoreTips();
     fetchRecommend(page)
         .then((recommendEntity) =>
-            loadMoreSuccess(recommendEntity.data.recommendArray))
+            loadMoreSuccess(recommendEntity.recommendArray))
         .catchError((error) => loadMoreError());
   }
 }

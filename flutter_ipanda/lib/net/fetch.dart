@@ -16,6 +16,7 @@ Future<TabEntity> fetchTab() async {
 Future<TabHomeEntity> fetchHome() async {
   print('fetchHome:${tabUrlAction[0]}');
   final response = await http.get(tabUrlAction[0]);
+  print(json.decode(response.body)['data']);
   return TabHomeEntity.fromJson(json.decode(response.body));
 }
 

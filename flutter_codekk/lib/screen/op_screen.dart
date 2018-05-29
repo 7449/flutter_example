@@ -70,7 +70,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchOp(1, '')
-        .then((opEntity) => refreshSuccess(opEntity.data.projectArray))
+        .then((opEntity) => refreshSuccess(opEntity.projectArray))
         .catchError((error) => refreshError());
   }
 
@@ -78,7 +78,7 @@ class OpState extends ListState<OpScreen, ProjectArrayEntity> {
   void onLoadMore() async {
     loadMoreTips();
     fetchOp(page, '')
-        .then((opEntity) => loadMoreSuccess(opEntity.data.projectArray))
+        .then((opEntity) => loadMoreSuccess(opEntity.projectArray))
         .catchError((error) => loadMoreError());
   }
 }

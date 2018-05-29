@@ -67,7 +67,7 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchBlog(1)
-        .then((blogEntity) => refreshSuccess(blogEntity.data.summaryArray))
+        .then((blogEntity) => refreshSuccess(blogEntity.summaryArray))
         .catchError((error) => refreshError());
   }
 
@@ -75,7 +75,7 @@ class BlogState extends ListState<BlogScreen, SummaryArrayEntity> {
   void onLoadMore() async {
     loadMoreTips();
     fetchBlog(page)
-        .then((blogEntity) => loadMoreSuccess(blogEntity.data.summaryArray))
+        .then((blogEntity) => loadMoreSuccess(blogEntity.summaryArray))
         .catchError((error) => loadMoreError());
   }
 }

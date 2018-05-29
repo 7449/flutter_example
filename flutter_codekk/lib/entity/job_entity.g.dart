@@ -6,29 +6,14 @@ part of 'job_entity.dart';
 // Generator: JsonSerializableGenerator
 // **************************************************************************
 
-JobEntity _$JobEntityFromJson(Map<String, dynamic> json) => new JobEntity(
-    json['data'] == null
-        ? null
-        : new DataEntity.fromJson(json['data'] as Map<String, dynamic>),
-    json['code'] as int,
-    json['message'] as String);
-
-abstract class _$JobEntitySerializerMixin {
-  DataEntity get data;
-  int get code;
-  String get message;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'data': data, 'code': code, 'message': message};
-}
-
-DataEntity _$DataEntityFromJson(Map<String, dynamic> json) =>
-    new DataEntity((json['summaryArray'] as List)
+JobEntity _$JobEntityFromJson(Map<String, dynamic> json) =>
+    new JobEntity((json['summaryArray'] as List)
         ?.map((e) => e == null
             ? null
             : new SummaryArrayEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$DataEntitySerializerMixin {
+abstract class _$JobEntitySerializerMixin {
   List<SummaryArrayEntity> get summaryArray;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'summaryArray': summaryArray};

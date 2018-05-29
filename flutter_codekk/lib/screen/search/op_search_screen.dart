@@ -56,7 +56,7 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchOpSearch(widget.search, 1)
-        .then((opEntity) => refreshSuccess(opEntity.data.projectArray))
+        .then((opEntity) => refreshSuccess(opEntity.projectArray))
         .catchError((error) => refreshError());
   }
 
@@ -64,7 +64,7 @@ class OpSearchState extends ListState<OpSearchScreen, ProjectArrayEntity> {
   void onLoadMore() async {
     loadMoreTips();
     fetchOpSearch(widget.search, page)
-        .then((opEntity) => loadMoreSuccess(opEntity.data.projectArray))
+        .then((opEntity) => loadMoreSuccess(opEntity.projectArray))
         .catchError((error) => loadMoreError());
   }
 

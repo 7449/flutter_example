@@ -6,29 +6,14 @@ part of 'op_entity.dart';
 // Generator: JsonSerializableGenerator
 // **************************************************************************
 
-OpEntity _$OpEntityFromJson(Map<String, dynamic> json) => new OpEntity(
-    json['data'] == null
-        ? null
-        : new DataEntity.fromJson(json['data'] as Map<String, dynamic>),
-    json['code'] as int,
-    json['message'] as String);
-
-abstract class _$OpEntitySerializerMixin {
-  DataEntity get data;
-  int get code;
-  String get message;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'data': data, 'code': code, 'message': message};
-}
-
-DataEntity _$DataEntityFromJson(Map<String, dynamic> json) =>
-    new DataEntity((json['projectArray'] as List)
+OpEntity _$OpEntityFromJson(Map<String, dynamic> json) =>
+    new OpEntity((json['projectArray'] as List)
         ?.map((e) => e == null
             ? null
             : new ProjectArrayEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$DataEntitySerializerMixin {
+abstract class _$OpEntitySerializerMixin {
   List<ProjectArrayEntity> get projectArray;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'projectArray': projectArray};

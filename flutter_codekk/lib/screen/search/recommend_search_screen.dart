@@ -43,7 +43,7 @@ class RecommendSearchState
     globalKey.currentState?.show();
     fetchRecommendSearch(widget.search, 1)
         .then((recommendEntity) =>
-            refreshSuccess(recommendEntity.data.recommendArray))
+            refreshSuccess(recommendEntity.recommendArray))
         .catchError((error) => refreshError());
   }
 
@@ -52,7 +52,7 @@ class RecommendSearchState
     loadMoreTips();
     fetchRecommendSearch(widget.search, page)
         .then((recommendEntity) =>
-            loadMoreSuccess(recommendEntity.data.recommendArray))
+            loadMoreSuccess(recommendEntity.recommendArray))
         .catchError((error) => loadMoreError());
   }
 

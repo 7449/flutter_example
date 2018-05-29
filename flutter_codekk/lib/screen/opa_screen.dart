@@ -70,7 +70,7 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchOpa(1)
-        .then((opaEntity) => refreshSuccess(opaEntity.data.summaryArray))
+        .then((opaEntity) => refreshSuccess(opaEntity.summaryArray))
         .catchError((error) => refreshError());
   }
 
@@ -78,7 +78,7 @@ class OpaState extends ListState<OpaScreen, SummaryArrayEntity> {
   void onLoadMore() async {
     loadMoreTips();
     fetchOpa(page)
-        .then((opaEntity) => loadMoreSuccess(opaEntity.data.summaryArray))
+        .then((opaEntity) => loadMoreSuccess(opaEntity.summaryArray))
         .catchError((error) => loadMoreError());
   }
 }

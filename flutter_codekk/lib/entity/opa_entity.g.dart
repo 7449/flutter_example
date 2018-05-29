@@ -6,29 +6,14 @@ part of 'opa_entity.dart';
 // Generator: JsonSerializableGenerator
 // **************************************************************************
 
-OpaEntity _$OpaEntityFromJson(Map<String, dynamic> json) => new OpaEntity(
-    json['data'] == null
-        ? null
-        : new DataEntity.fromJson(json['data'] as Map<String, dynamic>),
-    json['code'] as int,
-    json['message'] as String);
-
-abstract class _$OpaEntitySerializerMixin {
-  DataEntity get data;
-  int get code;
-  String get message;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'data': data, 'code': code, 'message': message};
-}
-
-DataEntity _$DataEntityFromJson(Map<String, dynamic> json) =>
-    new DataEntity((json['summaryArray'] as List)
+OpaEntity _$OpaEntityFromJson(Map<String, dynamic> json) =>
+    new OpaEntity((json['summaryArray'] as List)
         ?.map((e) => e == null
             ? null
             : new SummaryArrayEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$DataEntitySerializerMixin {
+abstract class _$OpaEntitySerializerMixin {
   List<SummaryArrayEntity> get summaryArray;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'summaryArray': summaryArray};

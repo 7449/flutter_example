@@ -4,24 +4,12 @@ part 'blog_entity.g.dart';
 
 @JsonSerializable()
 class BlogEntity extends Object with _$BlogEntitySerializerMixin {
-  final DataEntity data;
-  final int code;
-  final String message;
+  final List<SummaryArrayEntity> summaryArray;
 
   factory BlogEntity.fromJson(Map<String, dynamic> json) =>
       _$BlogEntityFromJson(json);
 
-  BlogEntity(this.data, this.code, this.message);
-}
-
-@JsonSerializable()
-class DataEntity extends Object with _$DataEntitySerializerMixin {
-  final List<SummaryArrayEntity> summaryArray;
-
-  factory DataEntity.fromJson(Map<String, dynamic> json) =>
-      _$DataEntityFromJson(json);
-
-  DataEntity(this.summaryArray);
+  BlogEntity(this.summaryArray);
 }
 
 @JsonSerializable()

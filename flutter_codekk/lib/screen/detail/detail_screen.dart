@@ -34,7 +34,7 @@ class ReadmeState extends State<ReadmeScreen> {
           return WebviewScaffold(
               appBar: AppBar(title: Text(widget.title)),
               url: Uri
-                  .dataFromString(snapshot.data.data.content,
+                  .dataFromString(snapshot.data.content,
                       mimeType: 'text/html', encoding: utf8)
                   .toString());
         } else if (snapshot.hasError) {

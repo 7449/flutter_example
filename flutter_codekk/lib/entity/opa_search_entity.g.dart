@@ -7,29 +7,13 @@ part of 'opa_search_entity.dart';
 // **************************************************************************
 
 OpaSearchEntity _$OpaSearchEntityFromJson(Map<String, dynamic> json) =>
-    new OpaSearchEntity(
-        json['data'] == null
-            ? null
-            : new DataEntity.fromJson(json['data'] as Map<String, dynamic>),
-        json['code'] as int,
-        json['message'] as String);
-
-abstract class _$OpaSearchEntitySerializerMixin {
-  DataEntity get data;
-  int get code;
-  String get message;
-  Map<String, dynamic> toJson() =>
-      <String, dynamic>{'data': data, 'code': code, 'message': message};
-}
-
-DataEntity _$DataEntityFromJson(Map<String, dynamic> json) =>
-    new DataEntity((json['summaryArray'] as List)
+    new OpaSearchEntity((json['summaryArray'] as List)
         ?.map((e) => e == null
             ? null
             : new SummaryArrayEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$DataEntitySerializerMixin {
+abstract class _$OpaSearchEntitySerializerMixin {
   List<SummaryArrayEntity> get summaryArray;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'summaryArray': summaryArray};
