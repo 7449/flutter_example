@@ -16,10 +16,7 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text(tabs[selectBottomIndex])),
-        body: body(),
-        bottomNavigationBar: bottomNavigation());
+    return Scaffold(body: body(), bottomNavigationBar: bottomNavigation());
   }
 
   Widget body() {
@@ -27,7 +24,7 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
       case 0:
         return PandaHomeScreen();
       case 1:
-        return PandaLiveScreen(url: tabUrlAction[selectBottomIndex]);
+        return PandaLiveScreen();
       case 2:
         return PandaVideoScreen(url: tabUrlAction[selectBottomIndex]);
       case 3:

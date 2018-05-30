@@ -2,48 +2,53 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banner_widget/banner/banner_widget.dart';
 import 'package:flutter_ipanda/entity/tab_home_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
+import 'package:flutter_ipanda/value.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class PandaHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return FutureBuilder<TabHomeEntity>(
-      future: fetchHome(),
-      builder: (context, snapshot) {
-        if (snapshot.hasData) {
-          return _build(context, snapshot);
-        } else if (snapshot.hasError) {
-          return Center(child: Text('${snapshot.error}'));
-        }
-        return Center(child: CircularProgressIndicator());
-      },
+    return Scaffold(
+      appBar: AppBar(title: Text(tabs[0])),
+      body: FutureBuilder<TabHomeEntity>(
+        future: fetchHome(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return _build(context, snapshot);
+          } else if (snapshot.hasError) {
+            return Center(child: Text('${snapshot.error}'));
+          }
+          return Center(child: CircularProgressIndicator());
+        },
+      ),
     );
   }
 
   Widget _build(context, snapshot) {
     TabDataEntity entity = snapshot.data.data;
     return ListView.builder(
-        itemCount: 6,
-        itemBuilder: (BuildContext context, int index) {
-          switch (index) {
-            case 0:
-              return BannerWidget(
-                height: 215,
-                entity: entity.banner,
-                bannerPress: (position, entity) {},
-              );
-            case 1:
-              return pandaEyeItem(entity.pandaEye);
-            case 2:
-              return pandaLiveItem(context, entity.pandaLive);
-            case 3:
-              return pandaCctvItem(context, entity.cctv);
-            case 4:
-              return pandaListItem(context, entity.list[0]);
-            case 5:
-              return pandaChinaLiveItem(context, entity.chinaLive);
-          }
-        });
+      itemCount: 6,
+      itemBuilder: (BuildContext context, int index) {
+        switch (index) {
+          case 0:
+            return BannerWidget(
+              height: 215,
+              entity: entity.banner,
+              bannerPress: (position, entity) {},
+            );
+          case 1:
+            return pandaEyeItem(entity.pandaEye);
+          case 2:
+            return pandaLiveItem(context, entity.pandaLive);
+          case 3:
+            return pandaCctvItem(context, entity.cctv);
+          case 4:
+            return pandaListItem(context, entity.list[0]);
+          case 5:
+            return pandaChinaLiveItem(context, entity.chinaLive);
+        }
+      },
+    );
   }
 
   Widget pandaChinaLiveItem(BuildContext context, ChinaLiveEntity entity) {
