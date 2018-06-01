@@ -30,3 +30,92 @@ abstract class _$LiveTabListEntitySerializerMixin {
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'url': url, 'id': id, 'order': order};
 }
+
+LivePandaEntity _$LivePandaEntityFromJson(Map<String, dynamic> json) =>
+    new LivePandaEntity(
+        (json['live'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new LiveHeaderEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList(),
+        json['bookmark'] == null
+            ? null
+            : new LiveBookMarkEntity.fromJson(
+                json['bookmark'] as Map<String, dynamic>));
+
+abstract class _$LivePandaEntitySerializerMixin {
+  List<LiveHeaderEntity> get live;
+  LiveBookMarkEntity get bookmark;
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'live': live, 'bookmark': bookmark};
+}
+
+LiveHeaderEntity _$LiveHeaderEntityFromJson(Map<String, dynamic> json) =>
+    new LiveHeaderEntity(
+        json['title'] as String,
+        json['brief'] as String,
+        json['image'] as String,
+        json['id'] as String,
+        json['isshow'] as String,
+        json['url'] as String);
+
+abstract class _$LiveHeaderEntitySerializerMixin {
+  String get title;
+  String get brief;
+  String get image;
+  String get id;
+  String get isShow;
+  String get url;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'title': title,
+        'brief': brief,
+        'image': image,
+        'id': id,
+        'isshow': isShow,
+        'url': url
+      };
+}
+
+LiveBookMarkEntity _$LiveBookMarkEntityFromJson(Map<String, dynamic> json) =>
+    new LiveBookMarkEntity(
+        (json['multiple'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new LiveMultipleEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList(),
+        (json['watchTalk'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new LiveWatchTalkEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList());
+
+abstract class _$LiveBookMarkEntitySerializerMixin {
+  List<LiveMultipleEntity> get multiple;
+  List<LiveWatchTalkEntity> get watchTalk;
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'multiple': multiple, 'watchTalk': watchTalk};
+}
+
+LiveMultipleEntity _$LiveMultipleEntityFromJson(Map<String, dynamic> json) =>
+    new LiveMultipleEntity(json['title'] as String, json['url'] as String,
+        json['order'] as String);
+
+abstract class _$LiveMultipleEntitySerializerMixin {
+  String get title;
+  String get url;
+  String get order;
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'title': title, 'url': url, 'order': order};
+}
+
+LiveWatchTalkEntity _$LiveWatchTalkEntityFromJson(Map<String, dynamic> json) =>
+    new LiveWatchTalkEntity(json['title'] as String, json['url'] as String,
+        json['order'] as String);
+
+abstract class _$LiveWatchTalkEntitySerializerMixin {
+  String get title;
+  String get url;
+  String get order;
+  Map<String, dynamic> toJson() =>
+      <String, dynamic>{'title': title, 'url': url, 'order': order};
+}

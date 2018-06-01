@@ -10,6 +10,7 @@ dependencies:
   flutter_webview_plugin: ^0.1.5
   shared_preferences: ^0.4.1
   url_launcher: ^3.0.0
+  video_player: ^0.5.3
   flutter_banner_widget:
       path: ../flutter_banner_widget
 dev_dependencies:

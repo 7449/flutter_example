@@ -37,3 +37,9 @@ Future<TabLiveEntity> fetchPandaLive() async {
   final response = await http.get(tabUrlAction[1]);
   return TabLiveEntity.fromJson(json.decode(response.body));
 }
+
+Future<LivePandaEntity> fetchPandaLives(String url) async {
+  print('fetchPandaLives:$url');
+  final response = await http.get(url);
+  return LivePandaEntity.fromJson(json.decode(response.body));
+}

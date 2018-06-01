@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ipanda/entity/tab_panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
+import 'package:flutter_ipanda/screen/live/live_ipanda_screen.dart';
 import 'package:flutter_ipanda/screen/live/live_screen.dart';
 import 'package:flutter_ipanda/value.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
@@ -14,7 +15,7 @@ class PandaLiveState extends State<PandaLiveScreen>
     with TickerProviderStateMixin {
   TabController tabController;
   List<LiveTabListEntity> list = [];
-  Status status = Status.SUCCESS;
+  Status status = Status.LOADING;
 
   @override
   void initState() {
@@ -87,12 +88,17 @@ class PandaLiveState extends State<PandaLiveScreen>
   }
 
   List<Widget> body(List<LiveTabListEntity> entity) {
-    return entity.map((item) => LiveScreen()).toList();
+    return entity.map((item) {
+      switch (item.order) {
+        case "1":
+          return LivePandaScreen(url: item.url);
+        default:
+          return LiveScreen();
+      }
+    }).toList();
   }
 
   http() {
-    status = Status.LOADING;
-    setState(() {});
     fetchPandaLive().then((entity) {
       tabController = TabController(vsync: this, length: entity.tabList.length);
       status = Status.SUCCESS;

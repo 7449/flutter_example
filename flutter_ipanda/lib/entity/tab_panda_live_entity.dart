@@ -25,3 +25,70 @@ class LiveTabListEntity extends Object with _$LiveTabListEntitySerializerMixin {
 
   LiveTabListEntity(this.title, this.url, this.id, this.order);
 }
+
+@JsonSerializable()
+class LivePandaEntity extends Object with _$LivePandaEntitySerializerMixin {
+  @JsonKey(name: 'live')
+  final List<LiveHeaderEntity> live;
+  final LiveBookMarkEntity bookmark;
+
+  factory LivePandaEntity.fromJson(Map<String, dynamic> json) =>
+      _$LivePandaEntityFromJson(json);
+
+  LivePandaEntity(this.live, this.bookmark);
+}
+
+@JsonSerializable()
+class LiveHeaderEntity extends Object with _$LiveHeaderEntitySerializerMixin {
+  final String title;
+  final String brief;
+  final String image;
+  final String id;
+  @JsonKey(name: 'isshow')
+  final String isShow;
+  final String url;
+
+  factory LiveHeaderEntity.fromJson(Map<String, dynamic> json) =>
+      _$LiveHeaderEntityFromJson(json);
+
+  LiveHeaderEntity(
+      this.title, this.brief, this.image, this.id, this.isShow, this.url);
+}
+
+@JsonSerializable()
+class LiveBookMarkEntity extends Object
+    with _$LiveBookMarkEntitySerializerMixin {
+  final List<LiveMultipleEntity> multiple;
+  final List<LiveWatchTalkEntity> watchTalk;
+
+  factory LiveBookMarkEntity.fromJson(Map<String, dynamic> json) =>
+      _$LiveBookMarkEntityFromJson(json);
+
+  LiveBookMarkEntity(this.multiple, this.watchTalk);
+}
+
+@JsonSerializable()
+class LiveMultipleEntity extends Object
+    with _$LiveMultipleEntitySerializerMixin {
+  final String title;
+  final String url;
+  final String order;
+
+  factory LiveMultipleEntity.fromJson(Map<String, dynamic> json) =>
+      _$LiveMultipleEntityFromJson(json);
+
+  LiveMultipleEntity(this.title, this.url, this.order);
+}
+
+@JsonSerializable()
+class LiveWatchTalkEntity extends Object
+    with _$LiveWatchTalkEntitySerializerMixin {
+  final String title;
+  final String url;
+  final String order;
+
+  factory LiveWatchTalkEntity.fromJson(Map<String, dynamic> json) =>
+      _$LiveWatchTalkEntityFromJson(json);
+
+  LiveWatchTalkEntity(this.title, this.url, this.order);
+}
