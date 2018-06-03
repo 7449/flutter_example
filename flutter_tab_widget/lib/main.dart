@@ -16,12 +16,16 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Flutter TabWidget'),
+        elevation: 0.0,
       ),
       body: TabWidget(
+        onPageChanged: (position) {
+          print(position);
+        },
         children: <Widget>[
-          Center(child: Text('直播')),
-          Center(child: Text('视频')),
-          Center(child: Text('播报')),
+          Container(color: Colors.white, child: Center(child: Text('直播'))),
+          Container(color: Colors.pink, child: Center(child: Text('视频'))),
+          Container(color: Colors.blue, child: Center(child: Text('播报'))),
         ],
         entity: entity,
       ),

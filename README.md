@@ -7,6 +7,10 @@ flutter code
 
 请使用最新版本的`flutter`运行`demo`
 
+####    18.6.3
+
+新增[Tab](https://github.com/7449/flutter_example/blob/master/flutter_tab_widget)
+
 ####    18.5.19
 
 新增[BannerWidget轮播图](https://github.com/7449/flutter_example/blob/master/flutter_banner_widget/lib)
@@ -49,6 +53,41 @@ flutter code
 [第十章：布局约束](https://7449.github.io/2018/04/21/Android_Flutter_10/)<br>
 [第十一章：处理 assets 和 图像](https://7449.github.io/2018/04/22/Android_Flutter_11/)<br>
 [json序列化](https://7449.github.io/2018/05/02/Android_Flutter_json_serializable/)
+
+## flutter_tab_widget
+
+![](https://github.com/7449/flutter_example/blob/master/flutter_tab_widget.gif)
+
+#### 使用方法
+
+> 适用于嵌套Tab.
+
+      final List<TabEntity> entity = [
+        new TabEntity(title: '直播'),
+        new TabEntity(title: '视频'),
+        new TabEntity(title: '播报'),
+      ];
+      
+       @override
+       Widget build(BuildContext context) {
+         return Scaffold(
+           appBar: AppBar(
+             title: Text('Flutter TabWidget'),
+             elevation: 0.0,
+           ),
+           body: TabWidget(
+             onPageChanged: (position) {
+               print(position);
+             },
+             children: <Widget>[
+               Container(color: Colors.white, child: Center(child: Text('直播'))),
+               Container(color: Colors.pink, child: Center(child: Text('视频'))),
+               Container(color: Colors.blue, child: Center(child: Text('播报'))),
+             ],
+             entity: entity,
+           ),
+         );
+       }
 
 ## flutter_banner_widget
 
