@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tab/tab_entity.dart';
-import 'package:flutter_tab/tab_widget.dart';
+import 'package:flutter_tab_widget/tab_entity.dart';
+import 'package:flutter_tab_widget/tab_widget.dart';
 
 void main() => runApp(MaterialApp(home: HomePage()));
 

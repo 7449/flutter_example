@@ -119,3 +119,53 @@ abstract class _$LiveWatchTalkEntitySerializerMixin {
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'url': url, 'order': order};
 }
+
+BaseMultipleEntity _$BaseMultipleEntityFromJson(Map<String, dynamic> json) =>
+    new BaseMultipleEntity((json['list'] as List)
+        ?.map((e) => e == null
+            ? null
+            : new MultipleEntity.fromJson(e as Map<String, dynamic>))
+        ?.toList());
+
+abstract class _$BaseMultipleEntitySerializerMixin {
+  List<MultipleEntity> get list;
+  Map<String, dynamic> toJson() => <String, dynamic>{'list': list};
+}
+
+MultipleEntity _$MultipleEntityFromJson(Map<String, dynamic> json) =>
+    new MultipleEntity(
+        json['url'] as String,
+        json['image'] as String,
+        json['title'] as String,
+        json['videoLength'] as String,
+        json['id'] as String,
+        json['daytime'] as String,
+        json['type'] as String,
+        json['pid'] as String,
+        json['vid'] as String,
+        json['order'] as String);
+
+abstract class _$MultipleEntitySerializerMixin {
+  String get url;
+  String get image;
+  String get title;
+  String get videoLength;
+  String get id;
+  String get daytime;
+  String get type;
+  String get pid;
+  String get vid;
+  String get order;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'url': url,
+        'image': image,
+        'title': title,
+        'videoLength': videoLength,
+        'id': id,
+        'daytime': daytime,
+        'type': type,
+        'pid': pid,
+        'vid': vid,
+        'order': order
+      };
+}

@@ -2,7 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ipanda/entity/tab_panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
+import 'package:flutter_tab_widget/flutter_tab_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
+
+final List<TabEntity> tabEntity = [
+  new TabEntity(title: '多视角直播'),
+  new TabEntity(title: '边看边聊'),
+];
 
 /// 直播
 class LivePandaScreen extends StatefulWidget {
@@ -16,7 +22,6 @@ class LivePandaScreen extends StatefulWidget {
 
 class LivePandaState extends State<LivePandaScreen> {
   bool showBrief = false;
-
   LivePandaEntity entity;
 
   Status status = Status.LOADING;
@@ -47,27 +52,6 @@ class LivePandaState extends State<LivePandaScreen> {
       onErrorPressed: () => http(),
       onEmptyPressed: () => http(),
     ));
-//    return Center(
-//      child: FutureBuilder<LivePandaEntity>(
-//        future: fetchPandaLives(widget.url),
-//        builder: (context, snapshot) {
-//          if (snapshot.hasData) {
-//            return _build(context, snapshot.data);
-//          } else if (snapshot.hasError) {
-//            return Text('${snapshot.error}');
-//          }
-//          return CircularProgressIndicator();
-//        },
-//      ),
-////      child: Container(height: 200.0, child: VideoPlayer(controller)),
-////      floatingActionButton: FloatingActionButton(
-////        onPressed:
-////            controller.value.isPlaying ? controller.pause : controller.play,
-////        child: Icon(
-////          controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
-////        ),
-////      ),
-//    );
   }
 
   Widget _build(BuildContext context, LivePandaEntity entity) {
@@ -78,12 +62,24 @@ class LivePandaState extends State<LivePandaScreen> {
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
             Widget>[
-          FadeInImage.memoryNetwork(
-              placeholder: kTransparentImage,
-              image: headerEntity.image,
-              height: 200.0,
-              width: size.width,
-              fit: BoxFit.cover),
+          Stack(
+            alignment: Alignment.center,
+            children: <Widget>[
+              FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,
+                  image: headerEntity.image,
+                  height: 200.0,
+                  width: size.width,
+                  fit: BoxFit.cover),
+              InkWell(
+                  onTap: () {},
+                  child: Icon(
+                    Icons.play_arrow,
+                    size: 60.0,
+                    color: Colors.blue,
+                  ))
+            ],
+          ),
           Padding(
             child: Text('[正在直播]${headerEntity.title}',
                 style: TextStyle(fontSize: 16.0)),
@@ -116,7 +112,62 @@ class LivePandaState extends State<LivePandaScreen> {
                   Divider(height: 2.0, color: Colors.black26),
                 ])
               : Container(),
-          Row(children: <Widget>[]),
+          Expanded(
+              child: TabWidget(
+            entity: tabEntity,
+            tabColor: Colors.white,
+            tabTextSelectColor: Colors.blue,
+            tabTextUnSelectColor: Colors.black,
+            children: <Widget>[
+              multipleWidget(context, entity.bookmark.multiple[0].url),
+              Container(
+                  color: Colors.white, child: Center(child: Text('边看边聊'))),
+            ],
+          )),
         ]));
+  }
+
+  Widget multipleWidget(BuildContext context, String url) {
+    Size size = MediaQuery.of(context).size;
+    return FutureBuilder<BaseMultipleEntity>(
+      future: fetchPandaLiveMultipleEntity(url),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return GridView.count(
+            padding: EdgeInsets.all(5.0),
+            crossAxisCount: 3,
+            mainAxisSpacing: 2.0,
+            crossAxisSpacing: 2.0,
+            childAspectRatio: 0.8,
+            children: snapshot.data.list
+                .map((entity) => Container(
+                    height: size.width / 3,
+                    child: Column(children: <Widget>[
+                      Stack(
+                          alignment: AlignmentDirectional.bottomStart,
+                          children: <Widget>[
+                            Container(
+                                height: (size.width / 3) - 20.0,
+                                child: FadeInImage.memoryNetwork(
+                                    placeholder: kTransparentImage,
+                                    image: entity.image,
+                                    fit: BoxFit.cover)),
+                            Text('live', style: TextStyle(color: Colors.white))
+                          ]),
+                      Expanded(
+                          child: Align(
+                              alignment: Alignment.centerLeft,
+                              child: Container(
+                                  child: Text(entity.title,
+                                      style: TextStyle(fontSize: 12.0)))))
+                    ])))
+                .toList(),
+          );
+        } else if (snapshot.hasError) {
+          return Center(child: Text('${snapshot.error}'));
+        }
+        return Center(child: CircularProgressIndicator());
+      },
+    );
   }
 }

@@ -92,3 +92,34 @@ class LiveWatchTalkEntity extends Object
 
   LiveWatchTalkEntity(this.title, this.url, this.order);
 }
+
+@JsonSerializable()
+class BaseMultipleEntity extends Object
+    with _$BaseMultipleEntitySerializerMixin {
+  final List<MultipleEntity> list;
+
+  factory BaseMultipleEntity.fromJson(Map<String, dynamic> json) =>
+      _$BaseMultipleEntityFromJson(json);
+
+  BaseMultipleEntity(this.list);
+}
+
+@JsonSerializable()
+class MultipleEntity extends Object with _$MultipleEntitySerializerMixin {
+  final String url;
+  final String image;
+  final String title;
+  final String videoLength;
+  final String id;
+  final String daytime;
+  final String type;
+  final String pid;
+  final String vid;
+  final String order;
+
+  factory MultipleEntity.fromJson(Map<String, dynamic> json) =>
+      _$MultipleEntityFromJson(json);
+
+  MultipleEntity(this.url, this.image, this.title, this.videoLength, this.id,
+      this.daytime, this.type, this.pid, this.vid, this.order);
+}

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_tab/tab_entity.dart';
+import 'package:flutter_tab_widget/tab_entity.dart';
 import 'package:meta/meta.dart';
 
 typedef void OnPageChanged(int position);

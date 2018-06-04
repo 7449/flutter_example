@@ -1,4 +1,4 @@
-name: flutter_tab
+name: flutter_tab_widget
 description: A new Flutter tab.
 dependencies:
   flutter:

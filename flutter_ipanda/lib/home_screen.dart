@@ -26,9 +26,9 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
       case 1:
         return PandaLiveScreen();
       case 2:
-        return PandaVideoScreen(url: tabUrlAction[selectBottomIndex]);
+        return PandaVideoScreen();
       case 3:
-        return PandaBroadcastScreen(url: tabUrlAction[selectBottomIndex]);
+        return PandaBroadcastScreen();
       case 4:
         return PandaLiveChinaScreen(url: tabUrlAction[selectBottomIndex]);
     }

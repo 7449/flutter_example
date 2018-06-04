@@ -13,6 +13,8 @@ dependencies:
   video_player: ^0.5.3
   flutter_banner_widget:
       path: ../flutter_banner_widget
+  flutter_tab_widget:
+      path: ../flutter_tab_widget
 dev_dependencies:
   flutter_test:
     sdk: flutter
