@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ipanda/entity/tab_panda_live_entity.dart';
+import 'package:flutter_ipanda/entity/panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/screen/live/live_ipanda_screen.dart';
 import 'package:flutter_ipanda/screen/live/live_screen.dart';
@@ -14,7 +14,7 @@ class PandaLiveScreen extends StatefulWidget {
 class PandaLiveState extends State<PandaLiveScreen>
     with TickerProviderStateMixin {
   TabController tabController;
-  List<LiveTabListEntity> list = [];
+  List<PandaLiveTabListEntity> list = [];
   Status status = Status.LOADING;
 
   @override
@@ -83,11 +83,11 @@ class PandaLiveState extends State<PandaLiveScreen>
   ///        body: TabBarView(controller: tabController, children: body(entity)));
   ///  }
 
-  List<Widget> bottomTabs(List<LiveTabListEntity> entity) {
+  List<Widget> bottomTabs(List<PandaLiveTabListEntity> entity) {
     return entity.map((item) => Tab(text: item.title)).toList();
   }
 
-  List<Widget> body(List<LiveTabListEntity> entity) {
+  List<Widget> body(List<PandaLiveTabListEntity> entity) {
     return entity.map((item) {
       switch (item.order) {
         case "1":

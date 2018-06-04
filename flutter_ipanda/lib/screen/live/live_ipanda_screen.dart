@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ipanda/entity/tab_panda_live_entity.dart';
+import 'package:flutter_ipanda/entity/panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
 import 'package:flutter_tab_widget/flutter_tab_widget.dart';
@@ -22,7 +22,7 @@ class LivePandaScreen extends StatefulWidget {
 
 class LivePandaState extends State<LivePandaScreen> {
   bool showBrief = false;
-  LivePandaEntity entity;
+  PandaLivePandaEntity entity;
 
   Status status = Status.LOADING;
 
@@ -54,10 +54,10 @@ class LivePandaState extends State<LivePandaScreen> {
     ));
   }
 
-  Widget _build(BuildContext context, LivePandaEntity entity) {
+  Widget _build(BuildContext context, PandaLivePandaEntity entity) {
     if (entity == null) return Container();
     Size size = MediaQuery.of(context).size;
-    LiveHeaderEntity headerEntity = entity.live[0];
+    PandaLiveHeaderEntity headerEntity = entity.live[0];
     return Container(
         color: Colors.white,
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: <
@@ -129,7 +129,7 @@ class LivePandaState extends State<LivePandaScreen> {
 
   Widget multipleWidget(BuildContext context, String url) {
     Size size = MediaQuery.of(context).size;
-    return FutureBuilder<BaseMultipleEntity>(
+    return FutureBuilder<PandaMultipleEntity>(
       future: fetchPandaLiveMultipleEntity(url),
       builder: (context, snapshot) {
         if (snapshot.hasData) {

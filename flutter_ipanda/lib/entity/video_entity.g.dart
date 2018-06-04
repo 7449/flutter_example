@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tab_video_entity.dart';
+part of 'video_entity.dart';
 
 // **************************************************************************
 // Generator: JsonSerializableGenerator
@@ -11,23 +11,23 @@ BaseVideoEntity _$BaseVideoEntityFromJson(Map<String, dynamic> json) =>
         (json['bigImg'] as List)
             ?.map((e) => e == null
                 ? null
-                : new BigImageEntity.fromJson(e as Map<String, dynamic>))
+                : new VideoBigImageEntity.fromJson(e as Map<String, dynamic>))
             ?.toList(),
         (json['list'] as List)
             ?.map((e) => e == null
                 ? null
-                : new ListEntity.fromJson(e as Map<String, dynamic>))
+                : new VideoListEntity.fromJson(e as Map<String, dynamic>))
             ?.toList());
 
 abstract class _$BaseVideoEntitySerializerMixin {
-  List<BigImageEntity> get bigImg;
-  List<ListEntity> get list;
+  List<VideoBigImageEntity> get bigImg;
+  List<VideoListEntity> get list;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'bigImg': bigImg, 'list': list};
 }
 
-BigImageEntity _$BigImageEntityFromJson(Map<String, dynamic> json) =>
-    new BigImageEntity(
+VideoBigImageEntity _$VideoBigImageEntityFromJson(Map<String, dynamic> json) =>
+    new VideoBigImageEntity(
         json['url'] as String,
         json['image'] as String,
         json['title'] as String,
@@ -38,7 +38,7 @@ BigImageEntity _$BigImageEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$BigImageEntitySerializerMixin {
+abstract class _$VideoBigImageEntitySerializerMixin {
   String get url;
   String get image;
   String get title;
@@ -61,17 +61,18 @@ abstract class _$BigImageEntitySerializerMixin {
       };
 }
 
-ListEntity _$ListEntityFromJson(Map<String, dynamic> json) => new ListEntity(
-    json['url'] as String,
-    json['image'] as String,
-    json['title'] as String,
-    json['brief'] as String,
-    json['type'] as String,
-    json['videoLength'] as String,
-    json['id'] as String,
-    json['order'] as String);
+VideoListEntity _$VideoListEntityFromJson(Map<String, dynamic> json) =>
+    new VideoListEntity(
+        json['url'] as String,
+        json['image'] as String,
+        json['title'] as String,
+        json['brief'] as String,
+        json['type'] as String,
+        json['videoLength'] as String,
+        json['id'] as String,
+        json['order'] as String);
 
-abstract class _$ListEntitySerializerMixin {
+abstract class _$VideoListEntitySerializerMixin {
   String get url;
   String get image;
   String get title;

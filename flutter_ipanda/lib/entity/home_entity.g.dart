@@ -1,23 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tab_home_entity.dart';
+part of 'home_entity.dart';
 
 // **************************************************************************
 // Generator: JsonSerializableGenerator
 // **************************************************************************
 
-TabHomeEntity _$TabHomeEntityFromJson(Map<String, dynamic> json) =>
-    new TabHomeEntity(json['data'] == null
+BaseHomeEntity _$BaseHomeEntityFromJson(Map<String, dynamic> json) =>
+    new BaseHomeEntity(json['data'] == null
         ? null
-        : new TabDataEntity.fromJson(json['data'] as Map<String, dynamic>));
+        : new HomeDataEntity.fromJson(json['data'] as Map<String, dynamic>));
 
-abstract class _$TabHomeEntitySerializerMixin {
-  TabDataEntity get data;
+abstract class _$BaseHomeEntitySerializerMixin {
+  HomeDataEntity get data;
   Map<String, dynamic> toJson() => <String, dynamic>{'data': data};
 }
 
-TabDataEntity _$TabDataEntityFromJson(Map<String, dynamic> json) =>
-    new TabDataEntity(
+HomeDataEntity _$HomeDataEntityFromJson(Map<String, dynamic> json) =>
+    new HomeDataEntity(
         (json['bigImg'] as List)
             ?.map((e) => e == null
                 ? null
@@ -25,46 +25,46 @@ TabDataEntity _$TabDataEntityFromJson(Map<String, dynamic> json) =>
             ?.toList(),
         json['area'] == null
             ? null
-            : new AreaEntity.fromJson(json['area'] as Map<String, dynamic>),
+            : new HomeAreaEntity.fromJson(json['area'] as Map<String, dynamic>),
         json['pandaeye'] == null
             ? null
-            : new PandaEyeEntity.fromJson(
+            : new HomePandaEyeEntity.fromJson(
                 json['pandaeye'] as Map<String, dynamic>),
         json['pandalive'] == null
             ? null
-            : new PandaLiveEntity.fromJson(
+            : new HomePandaLiveEntity.fromJson(
                 json['pandalive'] as Map<String, dynamic>),
         json['wallive'] == null
             ? null
-            : new WallLiveEntity.fromJson(
+            : new HomeWallLiveEntity.fromJson(
                 json['wallive'] as Map<String, dynamic>),
         json['chinalive'] == null
             ? null
-            : new ChinaLiveEntity.fromJson(
+            : new HomeChinaLiveEntity.fromJson(
                 json['chinalive'] as Map<String, dynamic>),
         json['interactive'] == null
             ? null
-            : new InteractiveEntity.fromJson(
+            : new HomeInteractiveEntity.fromJson(
                 json['interactive'] as Map<String, dynamic>),
         json['cctv'] == null
             ? null
-            : new CctvEntity.fromJson(json['cctv'] as Map<String, dynamic>),
+            : new HomeCctvEntity.fromJson(json['cctv'] as Map<String, dynamic>),
         (json['list'] as List)
             ?.map((e) => e == null
                 ? null
-                : new ListEntity.fromJson(e as Map<String, dynamic>))
+                : new HomeListEntity.fromJson(e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$TabDataEntitySerializerMixin {
+abstract class _$HomeDataEntitySerializerMixin {
   List<SimpleBannerEntity> get banner;
-  AreaEntity get area;
-  PandaEyeEntity get pandaEye;
-  PandaLiveEntity get pandaLive;
-  WallLiveEntity get wallLive;
-  ChinaLiveEntity get chinaLive;
-  InteractiveEntity get interactive;
-  CctvEntity get cctv;
-  List<ListEntity> get list;
+  HomeAreaEntity get area;
+  HomePandaEyeEntity get pandaEye;
+  HomePandaLiveEntity get pandaLive;
+  HomeWallLiveEntity get wallLive;
+  HomeChinaLiveEntity get chinaLive;
+  HomeInteractiveEntity get interactive;
+  HomeCctvEntity get cctv;
+  List<HomeListEntity> get list;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'bigImg': banner,
         'area': area,
@@ -113,33 +113,34 @@ abstract class _$SimpleBannerEntitySerializerMixin {
       };
 }
 
-AreaEntity _$AreaEntityFromJson(Map<String, dynamic> json) => new AreaEntity(
-    (json['listscroll'] as List)
-        ?.map((e) => e == null
-            ? null
-            : new ListScrollEntity.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    (json['listh'] as List)
-        ?.map((e) => e == null
-            ? null
-            : new LisThEntity.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    (json['lists'] as List)
-        ?.map((e) => e == null
-            ? null
-            : new ListsEntity.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-    (json['topiclist'] as List)
-        ?.map((e) => e == null
-            ? null
-            : new TopicListEntity.fromJson(e as Map<String, dynamic>))
-        ?.toList());
+HomeAreaEntity _$HomeAreaEntityFromJson(Map<String, dynamic> json) =>
+    new HomeAreaEntity(
+        (json['listscroll'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new HomeListScrollEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList(),
+        (json['listh'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new HomeLisThEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList(),
+        (json['lists'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new HomeListsEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList(),
+        (json['topiclist'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new HomeTopicListEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList());
 
-abstract class _$AreaEntitySerializerMixin {
-  List<ListScrollEntity> get listScroll;
-  List<LisThEntity> get lisTh;
-  List<ListsEntity> get lists;
-  List<TopicListEntity> get topicList;
+abstract class _$HomeAreaEntitySerializerMixin {
+  List<HomeListScrollEntity> get listScroll;
+  List<HomeLisThEntity> get lisTh;
+  List<HomeListsEntity> get lists;
+  List<HomeTopicListEntity> get topicList;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'listscroll': listScroll,
         'listh': lisTh,
@@ -148,54 +149,57 @@ abstract class _$AreaEntitySerializerMixin {
       };
 }
 
-ListScrollEntity _$ListScrollEntityFromJson(Map<String, dynamic> json) =>
-    new ListScrollEntity();
+HomeListScrollEntity _$HomeListScrollEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomeListScrollEntity();
 
-abstract class _$ListScrollEntitySerializerMixin {
+abstract class _$HomeListScrollEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-LisThEntity _$LisThEntityFromJson(Map<String, dynamic> json) =>
-    new LisThEntity();
+HomeLisThEntity _$HomeLisThEntityFromJson(Map<String, dynamic> json) =>
+    new HomeLisThEntity();
 
-abstract class _$LisThEntitySerializerMixin {
+abstract class _$HomeLisThEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-ListsEntity _$ListsEntityFromJson(Map<String, dynamic> json) =>
-    new ListsEntity();
+HomeListsEntity _$HomeListsEntityFromJson(Map<String, dynamic> json) =>
+    new HomeListsEntity();
 
-abstract class _$ListsEntitySerializerMixin {
+abstract class _$HomeListsEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-TopicListEntity _$TopicListEntityFromJson(Map<String, dynamic> json) =>
-    new TopicListEntity();
+HomeTopicListEntity _$HomeTopicListEntityFromJson(Map<String, dynamic> json) =>
+    new HomeTopicListEntity();
 
-abstract class _$TopicListEntitySerializerMixin {
+abstract class _$HomeTopicListEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-PandaEyeEntity _$PandaEyeEntityFromJson(Map<String, dynamic> json) =>
-    new PandaEyeEntity(
+HomePandaEyeEntity _$HomePandaEyeEntityFromJson(Map<String, dynamic> json) =>
+    new HomePandaEyeEntity(
         json['title'] as String,
         json['pandaeyelogo'] as String,
         (json['items'] as List)
             ?.map((e) => e == null
                 ? null
-                : new PandaEyeItemEntity.fromJson(e as Map<String, dynamic>))
+                : new HomePandaEyeItemEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$PandaEyeEntitySerializerMixin {
+abstract class _$HomePandaEyeEntitySerializerMixin {
   String get title;
   String get log;
-  List<PandaEyeItemEntity> get items;
+  List<HomePandaEyeItemEntity> get items;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'pandaeyelogo': log, 'items': items};
 }
 
-PandaEyeItemEntity _$PandaEyeItemEntityFromJson(Map<String, dynamic> json) =>
-    new PandaEyeItemEntity(
+HomePandaEyeItemEntity _$HomePandaEyeItemEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomePandaEyeItemEntity(
         json['title'] as String,
         json['bgcolor'] as String,
         json['brief'] as String,
@@ -205,7 +209,7 @@ PandaEyeItemEntity _$PandaEyeItemEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$PandaEyeItemEntitySerializerMixin {
+abstract class _$HomePandaEyeItemEntitySerializerMixin {
   String get title;
   String get bgColor;
   String get brief;
@@ -226,24 +230,26 @@ abstract class _$PandaEyeItemEntitySerializerMixin {
       };
 }
 
-PandaLiveEntity _$PandaLiveEntityFromJson(Map<String, dynamic> json) =>
-    new PandaLiveEntity(
+HomePandaLiveEntity _$HomePandaLiveEntityFromJson(Map<String, dynamic> json) =>
+    new HomePandaLiveEntity(
         json['title'] as String,
         (json['list'] as List)
             ?.map((e) => e == null
                 ? null
-                : new PandaLiveListEntity.fromJson(e as Map<String, dynamic>))
+                : new HomePandaLiveListEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$PandaLiveEntitySerializerMixin {
+abstract class _$HomePandaLiveEntitySerializerMixin {
   String get title;
-  List<PandaLiveListEntity> get list;
+  List<HomePandaLiveListEntity> get list;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'list': list};
 }
 
-PandaLiveListEntity _$PandaLiveListEntityFromJson(Map<String, dynamic> json) =>
-    new PandaLiveListEntity(
+HomePandaLiveListEntity _$HomePandaLiveListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomePandaLiveListEntity(
         json['image'] as String,
         json['url'] as String,
         json['title'] as String,
@@ -251,7 +257,7 @@ PandaLiveListEntity _$PandaLiveListEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$PandaLiveListEntitySerializerMixin {
+abstract class _$HomePandaLiveListEntitySerializerMixin {
   String get image;
   String get url;
   String get title;
@@ -268,47 +274,51 @@ abstract class _$PandaLiveListEntitySerializerMixin {
       };
 }
 
-WallLiveEntity _$WallLiveEntityFromJson(Map<String, dynamic> json) =>
-    new WallLiveEntity(
+HomeWallLiveEntity _$HomeWallLiveEntityFromJson(Map<String, dynamic> json) =>
+    new HomeWallLiveEntity(
         json['title'] as String,
         (json['list'] as List)
             ?.map((e) => e == null
                 ? null
-                : new WallLiveListEntity.fromJson(e as Map<String, dynamic>))
+                : new HomeWallLiveListEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$WallLiveEntitySerializerMixin {
+abstract class _$HomeWallLiveEntitySerializerMixin {
   String get title;
-  List<WallLiveListEntity> get list;
+  List<HomeWallLiveListEntity> get list;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'list': list};
 }
 
-WallLiveListEntity _$WallLiveListEntityFromJson(Map<String, dynamic> json) =>
-    new WallLiveListEntity();
+HomeWallLiveListEntity _$HomeWallLiveListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomeWallLiveListEntity();
 
-abstract class _$WallLiveListEntitySerializerMixin {
+abstract class _$HomeWallLiveListEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-ChinaLiveEntity _$ChinaLiveEntityFromJson(Map<String, dynamic> json) =>
-    new ChinaLiveEntity(
+HomeChinaLiveEntity _$HomeChinaLiveEntityFromJson(Map<String, dynamic> json) =>
+    new HomeChinaLiveEntity(
         json['title'] as String,
         (json['list'] as List)
             ?.map((e) => e == null
                 ? null
-                : new ChinaLiveListEntity.fromJson(e as Map<String, dynamic>))
+                : new HomeChinaLiveListEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$ChinaLiveEntitySerializerMixin {
+abstract class _$HomeChinaLiveEntitySerializerMixin {
   String get title;
-  List<ChinaLiveListEntity> get list;
+  List<HomeChinaLiveListEntity> get list;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'list': list};
 }
 
-ChinaLiveListEntity _$ChinaLiveListEntityFromJson(Map<String, dynamic> json) =>
-    new ChinaLiveListEntity(
+HomeChinaLiveListEntity _$HomeChinaLiveListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomeChinaLiveListEntity(
         json['image'] as String,
         json['url'] as String,
         json['title'] as String,
@@ -316,7 +326,7 @@ ChinaLiveListEntity _$ChinaLiveListEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$ChinaLiveListEntitySerializerMixin {
+abstract class _$HomeChinaLiveListEntitySerializerMixin {
   String get image;
   String get url;
   String get title;
@@ -333,57 +343,61 @@ abstract class _$ChinaLiveListEntitySerializerMixin {
       };
 }
 
-InteractiveEntity _$InteractiveEntityFromJson(Map<String, dynamic> json) =>
-    new InteractiveEntity(
+HomeInteractiveEntity _$HomeInteractiveEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomeInteractiveEntity(
         (json['interactiveone'] as List)
             ?.map((e) => e == null
                 ? null
-                : new InteractiveOneEntity.fromJson(e as Map<String, dynamic>))
+                : new HomeInteractiveOneEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList(),
         (json['interactivetwo'] as List)
             ?.map((e) => e == null
                 ? null
-                : new InteractiveTwoEntity.fromJson(e as Map<String, dynamic>))
+                : new HomeInteractiveTwoEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$InteractiveEntitySerializerMixin {
-  List<InteractiveOneEntity> get interactiveOne;
-  List<InteractiveTwoEntity> get interactiveTwo;
+abstract class _$HomeInteractiveEntitySerializerMixin {
+  List<HomeInteractiveOneEntity> get interactiveOne;
+  List<HomeInteractiveTwoEntity> get interactiveTwo;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'interactiveone': interactiveOne,
         'interactivetwo': interactiveTwo
       };
 }
 
-InteractiveOneEntity _$InteractiveOneEntityFromJson(
+HomeInteractiveOneEntity _$HomeInteractiveOneEntityFromJson(
         Map<String, dynamic> json) =>
-    new InteractiveOneEntity();
+    new HomeInteractiveOneEntity();
 
-abstract class _$InteractiveOneEntitySerializerMixin {
+abstract class _$HomeInteractiveOneEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-InteractiveTwoEntity _$InteractiveTwoEntityFromJson(
+HomeInteractiveTwoEntity _$HomeInteractiveTwoEntityFromJson(
         Map<String, dynamic> json) =>
-    new InteractiveTwoEntity();
+    new HomeInteractiveTwoEntity();
 
-abstract class _$InteractiveTwoEntitySerializerMixin {
+abstract class _$HomeInteractiveTwoEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-CctvEntity _$CctvEntityFromJson(Map<String, dynamic> json) => new CctvEntity(
-    json['title'] as String,
-    json['listurl'] as String,
-    (json['listlive'] as List)
-        ?.map((e) => e == null
-            ? null
-            : new ListLiveEntity.fromJson(e as Map<String, dynamic>))
-        ?.toList());
+HomeCctvEntity _$HomeCctvEntityFromJson(Map<String, dynamic> json) =>
+    new HomeCctvEntity(
+        json['title'] as String,
+        json['listurl'] as String,
+        (json['listlive'] as List)
+            ?.map((e) => e == null
+                ? null
+                : new HomeListLiveEntity.fromJson(e as Map<String, dynamic>))
+            ?.toList());
 
-abstract class _$CctvEntitySerializerMixin {
+abstract class _$HomeCctvEntitySerializerMixin {
   String get title;
   String get listUrl;
-  List<ListLiveEntity> get listLive;
+  List<HomeListLiveEntity> get listLive;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'title': title,
         'listurl': listUrl,
@@ -391,20 +405,18 @@ abstract class _$CctvEntitySerializerMixin {
       };
 }
 
-ListLiveEntity _$ListLiveEntityFromJson(Map<String, dynamic> json) =>
-    new ListLiveEntity();
+HomeListLiveEntity _$HomeListLiveEntityFromJson(Map<String, dynamic> json) =>
+    new HomeListLiveEntity();
 
-abstract class _$ListLiveEntitySerializerMixin {
+abstract class _$HomeListLiveEntitySerializerMixin {
   Map<String, dynamic> toJson() => <String, dynamic>{};
 }
 
-ListEntity _$ListEntityFromJson(Map<String, dynamic> json) => new ListEntity(
-    json['listUrl'] as String,
-    json['title'] as String,
-    json['type'] as String,
-    json['order'] as String);
+HomeListEntity _$HomeListEntityFromJson(Map<String, dynamic> json) =>
+    new HomeListEntity(json['listUrl'] as String, json['title'] as String,
+        json['type'] as String, json['order'] as String);
 
-abstract class _$ListEntitySerializerMixin {
+abstract class _$HomeListEntitySerializerMixin {
   String get listUrl;
   String get title;
   String get type;
@@ -417,20 +429,20 @@ abstract class _$ListEntitySerializerMixin {
       };
 }
 
-WonderfulEntity _$WonderfulEntityFromJson(Map<String, dynamic> json) =>
-    new WonderfulEntity((json['list'] as List)
+HomeWonderfulEntity _$HomeWonderfulEntityFromJson(Map<String, dynamic> json) =>
+    new HomeWonderfulEntity((json['list'] as List)
         ?.map((e) => e == null
             ? null
-            : new CctvListEntity.fromJson(e as Map<String, dynamic>))
+            : new HomeCctvListEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$WonderfulEntitySerializerMixin {
-  List<CctvListEntity> get list;
+abstract class _$HomeWonderfulEntitySerializerMixin {
+  List<HomeCctvListEntity> get list;
   Map<String, dynamic> toJson() => <String, dynamic>{'list': list};
 }
 
-CctvListEntity _$CctvListEntityFromJson(Map<String, dynamic> json) =>
-    new CctvListEntity(
+HomeCctvListEntity _$HomeCctvListEntityFromJson(Map<String, dynamic> json) =>
+    new HomeCctvListEntity(
         json['url'] as String,
         json['image'] as String,
         json['title'] as String,
@@ -442,7 +454,7 @@ CctvListEntity _$CctvListEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$CctvListEntitySerializerMixin {
+abstract class _$HomeCctvListEntitySerializerMixin {
   String get url;
   String get image;
   String get title;
@@ -467,21 +479,22 @@ abstract class _$CctvListEntitySerializerMixin {
       };
 }
 
-PandaVideoEntity _$PandaVideoEntityFromJson(Map<String, dynamic> json) =>
-    new PandaVideoEntity((json['list'] as List)
+HomePandaVideoEntity _$HomePandaVideoEntityFromJson(
+        Map<String, dynamic> json) =>
+    new HomePandaVideoEntity((json['list'] as List)
         ?.map((e) => e == null
             ? null
-            : new PandaVideoListEntity.fromJson(e as Map<String, dynamic>))
+            : new HomePandaVideoListEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$PandaVideoEntitySerializerMixin {
-  List<PandaVideoListEntity> get list;
+abstract class _$HomePandaVideoEntitySerializerMixin {
+  List<HomePandaVideoListEntity> get list;
   Map<String, dynamic> toJson() => <String, dynamic>{'list': list};
 }
 
-PandaVideoListEntity _$PandaVideoListEntityFromJson(
+HomePandaVideoListEntity _$HomePandaVideoListEntityFromJson(
         Map<String, dynamic> json) =>
-    new PandaVideoListEntity(
+    new HomePandaVideoListEntity(
         json['url'] as String,
         json['image'] as String,
         json['title'] as String,
@@ -493,7 +506,7 @@ PandaVideoListEntity _$PandaVideoListEntityFromJson(
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$PandaVideoListEntitySerializerMixin {
+abstract class _$HomePandaVideoListEntitySerializerMixin {
   String get url;
   String get image;
   String get title;

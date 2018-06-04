@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tab_broad_cask_entity.dart';
+part of 'broad_cast_entity.dart';
 
 // **************************************************************************
 // Generator: JsonSerializableGenerator
@@ -11,19 +11,21 @@ BaseBroadcastEntity _$BaseBroadcastEntityFromJson(Map<String, dynamic> json) =>
         (json['bigImg'] as List)
             ?.map((e) => e == null
                 ? null
-                : new BigImageEntity.fromJson(e as Map<String, dynamic>))
+                : new BroadcastBigImageEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList(),
         json['listurl'] as String);
 
 abstract class _$BaseBroadcastEntitySerializerMixin {
-  List<BigImageEntity> get bigImg;
+  List<BroadcastBigImageEntity> get bigImg;
   String get listUrl;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'bigImg': bigImg, 'listurl': listUrl};
 }
 
-BigImageEntity _$BigImageEntityFromJson(Map<String, dynamic> json) =>
-    new BigImageEntity(
+BroadcastBigImageEntity _$BroadcastBigImageEntityFromJson(
+        Map<String, dynamic> json) =>
+    new BroadcastBigImageEntity(
         json['url'] as String,
         json['image'] as String,
         json['title'] as String,
@@ -34,7 +36,7 @@ BigImageEntity _$BigImageEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$BigImageEntitySerializerMixin {
+abstract class _$BroadcastBigImageEntitySerializerMixin {
   String get url;
   String get image;
   String get title;
@@ -57,38 +59,41 @@ abstract class _$BigImageEntitySerializerMixin {
       };
 }
 
-BaseListEntity _$BaseListEntityFromJson(Map<String, dynamic> json) =>
-    new BaseListEntity(
+BroadcastListEntity _$BroadcastListEntityFromJson(Map<String, dynamic> json) =>
+    new BroadcastListEntity(
         json['total'] as int,
         (json['list'] as List)
             ?.map((e) => e == null
                 ? null
-                : new ListEntity.fromJson(e as Map<String, dynamic>))
+                : new BroadcastChildListEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$BaseListEntitySerializerMixin {
+abstract class _$BroadcastListEntitySerializerMixin {
   int get total;
-  List<ListEntity> get list;
+  List<BroadcastChildListEntity> get list;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'total': total, 'list': list};
 }
 
-ListEntity _$ListEntityFromJson(Map<String, dynamic> json) => new ListEntity(
-    json['num'] as int,
-    json['datatype'] as String,
-    json['id'] as String,
-    json['title'] as String,
-    json['videolength'] as String,
-    json['guid'] as String,
-    json['picurl'] as String,
-    json['order'] as String,
-    json['picurl2'] as String,
-    json['picurl3'] as String,
-    json['url'] as String,
-    json['focus_date'] as String,
-    json['isaixiyou'] as String);
+BroadcastChildListEntity _$BroadcastChildListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new BroadcastChildListEntity(
+        json['num'] as int,
+        json['datatype'] as String,
+        json['id'] as String,
+        json['title'] as String,
+        json['videolength'] as String,
+        json['guid'] as String,
+        json['picurl'] as String,
+        json['order'] as String,
+        json['picurl2'] as String,
+        json['picurl3'] as String,
+        json['url'] as String,
+        json['focus_date'] as int,
+        json['isaixiyou'] as String);
 
-abstract class _$ListEntitySerializerMixin {
+abstract class _$BroadcastChildListEntitySerializerMixin {
   int get num;
   String get dataType;
   String get id;
@@ -100,7 +105,7 @@ abstract class _$ListEntitySerializerMixin {
   String get picUrl2;
   String get picUrl3;
   String get url;
-  String get focusDate;
+  int get focusDate;
   String get isAiXiYou;
   Map<String, dynamic> toJson() => <String, dynamic>{
         'num': num,

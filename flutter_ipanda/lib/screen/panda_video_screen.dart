@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ipanda/entity/tab_video_entity.dart';
+import 'package:flutter_ipanda/entity/video_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/value.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -35,7 +35,7 @@ class PandaVideoScreen extends StatelessWidget {
     );
   }
 
-  Widget _list(BuildContext context, ListEntity entity) {
+  Widget _list(BuildContext context, VideoListEntity entity) {
     Size size = MediaQuery.of(context).size;
     return Container(
         height: size.width / 5,
@@ -72,7 +72,7 @@ class PandaVideoScreen extends StatelessWidget {
         ]));
   }
 
-  Widget _bigImage(BuildContext context, BigImageEntity entity) {
+  Widget _bigImage(BuildContext context, VideoBigImageEntity entity) {
     return Stack(alignment: Alignment.bottomLeft, children: <Widget>[
       FadeInImage.memoryNetwork(
           placeholder: kTransparentImage,

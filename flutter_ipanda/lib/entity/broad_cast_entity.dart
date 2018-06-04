@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'tab_broad_cask_entity.g.dart';
+part 'broad_cast_entity.g.dart';
 
 @JsonSerializable()
 class BaseBroadcastEntity extends Object
     with _$BaseBroadcastEntitySerializerMixin {
-  final List<BigImageEntity> bigImg;
+  final List<BroadcastBigImageEntity> bigImg;
   @JsonKey(name: 'listurl')
   final String listUrl;
 
@@ -16,7 +16,8 @@ class BaseBroadcastEntity extends Object
 }
 
 @JsonSerializable()
-class BigImageEntity extends Object with _$BigImageEntitySerializerMixin {
+class BroadcastBigImageEntity extends Object
+    with _$BroadcastBigImageEntitySerializerMixin {
   final String url;
   final String image;
   final String title;
@@ -28,26 +29,28 @@ class BigImageEntity extends Object with _$BigImageEntitySerializerMixin {
   final String vid;
   final String order;
 
-  factory BigImageEntity.fromJson(Map<String, dynamic> json) =>
-      _$BigImageEntityFromJson(json);
+  factory BroadcastBigImageEntity.fromJson(Map<String, dynamic> json) =>
+      _$BroadcastBigImageEntityFromJson(json);
 
-  BigImageEntity(this.url, this.image, this.title, this.id, this.sType,
+  BroadcastBigImageEntity(this.url, this.image, this.title, this.id, this.sType,
       this.type, this.pid, this.vid, this.order);
 }
 
 @JsonSerializable()
-class BaseListEntity extends Object with _$BaseListEntitySerializerMixin {
+class BroadcastListEntity extends Object
+    with _$BroadcastListEntitySerializerMixin {
   final int total;
-  final List<ListEntity> list;
+  final List<BroadcastChildListEntity> list;
 
-  factory BaseListEntity.fromJson(Map<String, dynamic> json) =>
-      _$BaseListEntityFromJson(json);
+  factory BroadcastListEntity.fromJson(Map<String, dynamic> json) =>
+      _$BroadcastListEntityFromJson(json);
 
-  BaseListEntity(this.total, this.list);
+  BroadcastListEntity(this.total, this.list);
 }
 
 @JsonSerializable()
-class ListEntity extends Object with _$ListEntitySerializerMixin {
+class BroadcastChildListEntity extends Object
+    with _$BroadcastChildListEntitySerializerMixin {
   final int num;
   @JsonKey(name: 'datatype')
   final String dataType;
@@ -65,14 +68,14 @@ class ListEntity extends Object with _$ListEntitySerializerMixin {
   final String picUrl3;
   final String url;
   @JsonKey(name: 'focus_date')
-  final String focusDate;
+  final int focusDate;
   @JsonKey(name: 'isaixiyou')
   final String isAiXiYou;
 
-  factory ListEntity.fromJson(Map<String, dynamic> json) =>
-      _$ListEntityFromJson(json);
+  factory BroadcastChildListEntity.fromJson(Map<String, dynamic> json) =>
+      _$BroadcastChildListEntityFromJson(json);
 
-  ListEntity(
+  BroadcastChildListEntity(
       this.num,
       this.dataType,
       this.id,

@@ -1,28 +1,29 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'tab_panda_live_entity.dart';
+part of 'panda_live_entity.dart';
 
 // **************************************************************************
 // Generator: JsonSerializableGenerator
 // **************************************************************************
 
-TabLiveEntity _$TabLiveEntityFromJson(Map<String, dynamic> json) =>
-    new TabLiveEntity((json['tablist'] as List)
+BasePandaLiveEntity _$BasePandaLiveEntityFromJson(Map<String, dynamic> json) =>
+    new BasePandaLiveEntity((json['tablist'] as List)
         ?.map((e) => e == null
             ? null
-            : new LiveTabListEntity.fromJson(e as Map<String, dynamic>))
+            : new PandaLiveTabListEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$TabLiveEntitySerializerMixin {
-  List<LiveTabListEntity> get tabList;
+abstract class _$BasePandaLiveEntitySerializerMixin {
+  List<PandaLiveTabListEntity> get tabList;
   Map<String, dynamic> toJson() => <String, dynamic>{'tablist': tabList};
 }
 
-LiveTabListEntity _$LiveTabListEntityFromJson(Map<String, dynamic> json) =>
-    new LiveTabListEntity(json['title'] as String, json['url'] as String,
+PandaLiveTabListEntity _$PandaLiveTabListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaLiveTabListEntity(json['title'] as String, json['url'] as String,
         json['id'] as String, json['order'] as String);
 
-abstract class _$LiveTabListEntitySerializerMixin {
+abstract class _$PandaLiveTabListEntitySerializerMixin {
   String get title;
   String get url;
   String get id;
@@ -31,27 +32,29 @@ abstract class _$LiveTabListEntitySerializerMixin {
       <String, dynamic>{'title': title, 'url': url, 'id': id, 'order': order};
 }
 
-LivePandaEntity _$LivePandaEntityFromJson(Map<String, dynamic> json) =>
-    new LivePandaEntity(
+PandaLivePandaEntity _$PandaLivePandaEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaLivePandaEntity(
         (json['live'] as List)
             ?.map((e) => e == null
                 ? null
-                : new LiveHeaderEntity.fromJson(e as Map<String, dynamic>))
+                : new PandaLiveHeaderEntity.fromJson(e as Map<String, dynamic>))
             ?.toList(),
         json['bookmark'] == null
             ? null
-            : new LiveBookMarkEntity.fromJson(
+            : new PandaLiveBookMarkEntity.fromJson(
                 json['bookmark'] as Map<String, dynamic>));
 
-abstract class _$LivePandaEntitySerializerMixin {
-  List<LiveHeaderEntity> get live;
-  LiveBookMarkEntity get bookmark;
+abstract class _$PandaLivePandaEntitySerializerMixin {
+  List<PandaLiveHeaderEntity> get live;
+  PandaLiveBookMarkEntity get bookmark;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'live': live, 'bookmark': bookmark};
 }
 
-LiveHeaderEntity _$LiveHeaderEntityFromJson(Map<String, dynamic> json) =>
-    new LiveHeaderEntity(
+PandaLiveHeaderEntity _$PandaLiveHeaderEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaLiveHeaderEntity(
         json['title'] as String,
         json['brief'] as String,
         json['image'] as String,
@@ -59,7 +62,7 @@ LiveHeaderEntity _$LiveHeaderEntityFromJson(Map<String, dynamic> json) =>
         json['isshow'] as String,
         json['url'] as String);
 
-abstract class _$LiveHeaderEntitySerializerMixin {
+abstract class _$PandaLiveHeaderEntitySerializerMixin {
   String get title;
   String get brief;
   String get image;
@@ -76,31 +79,35 @@ abstract class _$LiveHeaderEntitySerializerMixin {
       };
 }
 
-LiveBookMarkEntity _$LiveBookMarkEntityFromJson(Map<String, dynamic> json) =>
-    new LiveBookMarkEntity(
+PandaLiveBookMarkEntity _$PandaLiveBookMarkEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaLiveBookMarkEntity(
         (json['multiple'] as List)
             ?.map((e) => e == null
                 ? null
-                : new LiveMultipleEntity.fromJson(e as Map<String, dynamic>))
+                : new PandaLiveMultipleEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList(),
         (json['watchTalk'] as List)
             ?.map((e) => e == null
                 ? null
-                : new LiveWatchTalkEntity.fromJson(e as Map<String, dynamic>))
+                : new PandaLiveWatchTalkEntity.fromJson(
+                    e as Map<String, dynamic>))
             ?.toList());
 
-abstract class _$LiveBookMarkEntitySerializerMixin {
-  List<LiveMultipleEntity> get multiple;
-  List<LiveWatchTalkEntity> get watchTalk;
+abstract class _$PandaLiveBookMarkEntitySerializerMixin {
+  List<PandaLiveMultipleEntity> get multiple;
+  List<PandaLiveWatchTalkEntity> get watchTalk;
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'multiple': multiple, 'watchTalk': watchTalk};
 }
 
-LiveMultipleEntity _$LiveMultipleEntityFromJson(Map<String, dynamic> json) =>
-    new LiveMultipleEntity(json['title'] as String, json['url'] as String,
+PandaLiveMultipleEntity _$PandaLiveMultipleEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaLiveMultipleEntity(json['title'] as String, json['url'] as String,
         json['order'] as String);
 
-abstract class _$LiveMultipleEntitySerializerMixin {
+abstract class _$PandaLiveMultipleEntitySerializerMixin {
   String get title;
   String get url;
   String get order;
@@ -108,11 +115,12 @@ abstract class _$LiveMultipleEntitySerializerMixin {
       <String, dynamic>{'title': title, 'url': url, 'order': order};
 }
 
-LiveWatchTalkEntity _$LiveWatchTalkEntityFromJson(Map<String, dynamic> json) =>
-    new LiveWatchTalkEntity(json['title'] as String, json['url'] as String,
+PandaLiveWatchTalkEntity _$PandaLiveWatchTalkEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaLiveWatchTalkEntity(json['title'] as String, json['url'] as String,
         json['order'] as String);
 
-abstract class _$LiveWatchTalkEntitySerializerMixin {
+abstract class _$PandaLiveWatchTalkEntitySerializerMixin {
   String get title;
   String get url;
   String get order;
@@ -120,20 +128,21 @@ abstract class _$LiveWatchTalkEntitySerializerMixin {
       <String, dynamic>{'title': title, 'url': url, 'order': order};
 }
 
-BaseMultipleEntity _$BaseMultipleEntityFromJson(Map<String, dynamic> json) =>
-    new BaseMultipleEntity((json['list'] as List)
+PandaMultipleEntity _$PandaMultipleEntityFromJson(Map<String, dynamic> json) =>
+    new PandaMultipleEntity((json['list'] as List)
         ?.map((e) => e == null
             ? null
-            : new MultipleEntity.fromJson(e as Map<String, dynamic>))
+            : new PandaMultipleChildEntity.fromJson(e as Map<String, dynamic>))
         ?.toList());
 
-abstract class _$BaseMultipleEntitySerializerMixin {
-  List<MultipleEntity> get list;
+abstract class _$PandaMultipleEntitySerializerMixin {
+  List<PandaMultipleChildEntity> get list;
   Map<String, dynamic> toJson() => <String, dynamic>{'list': list};
 }
 
-MultipleEntity _$MultipleEntityFromJson(Map<String, dynamic> json) =>
-    new MultipleEntity(
+PandaMultipleChildEntity _$PandaMultipleChildEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaMultipleChildEntity(
         json['url'] as String,
         json['image'] as String,
         json['title'] as String,
@@ -145,7 +154,7 @@ MultipleEntity _$MultipleEntityFromJson(Map<String, dynamic> json) =>
         json['vid'] as String,
         json['order'] as String);
 
-abstract class _$MultipleEntitySerializerMixin {
+abstract class _$PandaMultipleChildEntitySerializerMixin {
   String get url;
   String get image;
   String get title;

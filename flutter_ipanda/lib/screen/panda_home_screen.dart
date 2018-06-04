@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banner_widget/banner/banner_widget.dart';
-import 'package:flutter_ipanda/entity/tab_home_entity.dart';
+import 'package:flutter_ipanda/entity/home_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/value.dart';
 import 'package:transparent_image/transparent_image.dart';
@@ -10,7 +10,7 @@ class PandaHomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(tabs[0])),
-      body: FutureBuilder<TabHomeEntity>(
+      body: FutureBuilder<BaseHomeEntity>(
         future: fetchHome(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
@@ -25,7 +25,7 @@ class PandaHomeScreen extends StatelessWidget {
   }
 
   Widget _build(context, snapshot) {
-    TabDataEntity entity = snapshot.data.data;
+    HomeDataEntity entity = snapshot.data.data;
     return ListView.builder(
       itemCount: 6,
       itemBuilder: (BuildContext context, int index) {
@@ -51,7 +51,7 @@ class PandaHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget pandaChinaLiveItem(BuildContext context, ChinaLiveEntity entity) {
+  Widget pandaChinaLiveItem(BuildContext context, HomeChinaLiveEntity entity) {
     Size size = MediaQuery.of(context).size;
     return Container(
         margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
@@ -96,13 +96,13 @@ class PandaHomeScreen extends StatelessWidget {
         ]));
   }
 
-  Widget pandaListItem(BuildContext context, ListEntity entity) {
+  Widget pandaListItem(BuildContext context, HomeListEntity entity) {
     Size size = MediaQuery.of(context).size;
-    return FutureBuilder<PandaVideoEntity>(
+    return FutureBuilder<HomePandaVideoEntity>(
       future: fetchPandaVideo(entity.listUrl),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List<PandaVideoListEntity> listEntity = snapshot.data.list;
+          List<HomePandaVideoListEntity> listEntity = snapshot.data.list;
           return Container(
               margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
               color: Colors.white,
@@ -170,13 +170,13 @@ class PandaHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget pandaCctvItem(BuildContext context, CctvEntity entity) {
+  Widget pandaCctvItem(BuildContext context, HomeCctvEntity entity) {
     Size size = MediaQuery.of(context).size;
-    return FutureBuilder<WonderfulEntity>(
+    return FutureBuilder<HomeWonderfulEntity>(
       future: fetchWonderful(entity.listUrl),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
-          List<CctvListEntity> listEntity = snapshot.data.list;
+          List<HomeCctvListEntity> listEntity = snapshot.data.list;
           return Container(
               margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
               color: Colors.white,
@@ -234,7 +234,7 @@ class PandaHomeScreen extends StatelessWidget {
     );
   }
 
-  Widget pandaLiveItem(BuildContext context, PandaLiveEntity entity) {
+  Widget pandaLiveItem(BuildContext context, HomePandaLiveEntity entity) {
     Size size = MediaQuery.of(context).size;
     return Container(
         margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
@@ -279,7 +279,7 @@ class PandaHomeScreen extends StatelessWidget {
         ]));
   }
 
-  Widget pandaEyeItem(PandaEyeEntity entity) {
+  Widget pandaEyeItem(HomePandaEyeEntity entity) {
     return Container(
         margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
         color: Colors.white,

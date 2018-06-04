@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-part 'tab_video_entity.g.dart';
+part 'video_entity.g.dart';
 
 @JsonSerializable()
 class BaseVideoEntity extends Object with _$BaseVideoEntitySerializerMixin {
-  final List<BigImageEntity> bigImg;
-  final List<ListEntity> list;
+  final List<VideoBigImageEntity> bigImg;
+  final List<VideoListEntity> list;
 
   factory BaseVideoEntity.fromJson(Map<String, dynamic> json) =>
       _$BaseVideoEntityFromJson(json);
@@ -14,7 +14,8 @@ class BaseVideoEntity extends Object with _$BaseVideoEntitySerializerMixin {
 }
 
 @JsonSerializable()
-class BigImageEntity extends Object with _$BigImageEntitySerializerMixin {
+class VideoBigImageEntity extends Object
+    with _$VideoBigImageEntitySerializerMixin {
   final String url;
   final String image;
   final String title;
@@ -26,15 +27,15 @@ class BigImageEntity extends Object with _$BigImageEntitySerializerMixin {
   final String vid;
   final String order;
 
-  factory BigImageEntity.fromJson(Map<String, dynamic> json) =>
-      _$BigImageEntityFromJson(json);
+  factory VideoBigImageEntity.fromJson(Map<String, dynamic> json) =>
+      _$VideoBigImageEntityFromJson(json);
 
-  BigImageEntity(this.url, this.image, this.title, this.id, this.sType,
+  VideoBigImageEntity(this.url, this.image, this.title, this.id, this.sType,
       this.type, this.pid, this.vid, this.order);
 }
 
 @JsonSerializable()
-class ListEntity extends Object with _$ListEntitySerializerMixin {
+class VideoListEntity extends Object with _$VideoListEntitySerializerMixin {
   final String url;
   final String image;
   final String title;
@@ -44,9 +45,9 @@ class ListEntity extends Object with _$ListEntitySerializerMixin {
   final String id;
   final String order;
 
-  factory ListEntity.fromJson(Map<String, dynamic> json) =>
-      _$ListEntityFromJson(json);
+  factory VideoListEntity.fromJson(Map<String, dynamic> json) =>
+      _$VideoListEntityFromJson(json);
 
-  ListEntity(this.url, this.image, this.title, this.brief, this.type,
+  VideoListEntity(this.url, this.image, this.title, this.brief, this.type,
       this.videoLength, this.id, this.order);
 }
