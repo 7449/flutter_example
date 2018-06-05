@@ -5,7 +5,7 @@ import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/value.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class PandaHomeScreen extends StatelessWidget {
+class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

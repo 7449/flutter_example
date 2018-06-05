@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ipanda/entity/panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
-import 'package:flutter_ipanda/screen/live/live_ipanda_screen.dart';
-import 'package:flutter_ipanda/screen/live/live_screen.dart';
+import 'package:flutter_ipanda/screen/live/ipanda_screen.dart';
 import 'package:flutter_ipanda/value.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
 
-class PandaLiveScreen extends StatefulWidget {
+class LiveScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => PandaLiveState();
+  State<StatefulWidget> createState() => LiveState();
 }
 
-class PandaLiveState extends State<PandaLiveScreen>
-    with TickerProviderStateMixin {
+class LiveState extends State<LiveScreen> with TickerProviderStateMixin {
   TabController tabController;
   List<PandaLiveTabListEntity> list = [];
   Status status = Status.LOADING;
@@ -93,7 +91,7 @@ class PandaLiveState extends State<PandaLiveScreen>
         case "1":
           return LivePandaScreen(url: item.url);
         default:
-          return LiveScreen();
+          return Center(child: Text(item.title));
       }
     }).toList();
   }

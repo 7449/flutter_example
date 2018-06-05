@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_ipanda/screen/panda_broadcast_screen.dart';
-import 'package:flutter_ipanda/screen/panda_home_screen.dart';
-import 'package:flutter_ipanda/screen/panda_live_china_screen.dart';
-import 'package:flutter_ipanda/screen/panda_live_screen.dart';
-import 'package:flutter_ipanda/screen/panda_video_screen.dart';
+import 'package:flutter_ipanda/screen/broadcast_screen.dart';
+import 'package:flutter_ipanda/screen/home_screen.dart';
+import 'package:flutter_ipanda/screen/live_china_screen.dart';
+import 'package:flutter_ipanda/screen/live_screen.dart';
+import 'package:flutter_ipanda/screen/video_screen.dart';
 import 'package:flutter_ipanda/value.dart';
 
-class HomeScreen extends StatefulWidget {
+class AppScreen extends StatefulWidget {
   @override
-  State<StatefulWidget> createState() => DrawerState();
+  State<StatefulWidget> createState() => AppState();
 }
 
-class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
+class AppState extends State<AppScreen> with TickerProviderStateMixin {
   int selectBottomIndex = 0;
 
   @override
@@ -22,17 +22,17 @@ class DrawerState extends State<HomeScreen> with TickerProviderStateMixin {
   Widget body() {
     switch (selectBottomIndex) {
       case 0:
-        return PandaHomeScreen();
+        return HomeScreen();
       case 1:
-        return PandaLiveScreen();
+        return LiveScreen();
       case 2:
-        return PandaVideoScreen();
+        return VideoScreen();
       case 3:
-        return PandaBroadcastScreen();
+        return BroadcastScreen();
       case 4:
-        return PandaLiveChinaScreen();
+        return LiveChinaScreen();
     }
-    return PandaHomeScreen();
+    return HomeScreen();
   }
 
   Widget bottomNavigation() {

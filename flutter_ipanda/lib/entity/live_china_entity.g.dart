@@ -53,3 +53,35 @@ abstract class _$LiveChinaAllEntitySerializerMixin {
   Map<String, dynamic> toJson() =>
       <String, dynamic>{'title': title, 'url': url, 'id': id, 'order': order};
 }
+
+LiveChinaBaseListEntity _$LiveChinaBaseListEntityFromJson(
+        Map<String, dynamic> json) =>
+    new LiveChinaBaseListEntity((json['live'] as List)
+        ?.map((e) => e == null
+            ? null
+            : new LiveChinaListEntity.fromJson(e as Map<String, dynamic>))
+        ?.toList());
+
+abstract class _$LiveChinaBaseListEntitySerializerMixin {
+  List<LiveChinaListEntity> get live;
+  Map<String, dynamic> toJson() => <String, dynamic>{'live': live};
+}
+
+LiveChinaListEntity _$LiveChinaListEntityFromJson(Map<String, dynamic> json) =>
+    new LiveChinaListEntity(json['title'] as String, json['brief'] as String,
+        json['image'] as String, json['order'] as String, json['id'] as String);
+
+abstract class _$LiveChinaListEntitySerializerMixin {
+  String get title;
+  String get brief;
+  String get image;
+  String get order;
+  String get id;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'title': title,
+        'brief': brief,
+        'image': image,
+        'order': order,
+        'id': id
+      };
+}

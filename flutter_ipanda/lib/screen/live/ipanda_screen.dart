@@ -10,7 +10,6 @@ final List<TabEntity> tabEntity = [
   new TabEntity(title: '边看边聊'),
 ];
 
-/// 直播
 class LivePandaScreen extends StatefulWidget {
   final String url;
 
@@ -130,7 +129,7 @@ class LivePandaState extends State<LivePandaScreen> {
   Widget multipleWidget(BuildContext context, String url) {
     Size size = MediaQuery.of(context).size;
     return FutureBuilder<PandaMultipleEntity>(
-      future: fetchPandaLiveMultipleEntity(url),
+      future: fetchPandaLiveMultiple(url),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           return GridView.count(

@@ -43,3 +43,29 @@ class LiveChinaAllEntity extends Object
 
   LiveChinaAllEntity(this.title, this.url, this.id, this.order);
 }
+
+@JsonSerializable()
+class LiveChinaBaseListEntity extends Object
+    with _$LiveChinaBaseListEntitySerializerMixin {
+  final List<LiveChinaListEntity> live;
+
+  factory LiveChinaBaseListEntity.fromJson(Map<String, dynamic> json) =>
+      _$LiveChinaBaseListEntityFromJson(json);
+
+  LiveChinaBaseListEntity(this.live);
+}
+
+@JsonSerializable()
+class LiveChinaListEntity extends Object
+    with _$LiveChinaListEntitySerializerMixin {
+  final String title;
+  final String brief;
+  final String image;
+  final String order;
+  final String id;
+
+  factory LiveChinaListEntity.fromJson(Map<String, dynamic> json) =>
+      _$LiveChinaListEntityFromJson(json);
+
+  LiveChinaListEntity(this.title, this.brief, this.image, this.order, this.id);
+}

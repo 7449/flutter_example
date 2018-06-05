@@ -1,41 +1,29 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
-import 'package:flutter_ipanda/entity/video_entity.dart';
+import 'package:flutter_ipanda/entity/broad_cast_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/value.dart';
+import 'package:flutter_ipanda/widget/base_state.dart';
+import 'package:flutter_ipanda/widget/status_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
-class PandaVideoScreen extends StatelessWidget {
+class BroadcastScreen extends StatefulWidget {
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text(tabs[2])),
-      body: FutureBuilder<BaseVideoEntity>(
-        future: fetchVideoEntity(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return _build(context, snapshot.data);
-          } else if (snapshot.hasError) {
-            return Center(child: Text('${snapshot.error}'));
-          }
-          return Center(child: CircularProgressIndicator());
-        },
-      ),
-    );
+  State<StatefulWidget> createState() => BroadcastState();
+}
+
+class BroadcastState extends ListState<BroadcastScreen, Object> {
+  @override
+  Widget itemWidget(Object entity, int index) {
+    if (entity is BroadcastBigImageEntity) {
+      return _bigImage(entity);
+    } else {
+      return _list(entity);
+    }
   }
 
-  Widget _build(BuildContext context, BaseVideoEntity entity) {
-    return ListView.builder(
-      itemCount: entity.list.length + entity.bigImg.length,
-      itemBuilder: (context, index) {
-        if (index < entity.bigImg.length) {
-          return _bigImage(context, entity.bigImg[index]);
-        }
-        return _list(context, entity.list[index - entity.bigImg.length]);
-      },
-    );
-  }
-
-  Widget _list(BuildContext context, VideoListEntity entity) {
+  Widget _list(BroadcastChildListEntity entity) {
     Size size = MediaQuery.of(context).size;
     return Container(
         height: size.width / 5,
@@ -47,7 +35,7 @@ class PandaVideoScreen extends StatelessWidget {
                 height: size.width / 5,
                 child: FadeInImage.memoryNetwork(
                     placeholder: kTransparentImage,
-                    image: entity.image,
+                    image: entity.picUrl,
                     fit: BoxFit.cover)),
             Container(
                 margin: EdgeInsets.all(4.0),
@@ -66,13 +54,17 @@ class PandaVideoScreen extends StatelessWidget {
                     Expanded(
                         child: Align(
                             alignment: Alignment.bottomLeft,
-                            child: Text(entity.brief,
+                            child: Text(
+                                DateTime
+                                    .fromMillisecondsSinceEpoch(
+                                        entity.focusDate)
+                                    .toString(),
                                 style: TextStyle(fontSize: 10.0))))
                   ])))
         ]));
   }
 
-  Widget _bigImage(BuildContext context, VideoBigImageEntity entity) {
+  Widget _bigImage(BroadcastBigImageEntity entity) {
     return Stack(alignment: Alignment.bottomLeft, children: <Widget>[
       FadeInImage.memoryNetwork(
           placeholder: kTransparentImage,
@@ -80,5 +72,31 @@ class PandaVideoScreen extends StatelessWidget {
           fit: BoxFit.cover),
       Text(entity.title, style: TextStyle(color: Colors.white))
     ]);
+  }
+
+  @override
+  void onLoadMore() {}
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(tabs[3])),
+      body: super.build(context),
+    );
+  }
+
+  @override
+  Future<Null> onRefresh() async {
+    globalKey.currentState?.show();
+    fetchBroadcast().then((entity) {
+      fetchBroadcastList(entity.listUrl).then((listEntity) {
+        list = [];
+        list.addAll(entity.bigImg);
+        list.addAll(listEntity.list);
+        list.isEmpty ? status = Status.EMPTY : page = 2;
+        isLoadMore = false;
+        updateState();
+      }).catchError((error) => refreshError());
+    }).catchError((error) => refreshError());
   }
 }
