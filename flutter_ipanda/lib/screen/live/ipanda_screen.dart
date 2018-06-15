@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ipanda/entity/panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
+import 'package:flutter_ipanda/widget/widget_grid_item.dart';
 import 'package:flutter_tab_widget/flutter_tab_widget.dart';
 import 'package:transparent_image/transparent_image.dart';
 
@@ -139,27 +140,12 @@ class LivePandaState extends State<LivePandaScreen> {
             crossAxisSpacing: 2.0,
             childAspectRatio: 0.8,
             children: snapshot.data.list
-                .map((entity) => Container(
-                    height: size.width / 3,
-                    child: Column(children: <Widget>[
-                      Stack(
-                          alignment: AlignmentDirectional.bottomStart,
-                          children: <Widget>[
-                            Container(
-                                height: (size.width / 3) - 20.0,
-                                child: FadeInImage.memoryNetwork(
-                                    placeholder: kTransparentImage,
-                                    image: entity.image,
-                                    fit: BoxFit.cover)),
-                            Text('live', style: TextStyle(color: Colors.white))
-                          ]),
-                      Expanded(
-                          child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Container(
-                                  child: Text(entity.title,
-                                      style: TextStyle(fontSize: 12.0)))))
-                    ])))
+                .map((entity) => GridItem(
+                      title: entity.title,
+                      image: entity.image,
+                      imageTitle: "live",
+                      imageHeight: size.width / 3,
+                    ))
                 .toList(),
           );
         } else if (snapshot.hasError) {

@@ -6,6 +6,7 @@ import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/value.dart';
 import 'package:flutter_ipanda/widget/base_state.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
+import 'package:flutter_ipanda/widget/widget_grid_item.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class BroadcastScreen extends StatefulWidget {
@@ -28,40 +29,13 @@ class BroadcastState extends ListState<BroadcastScreen, Object> {
     return Container(
         height: size.width / 5,
         padding: EdgeInsets.all(4.0),
-        child: Row(children: <Widget>[
-          Stack(alignment: AlignmentDirectional.bottomStart, children: <Widget>[
-            Container(
-                width: size.width / 3,
-                height: size.width / 5,
-                child: FadeInImage.memoryNetwork(
-                    placeholder: kTransparentImage,
-                    image: entity.picUrl,
-                    fit: BoxFit.cover)),
-            Container(
-                margin: EdgeInsets.all(4.0),
-                child: Text(entity.videoLength,
-                    style: TextStyle(color: Colors.white, fontSize: 12.0)))
-          ]),
-          Expanded(
-              child: Container(
-                  margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
-                  child: Column(children: <Widget>[
-                    Expanded(
-                        child: Align(
-                            alignment: Alignment.topLeft,
-                            child: Text(entity.title,
-                                style: TextStyle(fontSize: 12.0)))),
-                    Expanded(
-                        child: Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Text(
-                                DateTime
-                                    .fromMillisecondsSinceEpoch(
-                                        entity.focusDate)
-                                    .toString(),
-                                style: TextStyle(fontSize: 10.0))))
-                  ])))
-        ]));
+        child: ListItem(
+          image: entity.picUrl,
+          imageTitle: entity.videoLength,
+          title: entity.title,
+          subTitle:
+              DateTime.fromMillisecondsSinceEpoch(entity.focusDate).toString(),
+        ));
   }
 
   Widget _bigImage(BroadcastBigImageEntity entity) {

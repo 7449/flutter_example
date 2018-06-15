@@ -85,6 +85,8 @@ class LiveState extends State<LiveScreen> with TickerProviderStateMixin {
     return entity.map((item) => Tab(text: item.title)).toList();
   }
 
+  /// 这里如果tab.length是固定的，可以直接返回一个数组,而不是这样根据接口数据去返回页面
+  /// 那么使用[FutureBuilder]也可以
   List<Widget> body(List<PandaLiveTabListEntity> entity) {
     return entity.map((item) {
       switch (item.order) {

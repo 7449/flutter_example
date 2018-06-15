@@ -3,6 +3,7 @@ import 'package:flutter_banner_widget/banner/banner_widget.dart';
 import 'package:flutter_ipanda/entity/home_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
 import 'package:flutter_ipanda/value.dart';
+import 'package:flutter_ipanda/widget/widget_grid_item.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -32,7 +33,7 @@ class HomeScreen extends StatelessWidget {
         switch (index) {
           case 0:
             return BannerWidget(
-              height: 215,
+              height: 200,
               entity: entity.banner,
               bannerPress: (position, entity) {},
             );
@@ -57,10 +58,7 @@ class HomeScreen extends StatelessWidget {
         margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
         color: Colors.white,
         child: Column(children: <Widget>[
-          Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.all(10.0),
-              child: Text(entity.title, style: TextStyle(color: Colors.blue))),
+          HeaderItem(title: entity.title),
           Divider(height: 2.0, color: Colors.black26),
           GridView.count(
             shrinkWrap: true,
@@ -70,34 +68,18 @@ class HomeScreen extends StatelessWidget {
             childAspectRatio: 0.8,
             physics: NeverScrollableScrollPhysics(),
             children: entity.list
-                .map((entity) => InkWell(
-                    onTap: () {},
-                    child: Column(children: <Widget>[
-                      Stack(
-                          alignment: AlignmentDirectional.bottomStart,
-                          children: <Widget>[
-                            Container(
-//                                width: size.width / 3,
-                                height: size.width / 3,
-                                child: FadeInImage.memoryNetwork(
-                                    placeholder: kTransparentImage,
-                                    image: entity.image,
-                                    fit: BoxFit.cover)),
-                            Text('live', style: TextStyle(color: Colors.white))
-                          ]),
-                      Expanded(
-                          child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(entity.title,
-                                  style: TextStyle(fontSize: 12.0))))
-                    ])))
+                .map((entity) => GridItem(
+                      title: entity.title,
+                      image: entity.image,
+                      imageTitle: "live",
+                      imageHeight: size.width / 3,
+                    ))
                 .toList(),
           )
         ]));
   }
 
   Widget pandaListItem(BuildContext context, HomeListEntity entity) {
-    Size size = MediaQuery.of(context).size;
     return FutureBuilder<HomePandaVideoEntity>(
       future: fetchPandaVideo(entity.listUrl),
       builder: (context, snapshot) {
@@ -107,11 +89,7 @@ class HomeScreen extends StatelessWidget {
               margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
               color: Colors.white,
               child: Column(children: <Widget>[
-                Container(
-                    alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.all(10.0),
-                    child: Text(entity.title,
-                        style: TextStyle(color: Colors.blue))),
+                HeaderItem(title: entity.title),
                 Divider(height: 2.0, color: Colors.black26),
                 GridView.count(
                   shrinkWrap: true,
@@ -121,43 +99,12 @@ class HomeScreen extends StatelessWidget {
                   childAspectRatio: 5.4,
                   physics: NeverScrollableScrollPhysics(),
                   children: listEntity
-                      .map((entity) => Row(children: <Widget>[
-                            Stack(
-                                alignment: AlignmentDirectional.bottomStart,
-                                children: <Widget>[
-                                  Container(
-                                      width: size.width / 3,
-                                      height: size.width / 5,
-                                      child: FadeInImage.memoryNetwork(
-                                          placeholder: kTransparentImage,
-                                          image: entity.image,
-                                          fit: BoxFit.cover)),
-                                  Container(
-                                      margin: EdgeInsets.all(4.0),
-                                      child: Text(entity.videoLength,
-                                          style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12.0)))
-                                ]),
-                            Expanded(
-                                child: Container(
-                                    margin: EdgeInsets.only(
-                                        top: 6.0, left: 10.0, right: 10.0),
-                                    child: Column(children: <Widget>[
-                                      Expanded(
-                                          child: Align(
-                                              alignment: Alignment.topLeft,
-                                              child: Text(entity.title,
-                                                  style: TextStyle(
-                                                      fontSize: 12.0)))),
-                                      Expanded(
-                                          child: Align(
-                                              alignment: Alignment.bottomLeft,
-                                              child: Text(entity.daytime,
-                                                  style: TextStyle(
-                                                      fontSize: 10.0))))
-                                    ])))
-                          ]))
+                      .map((entity) => ListItem(
+                            image: entity.image,
+                            imageTitle: entity.videoLength,
+                            title: entity.title,
+                            subTitle: entity.daytime,
+                          ))
                       .toList(),
                 )
               ]));
@@ -181,47 +128,23 @@ class HomeScreen extends StatelessWidget {
               margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
               color: Colors.white,
               child: Column(children: <Widget>[
-                Container(
-                    alignment: Alignment.centerLeft,
-                    margin: EdgeInsets.all(10.0),
-                    child: Text(entity.title,
-                        style: TextStyle(color: Colors.blue))),
+                HeaderItem(title: entity.title),
                 Divider(height: 2.0, color: Colors.black26),
                 GridView.count(
                   shrinkWrap: true,
                   crossAxisCount: 2,
-                  mainAxisSpacing: 4.0,
-                  crossAxisSpacing: 4.0,
-                  childAspectRatio: 0.7,
+                  mainAxisSpacing: 2.0,
+                  crossAxisSpacing: 2.0,
+                  childAspectRatio: 0.73,
                   physics: NeverScrollableScrollPhysics(),
                   children: listEntity
-                      .map((entity) => Column(children: <Widget>[
-                            Stack(
-                                alignment: AlignmentDirectional.bottomStart,
-                                children: <Widget>[
-                                  Container(
-                                      height: size.width / 2,
-                                      child: FadeInImage.memoryNetwork(
-                                          placeholder: kTransparentImage,
-                                          image: entity.image,
-                                          fit: BoxFit.cover)),
-                                  Text(entity.videoLength,
-                                      style: TextStyle(color: Colors.white))
-                                ]),
-                            Expanded(
-                                child: Column(children: <Widget>[
-                              Expanded(
-                                  child: Align(
-                                      alignment: Alignment.topLeft,
-                                      child: Text(entity.title,
-                                          style: TextStyle(fontSize: 12.0)))),
-                              Expanded(
-                                  child: Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(entity.daytime,
-                                          style: TextStyle(fontSize: 10.0))))
-                            ]))
-                          ]))
+                      .map((entity) => GridItem(
+                            title: entity.title,
+                            littleTitle: entity.daytime,
+                            image: entity.image,
+                            imageTitle: entity.videoLength,
+                            imageHeight: size.width / 1.9,
+                          ))
                       .toList(),
                 )
               ]));
@@ -240,10 +163,7 @@ class HomeScreen extends StatelessWidget {
         margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
         color: Colors.white,
         child: Column(children: <Widget>[
-          Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.all(10.0),
-              child: Text(entity.title, style: TextStyle(color: Colors.blue))),
+          HeaderItem(title: entity.title),
           Divider(height: 2.0, color: Colors.black26),
           GridView.count(
             shrinkWrap: true,
@@ -253,27 +173,12 @@ class HomeScreen extends StatelessWidget {
             childAspectRatio: 0.8,
             physics: NeverScrollableScrollPhysics(),
             children: entity.list
-                .map((entity) => Container(
-                    height: size.width / 3,
-                    child: Column(children: <Widget>[
-                      Stack(
-                          alignment: AlignmentDirectional.bottomStart,
-                          children: <Widget>[
-                            Container(
-                                height: (size.width / 3) - 20.0,
-                                child: FadeInImage.memoryNetwork(
-                                    placeholder: kTransparentImage,
-                                    image: entity.image,
-                                    fit: BoxFit.cover)),
-                            Text('live', style: TextStyle(color: Colors.white))
-                          ]),
-                      Expanded(
-                          child: Align(
-                              alignment: Alignment.centerLeft,
-                              child: Container(
-                                  child: Text(entity.title,
-                                      style: TextStyle(fontSize: 12.0)))))
-                    ])))
+                .map((entity) => GridItem(
+                      title: entity.title,
+                      image: entity.image,
+                      imageTitle: "live",
+                      imageHeight: (size.width / 3) - 20,
+                    ))
                 .toList(),
           )
         ]));
@@ -284,10 +189,7 @@ class HomeScreen extends StatelessWidget {
         margin: EdgeInsets.only(top: 6.0, left: 10.0, right: 10.0),
         color: Colors.white,
         child: Column(children: <Widget>[
-          Container(
-              alignment: Alignment.centerLeft,
-              margin: EdgeInsets.all(10.0),
-              child: Text(entity.title, style: TextStyle(color: Colors.blue))),
+          HeaderItem(title: entity.title),
           Divider(height: 2.0, color: Colors.black26),
           Row(children: <Widget>[
             FadeInImage.memoryNetwork(
@@ -299,7 +201,8 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                     children: entity.items
                         .map((entity) => Container(
-                                child: Column(
+                            margin: EdgeInsets.all(2.0),
+                            child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: <Widget>[
                                 Row(children: <Widget>[
