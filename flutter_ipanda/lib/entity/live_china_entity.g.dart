@@ -3,7 +3,7 @@
 part of 'live_china_entity.dart';
 
 // **************************************************************************
-// Generator: JsonSerializableGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
 BaseLiveChinaEntity _$BaseLiveChinaEntityFromJson(Map<String, dynamic> json) =>

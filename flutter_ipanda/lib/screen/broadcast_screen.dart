@@ -15,6 +15,8 @@ class BroadcastScreen extends StatefulWidget {
 }
 
 class BroadcastState extends ListState<BroadcastScreen, Object> {
+  String url;
+
   @override
   Widget itemWidget(Object entity, int index) {
     if (entity is BroadcastBigImageEntity) {
@@ -49,7 +51,19 @@ class BroadcastState extends ListState<BroadcastScreen, Object> {
   }
 
   @override
-  void onLoadMore() {}
+  void onLoadMore() {
+    loadMoreTips();
+    fetchBroadcastList(url + '&page=$page').then((listEntity) {
+      if (listEntity.list.isEmpty) {
+        noMoreTips();
+      } else {
+        list.addAll(listEntity.list);
+        page++;
+      }
+      isLoadMore = false;
+      updateState();
+    }).catchError((error) => loadMoreErrorTips());
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,8 +77,10 @@ class BroadcastState extends ListState<BroadcastScreen, Object> {
   Future<Null> onRefresh() async {
     globalKey.currentState?.show();
     fetchBroadcast().then((entity) {
-      fetchBroadcastList(entity.listUrl).then((listEntity) {
+      fetchBroadcastList(entity.listUrl + '&page=1').then((listEntity) {
         list = [];
+        page = 1;
+        url = entity.listUrl;
         list.addAll(entity.bigImg);
         list.addAll(listEntity.list);
         list.isEmpty ? status = Status.EMPTY : page = 2;

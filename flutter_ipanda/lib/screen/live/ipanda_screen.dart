@@ -1,6 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_ipanda/entity/panda_live_entity.dart';
 import 'package:flutter_ipanda/net/fetch.dart';
+import 'package:flutter_ipanda/widget/base_state.dart';
 import 'package:flutter_ipanda/widget/status_widget.dart';
 import 'package:flutter_ipanda/widget/widget_grid_item.dart';
 import 'package:flutter_tab_widget/flutter_tab_widget.dart';
@@ -76,7 +79,7 @@ class LivePandaState extends State<LivePandaScreen> {
                   child: Icon(
                     Icons.play_arrow,
                     size: 60.0,
-                    color: Colors.blue,
+                    color: Colors.white,
                   ))
             ],
           ),
@@ -120,8 +123,7 @@ class LivePandaState extends State<LivePandaScreen> {
             tabTextUnSelectColor: Colors.black,
             children: <Widget>[
               multipleWidget(context, entity.bookmark.multiple[0].url),
-              Container(
-                  color: Colors.white, child: Center(child: Text('边看边聊'))),
+              WatchTalkScreen(),
             ],
           )),
         ]));
@@ -154,5 +156,62 @@ class LivePandaState extends State<LivePandaScreen> {
         return Center(child: CircularProgressIndicator());
       },
     );
+  }
+}
+
+class WatchTalkScreen extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() => WatchTalkState();
+}
+
+class WatchTalkState
+    extends ListState<WatchTalkScreen, PandaWatchTalkChildEntity> {
+  String url;
+
+  @override
+  Widget itemWidget(PandaWatchTalkChildEntity entity, int index) {
+    return Container(
+      margin: EdgeInsets.all(2.0),
+      child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              child: Text(entity.author),
+              padding: EdgeInsets.only(bottom: 6.0),
+            ),
+            Padding(
+              child: Text(entity.message),
+              padding: EdgeInsets.only(left: 20.0),
+            ),
+          ]),
+    );
+  }
+
+  @override
+  void onLoadMore() {
+    loadMoreTips();
+    fetchPandaLiveWatchTalk(page).then((listEntity) {
+      if (listEntity.content.isEmpty) {
+        noMoreTips();
+      } else {
+        list.addAll(listEntity.content);
+        page++;
+      }
+      isLoadMore = false;
+      updateState();
+    }).catchError((error) => loadMoreErrorTips());
+  }
+
+  @override
+  Future<Null> onRefresh() async {
+    globalKey.currentState?.show();
+    fetchPandaLiveWatchTalk(1).then((listEntity) {
+      list = [];
+      page = 1;
+      list.addAll(listEntity.content);
+      list.isEmpty ? status = Status.EMPTY : page = 2;
+      isLoadMore = false;
+      updateState();
+    }).catchError((error) => refreshError());
   }
 }

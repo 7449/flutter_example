@@ -3,7 +3,7 @@
 part of 'home_entity.dart';
 
 // **************************************************************************
-// Generator: JsonSerializableGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
 BaseHomeEntity _$BaseHomeEntityFromJson(Map<String, dynamic> json) =>

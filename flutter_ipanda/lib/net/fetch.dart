@@ -60,6 +60,13 @@ Future<PandaMultipleEntity> fetchPandaLiveMultiple(String url) async {
   return PandaMultipleEntity.fromJson(json.decode(response.body));
 }
 
+/// 熊猫直播 --> 直播 --> 边看边聊
+Future<PandaWatchTalkEntity> fetchPandaLiveWatchTalk(int page) async {
+  print('fetchPandaLiveWatchTalk:${watchTalkUrl + page.toString()}');
+  final response = await http.get(watchTalkUrl + page.toString());
+  return PandaWatchTalkEntity.fromJson(json.decode(response.body)['data']);
+}
+
 /// 滚滚视频
 Future<BaseVideoEntity> fetchVideo() async {
   print('fetchVideo:${tabUrlAction[2]}');

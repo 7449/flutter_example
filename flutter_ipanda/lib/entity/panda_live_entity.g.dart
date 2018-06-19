@@ -3,7 +3,7 @@
 part of 'panda_live_entity.dart';
 
 // **************************************************************************
-// Generator: JsonSerializableGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
 BasePandaLiveEntity _$BasePandaLiveEntityFromJson(Map<String, dynamic> json) =>
@@ -176,5 +176,69 @@ abstract class _$PandaMultipleChildEntitySerializerMixin {
         'pid': pid,
         'vid': vid,
         'order': order
+      };
+}
+
+PandaWatchTalkEntity _$PandaWatchTalkEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaWatchTalkEntity((json['content'] as List)
+        ?.map((e) => e == null
+            ? null
+            : new PandaWatchTalkChildEntity.fromJson(e as Map<String, dynamic>))
+        ?.toList());
+
+abstract class _$PandaWatchTalkEntitySerializerMixin {
+  List<PandaWatchTalkChildEntity> get content;
+  Map<String, dynamic> toJson() => <String, dynamic>{'content': content};
+}
+
+PandaWatchTalkChildEntity _$PandaWatchTalkChildEntityFromJson(
+        Map<String, dynamic> json) =>
+    new PandaWatchTalkChildEntity(
+        json['pid'] as String,
+        json['tid'] as String,
+        json['piccount'] as int,
+        json['message'] as String,
+        json['mark'] as String,
+        json['author'] as String,
+        json['authorid'] as String,
+        json['dateline'] as String,
+        json['sub_count'] as String,
+        json['stype'] as int,
+        json['locale'] as String,
+        json['agree'] as int,
+        json['disagree'] as int,
+        json['relative_time'] as int);
+
+abstract class _$PandaWatchTalkChildEntitySerializerMixin {
+  String get pid;
+  String get tid;
+  int get picCount;
+  String get message;
+  String get mark;
+  String get author;
+  String get authorId;
+  String get dateline;
+  String get subCount;
+  int get sType;
+  String get locale;
+  int get agree;
+  int get disagree;
+  int get relativeTime;
+  Map<String, dynamic> toJson() => <String, dynamic>{
+        'pid': pid,
+        'tid': tid,
+        'piccount': picCount,
+        'message': message,
+        'mark': mark,
+        'author': author,
+        'authorid': authorId,
+        'dateline': dateline,
+        'sub_count': subCount,
+        'stype': sType,
+        'locale': locale,
+        'agree': agree,
+        'disagree': disagree,
+        'relative_time': relativeTime
       };
 }

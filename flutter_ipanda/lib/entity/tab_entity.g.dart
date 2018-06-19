@@ -3,7 +3,7 @@
 part of 'tab_entity.dart';
 
 // **************************************************************************
-// Generator: JsonSerializableGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
 TabEntity _$TabEntityFromJson(Map<String, dynamic> json) =>

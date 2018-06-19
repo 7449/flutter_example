@@ -30,7 +30,7 @@ class LiveChinaScreen extends StatelessWidget {
     List<TabEntity> tabEntity = [];
     List<Widget> children = [];
     entity.allList.forEach((entity) {
-      tabEntity.add(new TabEntity(title: entity.title));
+      tabEntity.add(TabEntity(title: entity.title));
       children.add(ListScreen(url: entity.url));
     });
     return Stack(alignment: Alignment.topRight, children: <Widget>[

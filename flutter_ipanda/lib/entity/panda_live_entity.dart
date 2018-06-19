@@ -128,3 +128,57 @@ class PandaMultipleChildEntity extends Object
   PandaMultipleChildEntity(this.url, this.image, this.title, this.videoLength,
       this.id, this.daytime, this.type, this.pid, this.vid, this.order);
 }
+
+@JsonSerializable()
+class PandaWatchTalkEntity extends Object
+    with _$PandaWatchTalkEntitySerializerMixin {
+  final List<PandaWatchTalkChildEntity> content;
+
+  factory PandaWatchTalkEntity.fromJson(Map<String, dynamic> json) =>
+      _$PandaWatchTalkEntityFromJson(json);
+
+  PandaWatchTalkEntity(this.content);
+}
+
+@JsonSerializable()
+class PandaWatchTalkChildEntity extends Object
+    with _$PandaWatchTalkChildEntitySerializerMixin {
+  final String pid;
+  final String tid;
+  @JsonKey(name: 'piccount')
+  final int picCount;
+  final String message;
+  final String mark;
+  final String author;
+  @JsonKey(name: 'authorid')
+  final String authorId;
+  final String dateline;
+  @JsonKey(name: 'sub_count')
+  final String subCount;
+  @JsonKey(name: 'stype')
+  final int sType;
+  final String locale;
+  final int agree;
+  final int disagree;
+  @JsonKey(name: 'relative_time')
+  final int relativeTime;
+
+  factory PandaWatchTalkChildEntity.fromJson(Map<String, dynamic> json) =>
+      _$PandaWatchTalkChildEntityFromJson(json);
+
+  PandaWatchTalkChildEntity(
+      this.pid,
+      this.tid,
+      this.picCount,
+      this.message,
+      this.mark,
+      this.author,
+      this.authorId,
+      this.dateline,
+      this.subCount,
+      this.sType,
+      this.locale,
+      this.agree,
+      this.disagree,
+      this.relativeTime);
+}

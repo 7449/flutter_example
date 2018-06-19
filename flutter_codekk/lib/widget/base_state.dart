@@ -47,6 +47,7 @@ abstract class ListState<T extends StatefulWidget, ENTITY> extends State<T> {
   Widget itemWidget(ENTITY entity);
 
   void refreshSuccess(List<ENTITY> item) {
+    page = 1;
     list = [];
     list.addAll(item);
     list.isEmpty ? status = Status.EMPTY : page = 2;

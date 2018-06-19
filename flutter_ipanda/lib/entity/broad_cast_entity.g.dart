@@ -3,7 +3,7 @@
 part of 'broad_cast_entity.dart';
 
 // **************************************************************************
-// Generator: JsonSerializableGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
 BaseBroadcastEntity _$BaseBroadcastEntityFromJson(Map<String, dynamic> json) =>

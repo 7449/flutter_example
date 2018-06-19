@@ -3,7 +3,7 @@
 part of 'video_entity.dart';
 
 // **************************************************************************
-// Generator: JsonSerializableGenerator
+// JsonSerializableGenerator
 // **************************************************************************
 
 BaseVideoEntity _$BaseVideoEntityFromJson(Map<String, dynamic> json) =>

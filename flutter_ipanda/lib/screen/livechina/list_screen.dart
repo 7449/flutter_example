@@ -54,7 +54,7 @@ class ListState extends State<ListScreen> {
                           child: Icon(
                             Icons.play_arrow,
                             size: 40.0,
-                            color: Colors.blue,
+                            color: Colors.white,
                           ))
                     ],
                   ),
