@@ -10,7 +10,7 @@ class LiveScreen extends StatefulWidget {
   State<StatefulWidget> createState() => LiveState();
 }
 
-class LiveState extends State<LiveScreen> with TickerProviderStateMixin {
+class LiveState extends State<LiveScreen> with SingleTickerProviderStateMixin {
   TabController tabController;
   List<PandaLiveTabListEntity> list = [];
   Status status = Status.LOADING;

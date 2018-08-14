@@ -11,7 +11,7 @@ class AppScreen extends StatefulWidget {
   State<StatefulWidget> createState() => AppState();
 }
 
-class AppState extends State<AppScreen> with TickerProviderStateMixin {
+class AppState extends State<AppScreen> with SingleTickerProviderStateMixin {
   int selectBottomIndex = 0;
 
   @override
