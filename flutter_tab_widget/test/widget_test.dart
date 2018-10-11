@@ -5,7 +5,7 @@
 // are correct.
 
 import 'package:flutter/material.dart';
-import 'package:flutter_tab/main.dart';
+import 'package:flutter_tab_widget/main.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
