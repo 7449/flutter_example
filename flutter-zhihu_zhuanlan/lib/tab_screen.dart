@@ -13,7 +13,7 @@ import 'package:zhihu_zhuan_lan/values.dart';
 Future<List<ListEntity>> fetchList(suffix) async {
   print(getListUrl(suffix));
   final response = await http.get(getListUrl(suffix));
-  return ListEntity.fromJson(json.decode(response.body));
+  return ListEntity.fromJson(json.decode(response.body)['data']);
 }
 
 ///传递一个 suffix 参数

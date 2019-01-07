@@ -10,7 +10,7 @@ class ListEntity {
     return json
         .map((string) => new ListEntity(
             title: string['title'],
-            titleImage: string['titleImage'],
+            titleImage: string['title_image'],
             slug: string['slug'],
             author: new AuthorEntity.fromJson(string['author'])))
         .toList();
