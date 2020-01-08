@@ -10,31 +10,31 @@ PODS:
     - Flutter
 
 DEPENDENCIES:
-  - Flutter (from `Pods/.symlinks/flutter/ios`)
-  - flutter_webview_plugin (from `Pods/.symlinks/plugins/flutter_webview_plugin/ios`)
-  - shared_preferences (from `Pods/.symlinks/plugins/shared_preferences/ios`)
-  - url_launcher (from `Pods/.symlinks/plugins/url_launcher/ios`)
-  - video_player (from `Pods/.symlinks/plugins/video_player/ios`)
+  - Flutter (from `Flutter`)
+  - flutter_webview_plugin (from `.symlinks/plugins/flutter_webview_plugin/ios`)
+  - shared_preferences (from `.symlinks/plugins/shared_preferences/ios`)
+  - url_launcher (from `.symlinks/plugins/url_launcher/ios`)
+  - video_player (from `.symlinks/plugins/video_player/ios`)
 
 EXTERNAL SOURCES:
   Flutter:
-    :path: Pods/.symlinks/flutter/ios
+    :path: Flutter
   flutter_webview_plugin:
-    :path: Pods/.symlinks/plugins/flutter_webview_plugin/ios
+    :path: ".symlinks/plugins/flutter_webview_plugin/ios"
   shared_preferences:
-    :path: Pods/.symlinks/plugins/shared_preferences/ios
+    :path: ".symlinks/plugins/shared_preferences/ios"
   url_launcher:
-    :path: Pods/.symlinks/plugins/url_launcher/ios
+    :path: ".symlinks/plugins/url_launcher/ios"
   video_player:
-    :path: Pods/.symlinks/plugins/video_player/ios
+    :path: ".symlinks/plugins/video_player/ios"
 
 SPEC CHECKSUMS:
-  Flutter: 9d0fac939486c9aba2809b7982dfdbb47a7b0296
-  flutter_webview_plugin: 116575b48572029304775b768e9f15ebfc316274
-  shared_preferences: 5a1d487c427ee18fcd3ea1f2a131569481834b53
-  url_launcher: 92b89c1029a0373879933c21642958c874539095
-  video_player: 906796a841943c8d370ac7c13b18039aa9b56498
+  Flutter: 0e3d915762c693b495b44d77113d4970485de6ec
+  flutter_webview_plugin: ed9e8a6a96baf0c867e90e1bce2673913eeac694
+  shared_preferences: 1feebfa37bb57264736e16865e7ffae7fc99b523
+  url_launcher: 0067ddb8f10d36786672aa0722a21717dba3a298
+  video_player: 3964090a33353060ed7f58aa6427c7b4b208ec21
 
-PODFILE CHECKSUM: 13dcf421f4da2e937a57e8ba760ed880beae536f
+PODFILE CHECKSUM: 1b66dae606f75376c5f2135a8290850eeb09ae83
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.8.4

@@ -56,7 +56,7 @@ flutter code
 
 ## flutter_tab_widget
 
-![](https://github.com/7449/flutter_example/blob/master/flutter_tab_widget.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_tab_widget.gif)
 
 #### 使用方法
 
@@ -91,7 +91,7 @@ flutter code
 
 ## flutter_banner_widget
 
-![](https://github.com/7449/flutter_example/blob/master/flutter_banner_widget.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_banner_widget.gif)
 
 #### 使用方法
 
@@ -158,7 +158,7 @@ widget:
 
 > 目前没有比较好的办法加载一段`html`代码,只能以`text`的形式直接显示
 
-![](https://github.com/7449/flutter_example/blob/master/flutter_zhihu_zhuanlan.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_zhihu_zhuanlan.gif)
 
 ## flutter_codekk
 
@@ -171,7 +171,7 @@ widget:
 
 布局的几种模式可以查看[StatusWidget](https://github.com/7449/flutter_example/blob/master/flutter_codekk/lib/widget/status_widget.dart),截图只展示`ERROR`
 
-![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_screen.gif)
-![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_theme_screen.gif)
-![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_status_screen.gif)
-![](https://github.com/7449/flutter_example/blob/master/flutter_codekk_chip_screen.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_codekk_screen.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_codekk_theme_screen.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_codekk_status_screen.gif)
+![](https://github.com/7449/flutter_example/blob/master/screen/flutter_codekk_chip_screen.gif)
